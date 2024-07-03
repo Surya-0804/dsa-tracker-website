@@ -1,27 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Anta&family=Archivo:ital,wght@0,100..900;1,100..900&family=Kanit&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:wght@400;500&display=swap");
 
 .problem-rectangle {
-  min-height: 13vh;
+  min-height: 10vh;
   width: 92%;
   border: 1px solid black;
   border-radius: 1rem;
   padding: 0;
-  margin: 1.8vh 0;
-  padding: 2vh 0;
+  margin: 1.2vh 0;
+  padding: 1.5vh 0;
   box-sizing: border-box;
   position: relative;
 }
+
 .problem-rectangle-group1 {
   display: flex;
   margin-bottom: 1vh;
 }
+
 .problem-rectangle-heading {
   margin-top: 0;
   margin-left: 1.6vw;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 3vh;
+  font-size: 1.32rem;
   /* min-height: 3rem; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -30,16 +32,17 @@
   text-overflow: ellipsis;
   max-width: 72%;
   margin-bottom: 0;
-  min-height: 8.5vh;
+  min-height: 7.5vh;
 }
 
 .problem-difficulty-indicator {
   background-color: white;
-  min-width: 20%;
-  height: 6vh;
+  min-width: 15%;
+  height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 1vh;
   /* text-align: center; */
   color: #000;
   margin: 0;
@@ -48,18 +51,14 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 3vh;
-  /* margin-right: 3%; */
+  font-size: 1.22rem;
   position: absolute;
   right: 1vw;
 }
 
-.problem-rectangle div {
-}
-
-.problem-rectangle-company-logo {
-  width: 30px;
-  height: 30px;
+x .problem-rectangle-company-logo {
+  width: 24px;
+  height: 24px;
   clip-path: circle();
   margin: -1.5%;
   background-color: white;
@@ -88,20 +87,11 @@
   cursor: pointer;
 }
 
-.problem-rectangle-solve-problem-container {
-  /* margin-right: 5vw; */
-  /* margin-bottom: 1rem; */
-  /* min-height: 5vh; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute; */
-}
 
 .GFG-logo-problem-solve-rectangle {
   margin-left: 1.5vw;
   color: #44a44c;
-  font-size: 8vh;
+  font-size: 2rem;
 }
 
 .leetcode-logo-problem-solve-rectangle {
@@ -116,7 +106,7 @@
   height: 5vh;
   margin: 0;
   padding: 0;
-  border-radius: 0.7rem;
+  border-radius: 0.3rem;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -129,11 +119,10 @@
   cursor: pointer;
   background-color: white;
   min-width: 20%;
-  height: 6vh;
+  height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
   color: #000;
   margin: 0;
   padding: 0;
@@ -141,69 +130,73 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5vh;
-  /* margin-right: 3%; */
+  font-size: 1.25rem;
   position: absolute;
-  right: 1vw;
 }
 
 .problem-component-IoNewspaper {
-  width: 1.7vw;
+  width: 1.45vw;
   height: auto;
   cursor: pointer;
+  margin-bottom: -1.25vh;
 }
 
 .problem-component-IoNewspaperOutline {
-  width: 1.7vw;
+  width: 1.45vw;
   height: auto;
   cursor: pointer;
+  margin-bottom: -1.25vh;
 }
 
 .problem-component-MdAddCircle {
-  width: 1.7vw;
+  width: 1.45vw;
   height: auto;
   cursor: pointer;
+  margin-bottom: -1.25vh;
 }
 
 .problem-component-FaStar {
-  width: 1.7vw;
+  width: 1.45vw;
   height: auto;
   cursor: pointer;
+  margin-bottom: -1.25vh;
 }
 
 .problem-component-IoBookmark {
-  width: 1.7vw;
+  width: 1.45vw;
   height: auto;
   cursor: pointer;
+  margin-bottom: -1.25vh;
 }
+
 .problem-component-icon-outer-container {
   margin-left: 15%;
 }
+
 .problem-component-icon-container {
-  padding-left: 1vw;
-  padding-top: 1vh;
+  padding-left: 0.5vw;
 }
+
 .problem-component-status-dropdown-menu {
   position: absolute;
   right: 0;
   top: 100%;
   left: 0;
-  min-width: 100%;
+  min-width: 80%;
   background-color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 0.5vh;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 0.7rem;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0.5vw 0;
-  padding-left: 1vw;
-  text-align: center;
+  justify-content: flex-start;
+  padding: 0.2vh 0;
+  padding-left: 0.85vw;
+  border: 1px solid #dae0e1;
 }
 
 .GFG-logo-problem-solve-rectangle {
-  margin-bottom: -1vw;
+  margin-bottom: -1.2vh;
 }
 
 .problem-component-status-dropdown-menu-option-1 {
@@ -213,7 +206,7 @@
 
 .problem-component-status-dropdown-menu-option-2 {
   color: rgb(221, 221, 34);
-  padding: 0.5vw 0;
+  margin: 0.1vw 0;
   cursor: pointer;
 }
 
@@ -231,51 +224,63 @@
     width: 100%;
     border-radius: 3vw;
   }
+
   .problem-rectangle-heading {
     margin-left: 4vw;
   }
+
   .problem-difficulty-indicator {
     right: 3vw;
     border-radius: 2vh;
     font-size: 2.7vh;
   }
+
   .GFG-logo-problem-solve-rectangle {
     margin-left: 4vw;
   }
+
   .problem-component-4icon {
     width: 4.5vw;
   }
+
   .problem-completion-indicator {
     right: 3vw;
     border-radius: 2vh;
     font-size: 2.7vh;
   }
 }
+
 @media (device-width: 412px) {
   .problem-rectangle {
     padding: 1vh 0;
     padding-bottom: 0.5vh;
   }
+
   .problem-rectangle-heading {
     font-size: 2vh;
     min-height: 6vh;
     max-width: 68%;
   }
+
   .problem-component-4icon {
     width: 5vw;
   }
+
   .problem-component-icon-outer-container {
     margin-left: 2%;
   }
+
   .problem-component-icon-container {
     padding-left: 0.3vw;
   }
+
   .problem-completion-indicator {
     font-size: 2vh;
     width: 30%;
     height: 30%;
     border-radius: 4vw;
   }
+
   .problem-difficulty-indicator {
     font-size: 2vh;
     width: 25%;
@@ -283,35 +288,43 @@
     border-radius: 4rem;
     /* right: 2vw; */
   }
+
   .GFG-logo-problem-solve-rectangle {
     font-size: 6vh;
   }
 }
+
 @media (device-width: 430px) {
   .problem-rectangle {
     padding: 1vh 0;
     padding-bottom: 0.5vh;
   }
+
   .problem-rectangle-heading {
     font-size: 2vh;
     min-height: 6vh;
     max-width: 68%;
   }
+
   .problem-component-4icon {
     width: 5vw;
   }
+
   .problem-component-icon-outer-container {
     margin-left: 2%;
   }
+
   .problem-component-icon-container {
     padding-left: 0.3vw;
   }
+
   .problem-completion-indicator {
     font-size: 2vh;
     width: 30%;
     height: 30%;
     border-radius: 4vw;
   }
+
   .problem-difficulty-indicator {
     font-size: 2vh;
     width: 25%;
@@ -319,35 +332,43 @@
     border-radius: 4rem;
     /* right: 2vw; */
   }
+
   .GFG-logo-problem-solve-rectangle {
     font-size: 6vh;
   }
 }
+
 @media (device-width: 390px) {
   .problem-rectangle {
     padding: 1vh 0;
     padding-bottom: 0.5vh;
   }
+
   .problem-rectangle-heading {
     font-size: 2vh;
     min-height: 6vh;
     max-width: 68%;
   }
+
   .problem-component-4icon {
     width: 5vw;
   }
+
   .problem-component-icon-outer-container {
     margin-left: 2%;
   }
+
   .problem-component-icon-container {
     padding-left: 0.3vw;
   }
+
   .problem-completion-indicator {
     font-size: 2vh;
     width: 30%;
     height: 30%;
     border-radius: 4vw;
   }
+
   .problem-difficulty-indicator {
     font-size: 2vh;
     width: 25%;
@@ -355,35 +376,43 @@
     border-radius: 4rem;
     /* right: 2vw; */
   }
+
   .GFG-logo-problem-solve-rectangle {
     font-size: 6vh;
   }
 }
+
 @media (max-width: 420px) {
   .problem-rectangle {
     padding: 1vh 0;
     padding-bottom: 0.5vh;
   }
+
   .problem-rectangle-heading {
     font-size: 2vh;
     min-height: 6vh;
     max-width: 68%;
   }
+
   .problem-component-4icon {
     width: 5vw;
   }
+
   .problem-component-icon-outer-container {
     margin-left: 2%;
   }
+
   .problem-component-icon-container {
     padding-left: 0.3vw;
   }
+
   .problem-completion-indicator {
     font-size: 2vh;
     width: 30%;
     height: 30%;
     border-radius: 4vw;
   }
+
   .problem-difficulty-indicator {
     font-size: 2vh;
     width: 25%;
@@ -391,6 +420,7 @@
     border-radius: 4rem;
     /* right: 2vw; */
   }
+
   .GFG-logo-problem-solve-rectangle {
     font-size: 6vh;
   }
