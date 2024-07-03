@@ -155,55 +155,55 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
       
         {showMenu && (
           <ul className={`dsa-responsive-menu ${showMenu ? "open" : ""}`}>
-            <button onClick={toggleMenu}> menu </button>
+            <button onClick={toggleMenu} className="closing-button"> close</button>
             <div className="dsa-tags show">
             
               <li>
-                <Link to={clientUrl} className="active" onClick={play}>
+                <Link to={clientUrl} className="active link-no-underline" onClick={play}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link to={clientUrl} onClick={play}>
+                <Link to={clientUrl} className="link-no-underline" onClick={play}>
                   About
                 </Link>
               </li>
               <li className="dropdown">
-                <Link to={clientUrl} onClick={play}>
+                <Link to={clientUrl} className="link-no-underline" onClick={play}>
                   Services
                 </Link>
               </li>
               <li className="dropdown">
-                <Link to={clientUrl} onClick={play}>
+                <Link to={clientUrl} className="link-no-underline" onClick={play}>
                   CaseStudies
                 </Link>
               </li>
               <li>
-                <Link to={clientUrl} onClick={play}>
+                <Link to={clientUrl} className="link-no-underline" onClick={play}>
                   Specialities
                 </Link>
               </li>
               <li>
-                <Link to={clientUrl} onClick={play}>
+                <Link to={clientUrl} className="link-no-underline" onClick={play}>
                   Contact Us
                 </Link>
               </li>
               {user ? (
               <>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile" className="link-no-underline">Profile</Link>
                 </li>
                 <li>
-                  <button onClick={handleLogout}>Logout</button>
+                  <button onClick={handleLogout} className="logout-button-res">Logout</button>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <button onClick={toggleLoginModal}>Login</button>
+                  <button onClick={toggleLoginModal} className="login-button-res">Login</button>
                 </li>
                 <li>
-                  <button onClick={toggleSignupModal}>Sign Up</button>
+                  <button onClick={toggleSignupModal} className="signup-button-res">Sign Up</button>
                 </li>
               </>
             )}
