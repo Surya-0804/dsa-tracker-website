@@ -15,9 +15,12 @@ const Problems = ({ isLoginCompleted }) => {
             <div className="problemsandStatus">
                 <div className="progress-bar">
                     <Progress
-                        className="progress-bar-inner"
-                        completed={60}
+                        className="progress-bar-inner wrapper"
+                        completed={80}
                         bgColor="#85d1b5"
+                        barContainerClassName="container"
+                        completedClassName="barCompleted"
+                        labelClassName="label"
                     />
                     <div class="container-showTag">
                         <span>120</span> / 450

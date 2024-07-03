@@ -82,3 +82,26 @@
     font-weight: 550;
   }
 }
+
+.wrapper {
+  border: 1.2px solid #232323;
+  border-radius: 1.2rem;
+}
+
+.container {
+  background-color: rgb(221, 166, 166);
+  border-radius: 1.2rem;
+}
+
+.barCompleted {
+  background-color: #85d1b5;
+  border-top-left-radius: 1.2rem;
+  border-bottom-left-radius: 1.2rem;
+  width: 80%;
+}
+
+.label {
+  font-size: 20px;
+  color: #fff;
+  margin-left: 2vw;
+}
