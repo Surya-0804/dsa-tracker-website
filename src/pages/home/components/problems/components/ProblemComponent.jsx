@@ -10,6 +10,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import AddNotes from '../../../../../components/addnotes/AddNotes';
 import loud_btn from '../../sounds/hover_quest.wav';
 import loud_bt2 from '../../sounds/loud_btn_clk.wav';
+import buttonClick from "../../sounds/buttonClick.mp3";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,6 +26,7 @@ export default function ProblemComponent({
 
     const sound = new Audio(loud_btn);
     const sound2 = new Audio(loud_bt2);
+    const sound3 = new Audio(buttonClick);
 
     const navigate = useNavigate();
     const successToast = () => {
@@ -236,13 +238,60 @@ export default function ProblemComponent({
         setIsAddNotesVisible(true);
     };
 
-    const handleAddNotesClose = () => {
-        setIsAddNotesVisible(false);
+    const notify = () => {
+        toast.success("Notes Saved");
     };
 
+    const [notes, setNotes] = useState('');
+
+    const handleInputChange = (event) => {
+        setNotes(event.target.value);
+    };
+
+    const handleSaveNotes = async () => {
+        sound3.play();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/problemProgress/notes`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    userId,
+                    problemId,
+                    notes
+                }),
+            });
+
+            if (!response.ok) {
+                errorToast();
+            }
+            else {
+                successToast();
+                setIsAddNotesVisible(false);
+                setNotes('');
+            }
+        }
+        catch (err) {
+            errorToast()
+        }
+
+    };
+
+    const handleCancel = (e) => {
+        sound3.play();
+        setIsAddNotesVisible(false);
+    }
+
+    const handleBodyClick = () => {
+        if (isAddNotesVisible) {
+            setIsAddNotesVisible(false);
+        }
+    }
     return (
         <>
-            <div className={`problem-rectangle ${isAddNotesVisible ? 'blur' : ''}`} style={mainDivStyle}>
+            <div className={`problem-rectangle ${isAddNotesVisible ? 'blur' : ''}`} style={mainDivStyle} onClick={handleBodyClick}>
                 <div>
                     <h1 className="problem-rectangle-heading">
                         {problemName}
@@ -408,7 +457,15 @@ export default function ProblemComponent({
             </div>
             {isAddNotesVisible && (
                 <div className="addnotes-modal">
-                    <AddNotes onClose={handleAddNotesClose} />
+                    <div className='addnotes-main-container'>
+                        <div className='addnotes-container'>
+                            <textarea placeholder="Type your notes ..." value={notes} onChange={handleInputChange}></textarea>
+                            <div className='buttons'>
+                                <button className="save-btn" onClick={handleSaveNotes}>Save</button>
+                                <button className="cancel-btn" onClick={handleCancel}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </>

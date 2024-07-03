@@ -68,20 +68,18 @@
 }
 */
 .problem-component-loading {
-  height: 20vh;
-  width: 92%;
-  background: linear-gradient(
-      90deg,
+  height: 13vh;
+  width: 90%;
+  background: linear-gradient(90deg,
       #0000 33%,
       rgba(255, 255, 255, 0.8) 50%,
-      #0000 66%
-    )
-    #eaeaea;
+      #0000 66%) #eaeaea;
   background-size: 300% 100%;
   animation: shine 2s infinite;
   border-radius: 1rem;
-  margin-top: 5vh;
+  margin-top: 2vh;
 }
+
 @keyframes shine {
   0% {
     background-position: right;
