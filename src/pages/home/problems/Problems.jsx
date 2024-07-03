@@ -3,8 +3,8 @@ import ProblemsList from '../components/problems/ProblemList';
 import Topics from '../components/topics/Topics';
 import './style.css'
 import Difficulty from '../components/difficulty/Difficulty';
-import ProgressBar from '../components/progressBar/ProgressBar';
 import LoadingComponent from "../../../components/loading/LoadingComponent";
+import Progress from "@ramonak/react-progress-bar";
 
 const Problems = ({ isLoginCompleted }) => {
     const [selectedTopics, setSelectedTopics] = useState([]);
@@ -13,7 +13,16 @@ const Problems = ({ isLoginCompleted }) => {
     return (
         <div className='problems'>
             <div className="problemsandStatus">
-                <ProgressBar />
+                <div className="progress-bar">
+                    <Progress
+                        className="progress-bar-inner"
+                        completed={60}
+                        bgColor="#85d1b5"
+                    />
+                    <div class="container-showTag">
+                        <span>120</span> / 450
+                    </div>
+                </div>
                 {!isLoginCompleted && <div>
                     {Array.from({ length: 4 }).map((_, index) => (
                         <LoadingComponent key={index} />

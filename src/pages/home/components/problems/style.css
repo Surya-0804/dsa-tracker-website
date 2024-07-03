@@ -2,10 +2,8 @@
 
 .DSA-problems-pagination {
     display: flex;
-    /* justify-content: center; */
     margin-top: 20px;
     flex-wrap: wrap;
-
     margin-bottom: 2rem;
 }
 

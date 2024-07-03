@@ -45,6 +45,7 @@
     align-items: center;
     justify-content: center;
   }
+
   .dsa-description h2 {
     font-size: 4vw;
     margin-top: 0;
@@ -52,20 +53,23 @@
   }
 
   .dsa-description {
-    font-size: 2.5vw;
+    font-size: 1.05rem;
     line-height: 3vw;
     width: 80vw;
     margin: 0 1vw;
   }
+
   .dsa-photo-1 {
     display: none;
   }
+
   .dsa-photo-1 img,
   .dsa-photo-2 img {
     display: none;
     width: 40vw;
     height: auto;
   }
+
   .dsa-photo-2 img {
     display: none;
   }
