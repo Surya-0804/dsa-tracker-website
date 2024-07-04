@@ -21,21 +21,21 @@
 
 @media (max-width: 380px) {
   .problems {
-    width: 110vw;
+    width: 100vw;
   }
 
   .Topics {
-    width: 110vw;
+    width: 100vw;
   }
 }
 
 @media (max-width: 330px) {
   .problems {
-    width: 130vw;
+    width: 100vw;
   }
 
   .Topics {
-    width: 130vw;
+    width: 100vw;
   }
 }
 
