@@ -97,11 +97,15 @@
   background-color: #85d1b5;
   border-top-left-radius: 1.2rem;
   border-bottom-left-radius: 1.2rem;
-  width: 80%;
 }
 
 .label {
   font-size: 20px;
   color: #fff;
   margin-left: 2vw;
+}
+
+.progress-bar .pb {
+  width: 70%;
+  color: #85d1b5;
 }

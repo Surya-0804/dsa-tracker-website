@@ -428,14 +428,17 @@ x .problem-rectangle-company-logo {
     font-size: 6vh;
   }
 }
+
 @media (min-width: 2500px) {
   .problem-rectangle-heading {
     font-size: 2rem;
   }
+
   .problem-completion-indicator {
     font-size: 2vh;
     height: 25%;
   }
+
   .problem-difficulty-indicator {
     font-size: 2vh;
     width: 20%;
