@@ -197,7 +197,7 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
                   </Link>
                 </div>
 
-                {user ? (
+                {isLoginCompleted && user ? (
                   <>
                     <div className="nav-responsive-tags">
                       <Link to="/profile" className="link-no-underline">
@@ -214,7 +214,13 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
                     </div>
                   </>
                 ) : (
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: "10%",
+                    }}
+                  >
                     <div style={{ paddingRight: "2rem" }}>
                       <button
                         onClick={toggleLoginModal}
