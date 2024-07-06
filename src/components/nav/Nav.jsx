@@ -214,7 +214,13 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
                     </div>
                   </>
                 ) : (
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: "10%",
+                    }}
+                  >
                     <div style={{ paddingRight: "2rem" }}>
                       <button
                         onClick={toggleLoginModal}
