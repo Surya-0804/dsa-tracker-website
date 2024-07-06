@@ -1,94 +1,107 @@
 .dsa-NavContainer {
+  display: none;
+}
+
+.nav-responsive {
+  display: none;
+}
+
+.responsive-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.responsive-menu .tags {
+  display: none;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .navbar-container {
     display: none;
+    height: 0;
   }
-  
-  .nav-responsive {
-    display: none;
+
+  .dsa-NavContainer {
+    display: flex;
   }
-  
-  .responsive-menu {
-    list-style-type: none;
-    padding: 0;
+
+  .dsa-NavContainer .logo {
+    display: flex;
+    align-items: center;
+    margin-left: 3rem;
   }
-  
-  .responsive-menu .tags {
-    display: none;
+
+  .dsa-NavContainer .dsa-nav-responsive .nav-mob-open {
+    display: block;
+    position: absolute;
+    margin-top: 1.8rem;
+    right: 30px;
+    font-size: 25px;
   }
-  
-  /* Media Queries for Responsive Design */
-  @media (max-width: 768px) {
-    .navbar-container {
-      display: none;
-      height: 0;
-    }
-  
-    .dsa-NavContainer {
-      display: flex;
-    }
-  
-    .dsa-NavContainer .logo {
-      display: flex;
-      align-items: center;
-      margin-left: 3rem;
-    }
-  
-    .dsa-NavContainer .dsa-nav-responsive .nav-mob-open {
-      display: block;
-      position: absolute;
-      margin-top: 2rem;
-      right: 30px;
-      font-size: 25px;
-    }
-  
-    .dsa-NavContainer .dsa-nav-responsive .dsa-responsive-menu .nav-mob-close {
-      display: block;
-      position: absolute;
-      top: 30px;
-      left: 290px;
-      right: 30px;
-      width: 30px;
-      font-size: 300px;
-      text-align: center;
-      z-index: 4;
-      color: white;
-    }
-  
-    .dsa-NavContainer .logo img {
-      height: 5vh;
-      width: 6vw;
-      margin-right: 0.5vw;
-    }
-  
-    .dsa-NavContainer .logo h4 {
-      font-size: 1.2rem;
-      font-weight: 450;
-    }
-  
-    .dsa-NavContainer nav {
-      display: block; /* Hide the navigation on smaller screens */
-    }
-  
-    .dsa-NavContainer .dsa-nav-responsive .dsa-responsive-menu {
-      position: fixed;
-      flex-direction: column;
-      align-items: center;
-      top: 0;
-      padding-top: 40px;
-      gap: 30px;
-      background-color: #ffffff;
-      width: 450px;
-      height: 100vh;
-      z-index: 2;
-      transition: right 0.3s;
-      right: 0px; /* Hidden state */
-    }
-  
-    .dsa-NavContainer .profile img {
-      width: 5vw;
-    }
+
+  .dsa-NavContainer .dsa-nav-responsive .dsa-responsive-menu .closing-button , .login-button-res,.logout-button-res,.signup-button-res {
+    /* top: 30px; */
+   
+    font-weight: 600;
+    color: #382b22;
+    text-transform: uppercase;
+    padding: 0.8em 2em;
+    margin-bottom: 2rem;
+    background: #76eebe;
+    width: 8rem;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    border-radius: 0.75em;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
+      -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      background 150ms cubic-bezier(0, 0, 0.58, 1),
+      -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
   }
-  
-  /* Open state of the menu */
-  .dsa-responsive-menu .open {
-    right: 0; /* When menu is open */
+
+  .dsa-NavContainer .logo img {
+    height: 5vh;
+    width: 6vw;
+    margin-right: 0.5vw;
   }
+
+  .dsa-NavContainer .logo h4 {
+    font-size: 1.2rem;
+    font-weight: 450;
+  }
+
+  .dsa-NavContainer nav {
+    display: block; /* Hide the navigation on smaller screens */
+  }
+  .dsa-NavContainer .dsa-nav-responsive .dsa-responsive-menu .dsa-tags .link-no-underline{
+    text-decoration: none;
+  }
+  .dsa-NavContainer .dsa-nav-responsive .dsa-responsive-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type:none;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    background-color: #ffffff;
+    width: 450px;
+    height: 100vh;
+    z-index: 2;
+    transition: right 1.5s;
+    right: 0px; /* Hidden state */
+  }
+
+  .dsa-NavContainer .profile img {
+    width: 5vw;
+  }
+}
+
+/* Open state of the menu */
+.dsa-responsive-menu .open {
+  right: 0; /* When menu is open */
+  transition: 0.5s ease-in ;
+}
