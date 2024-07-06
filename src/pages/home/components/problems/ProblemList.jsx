@@ -12,6 +12,8 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const topicsPerPage = 1;
+
+
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -36,8 +38,6 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
 
       const responseData = await response.json();
       setData(responseData.data);
-      console.log(responseData.data)
-
       setLoading(false);
     } catch (error) {
       console.error('Fetch error:', error);

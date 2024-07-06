@@ -23,6 +23,8 @@ const Login = ({ toggleLoginModal, setIsLoginCompleted }) => {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user'));
 
+    // const isLoginCompleted = localStorage.getItem('isLoginCompleted');
+
     if (token && user) {
       setIsLoginCompleted(true);
     }

@@ -37,48 +37,46 @@ const Problems = ({ isLoginCompleted }) => {
             theme: "colored",
         });
     };
-
-    const user = JSON.parse(localStorage.getItem("user"));
-    const userId = user._id;
-    const token = localStorage.getItem("token");
+    let user, userId, token;
+    user = JSON.parse(localStorage.getItem("user"));
+    userId = user._id;
+    token = localStorage.getItem("token");
 
     const fetchStats = async () => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const userId = user._id;
-        const token = localStorage.getItem("token");
+        if (!isLoginCompleted) {
+            try {
+                const response = await fetch(
+                    `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({ userId }),
+                    }
+                );
 
-        try {
-            const response = await fetch(
-                `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify({ userId }),
+                if (!response.ok) {
+                    console.log(response);
+                    errorToast();
+                } else {
+                    const data = await response.json();
+                    console.log(data.stats);
+                    localStorage.setItem("stats", JSON.stringify(data.stats));
+                    setStats(data.stats);
+                    successToast();
                 }
-            );
-
-            if (!response.ok) {
-                console.log(response);
+            } catch (err) {
                 errorToast();
-            } else {
-                const data = await response.json();
-                console.log(data.stats);
-                localStorage.setItem("stats", JSON.stringify(data.stats));
-                setStats(data.stats);
-                successToast();
             }
-        } catch (err) {
-            errorToast();
         }
+
     };
 
     useEffect(() => {
         fetchStats();
-    }, []);
-
+    })
     const storedStats = JSON.parse(localStorage.getItem("stats"));
     const totalProblems = storedStats ? storedStats.totalProblems : 0;
     const totalProblemsSolved = storedStats ? storedStats.totalProblemsSolved : 0;
