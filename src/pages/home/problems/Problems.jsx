@@ -38,12 +38,16 @@ const Problems = ({ isLoginCompleted }) => {
         });
     };
     let user, userId, token;
-    user = JSON.parse(localStorage.getItem("user"));
-    userId = user._id;
-    token = localStorage.getItem("token");
+    if (isLoginCompleted) {
+        user = JSON.parse(localStorage.getItem("user"));
+        userId = user._id;
+        token = localStorage.getItem("token");
+    }
+
+
 
     const fetchStats = async () => {
-        if (!isLoginCompleted) {
+        if (isLoginCompleted) {
             try {
                 const response = await fetch(
                     `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
@@ -76,7 +80,7 @@ const Problems = ({ isLoginCompleted }) => {
 
     useEffect(() => {
         fetchStats();
-    })
+    }, [isLoginCompleted]);
     const storedStats = JSON.parse(localStorage.getItem("stats"));
     const totalProblems = storedStats ? storedStats.totalProblems : 0;
     const totalProblemsSolved = storedStats ? storedStats.totalProblemsSolved : 0;
