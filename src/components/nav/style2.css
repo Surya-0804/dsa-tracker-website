@@ -79,7 +79,7 @@
     transition: right 1.5s;
     right: 0px; /* Hidden state */
     margin-top: 0;
-    transition: 0.5s ease-in;
+    transition: right 0.5s ease-in-out;
   }
 
   .dsa-NavContainer .profile img {
@@ -189,11 +189,11 @@
   .nav-responsive-tags {
     margin-top: 10%;
   }
+  .dsa-responsive-menu.open {
+    right: 0; /* When menu is open */
+    transition: 0.5s ease-in;
+    margin-top: 0;
+  }
 }
 
 /* Open state of the menu */
-.dsa-responsive-menu.open {
-  right: 0; /* When menu is open */
-  transition: 0.5s ease-in;
-  margin-top: 0;
-}

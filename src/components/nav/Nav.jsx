@@ -197,7 +197,7 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
                   </Link>
                 </div>
 
-                {user ? (
+                {isLoginCompleted && user ? (
                   <>
                     <div className="nav-responsive-tags">
                       <Link to="/profile" className="link-no-underline">
