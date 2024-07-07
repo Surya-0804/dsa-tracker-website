@@ -1,0 +1,56 @@
+.difficulty .eachTopic {
+    background: #ECECEC;
+    padding: 0.4rem 1rem;
+    border-radius: 1.4rem;
+    font-size: 0.92rem;
+    margin: 0.2rem;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.difficulty .eachTopic:hover {
+    background: #ECECEC;
+    transition: 0.5s;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty {
+    border: 1.5px solid #ECECEC;
+    border-radius: 2rem;
+    height: auto;
+    width: 20vw;
+    margin-top: 3vh;
+}
+
+.difficulty .available-topics,
+.difficulty .selected {
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.difficulty .topics {
+    padding: 0.75rem;
+}
+
+.difficulty .selected .eachTopic {
+    border: 1px solid rgb(208, 208, 208);
+    background: #A1E5CD;
+}
+
+
+.difficulty .header {
+    height: 4vh;
+    background: #ECECEC;
+    padding: 0.3rem 1.2rem;
+    font-size: 1.3rem;
+    display: flex;
+    font-weight: 550;
+    align-items: center;
+    justify-content: center;
+    color: rgb(65, 64, 64);
+    font-size: 1.8rem;
+    border-radius: 2rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
