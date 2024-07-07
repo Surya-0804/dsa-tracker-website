@@ -8,10 +8,12 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import StatusProblem from '../components/Status/StatusProblem';
 const Problems = ({ isLoginCompleted }) => {
     const [stats, setStats] = useState(null);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
+    const [selectedStatus,setSelectedStatus]=useState([]);
     const successToast = () => {
         toast.success("Successfull!", {
             position: "top-right",
@@ -109,6 +111,7 @@ const Problems = ({ isLoginCompleted }) => {
             <div className="topics">
                 <Topics setSelectedTopics={setSelectedTopics} />
                 <Difficulty setSelectedDifficulties={setSelectedDifficulties} />
+                <StatusProblem setSelectedStatus={setSelectedStatus}/>
             </div>
         </div>
     )
