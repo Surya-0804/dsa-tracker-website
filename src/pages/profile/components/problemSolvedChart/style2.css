@@ -1,0 +1,62 @@
+.ProblemSolvedFrame {
+  padding: 2%;
+  border-radius: 5%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 60%; /* Adjusted to use percentage */
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ProblemsSolvedHeader {
+  display: flex;
+  /* position: relative; */
+  align-items: center;
+  margin-bottom: 2%;
+  /* Adjusted to use percentage */
+  width: 100%;
+  justify-content: space-around;
+}
+
+.ProblemSolvedNavigation {
+  display: flex;
+  align-items: center;
+}
+
+.ProblemSolvedNavigation button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.RangeSelector {
+  display: flex;
+  gap: 5%; /* Adjusted to use percentage */
+}
+
+.RangeSelector span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 6px; /* Adjusted to use percentage */
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+  font-size: 0.6em; /* Adjusted for readability */
+  width: 4vw; /* Ensures uniform width */
+  height: 3vh; /* Ensures uniform height */
+  text-align: center;
+}
+
+.RangeSelector span.active,
+.RangeSelector span:hover {
+  background-color: #d0d0d0;
+}
