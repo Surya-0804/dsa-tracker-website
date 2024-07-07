@@ -20,7 +20,7 @@ import DonutChart from "./pages/profile/components/donutchart/DonutChart";
 import TopicSolved from "./pages/profile/components/topicsolved/TopicSolved";
 import ProblemsSolvedTable from "./pages/profile/components/problemssovedtable/ProblemsSolvedTable";
 import DeveloperDetails from "./pages/about/components/developerDetails/DeveloperDetails";
-
+import Profile from "./pages/profile/Profile";
 function App() {
   return (
     <div className="App">
@@ -41,6 +41,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/contribution" element={<ContributionBoard />} />
             <Route path="/addnotes" element={<AddNotes />} />
+            <Route path="/profile" element={<Profile />} />
             <Route
               path="/donut"
               element={<DonutChart Easy={20} Medium={30} Hard={40} />}

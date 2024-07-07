@@ -1,0 +1,26 @@
+.first-divider-profile {
+  width: 90%;
+  margin: 5%;
+  color: #c7c2c2;
+}
+.second-section-profile-page {
+  display: flex;
+  margin: 0 5%;
+}
+.third-section-profile-page {
+  margin: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100%; */
+}
+.fourth-section-profile-page {
+  width: 90%;
+  margin: 5%;
+  margin-bottom: 0;
+}
+.fifth-section-profile-page {
+  width: 90%;
+  margin: 5%;
+  margin-top: 0;
+}

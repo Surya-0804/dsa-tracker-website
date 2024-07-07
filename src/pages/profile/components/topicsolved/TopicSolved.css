@@ -1,124 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 .TopicSolvedcontainer {
-    border: 1.5px solid #ECECEC;
-    border-radius: 2rem;
-    height: auto;
-    width: 25vw;
-    font-family: 'Poppins', sans-serif;
+  border: 1.5px solid #ececec;
+  border-radius: 2rem;
+  height: auto;
+  width: 35%;
+  font-family: "Poppins", sans-serif;
+  margin-right: 6%;
 }
 
 .TopicSolvedsection {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .TopicSolvedsection h3 {
-    font-weight: 450;
-    margin: 2rem 0 1rem 1.9rem;
+  font-weight: 450;
+  margin: 2rem 0 1rem 1.9rem;
 }
 
 .TopicSolvedlanguageItem .languageName {
-    background: #ECECEC;
-    padding: 0.4rem 1rem;
-    border-radius: 1.4rem;
-    font-size: 1rem;
-    margin: 0.2rem 0 0.2rem 2.5rem;
+  background: #ececec;
+  padding: 0.4rem 1rem;
+  border-radius: 1.4rem;
+  font-size: 1rem;
+  margin: 0.2rem 0 0.2rem 2.5rem;
 }
 
 .TopicShowMore {
-    text-align: center;
-    opacity: 0.6;
-    margin: 1rem 0;
+  text-align: center;
+  opacity: 0.6;
+  margin: 1rem 0;
 }
 
 .TopicSolvedlanguageItem .NoProblems {
-    margin: 0.6rem 2.5rem 0.2rem 0;
-    opacity: 0.6;
+  margin: 0.6rem 2.5rem 0.2rem 0;
+  opacity: 0.6;
 }
 
 .TopicSolvedlanguageItem,
 .TopicSolvedtopicItem {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
 }
 
 .TopicSolvedsection .TopicSolvedName {
-    background: #ECECEC;
-    padding: 0.4rem 1rem;
-    border-radius: 1.4rem;
-    font-size: 1rem;
-    margin: 0.2rem 0 0.2rem 2.5rem;
+  background: #ececec;
+  padding: 0.4rem 1rem;
+  border-radius: 1.4rem;
+  font-size: 1rem;
+  margin: 0.2rem 0 0.2rem 2.5rem;
 }
 
 .TopicsHr {
-    width: 80%;
-    margin: 20px auto;
-    border: none;
-    border-top: 1px solid #ccc;
+  width: 80%;
+  margin: 20px auto;
+  border: none;
+  border-top: 1px solid #ccc;
 }
 
 .TopicSolvedsection .TopicSolvedCount {
-    margin: 0.6rem 2.5rem 0.2rem 0;
-    opacity: 0.6;
+  margin: 0.6rem 2.5rem 0.2rem 0;
+  opacity: 0.6;
 }
 
 .TopicSolvedtotal {
-    margin-top: 10px;
-    font-weight: bold;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 @media (max-width: 1200px) {
-    .TopicSolvedcontainer {
-        width: 35vw;
-    }
+  .TopicSolvedcontainer {
+    width: 35vw;
+  }
 }
 
 @media (max-width: 992px) {
-    .TopicSolvedcontainer {
-        width: 45vw;
-    }
+  .TopicSolvedcontainer {
+    width: 45vw;
+  }
 }
 
 @media (max-width: 768px) {
-    .TopicSolvedcontainer {
-        width: 60vw;
-    }
+  .TopicSolvedcontainer {
+    width: 60vw;
+  }
 
-    .TopicSolvedsection h3 {
-        margin: 1.5rem 0 1rem 1.5rem;
-    }
+  .TopicSolvedsection h3 {
+    margin: 1.5rem 0 1rem 1.5rem;
+  }
 
-    .TopicSolvedlanguageItem .languageName,
-    .TopicSolvedsection .TopicSolvedName {
-        margin: 0.2rem 0 0.2rem 1.5rem;
-    }
+  .TopicSolvedlanguageItem .languageName,
+  .TopicSolvedsection .TopicSolvedName {
+    margin: 0.2rem 0 0.2rem 1.5rem;
+  }
 
-    .TopicSolvedlanguageItem .NoProblems,
-    .TopicSolvedsection .TopicSolvedCount {
-        margin: 0.6rem 1.5rem 0.2rem 0;
-    }
+  .TopicSolvedlanguageItem .NoProblems,
+  .TopicSolvedsection .TopicSolvedCount {
+    margin: 0.6rem 1.5rem 0.2rem 0;
+  }
 }
 
 @media (max-width: 576px) {
-    .TopicSolvedcontainer {
-        width: 80vw;
-    }
+  .TopicSolvedcontainer {
+    width: 80vw;
+  }
 
-    .TopicSolvedsection h3 {
-        margin: 1rem 0 0.5rem 1rem;
-    }
+  .TopicSolvedsection h3 {
+    margin: 1rem 0 0.5rem 1rem;
+  }
 
-    .TopicSolvedlanguageItem .languageName,
-    .TopicSolvedsection .TopicSolvedName {
-        margin: 0.2rem 0 0.2rem 1rem;
-        padding: 0.3rem 0.8rem;
-        font-size: 0.9rem;
-    }
+  .TopicSolvedlanguageItem .languageName,
+  .TopicSolvedsection .TopicSolvedName {
+    margin: 0.2rem 0 0.2rem 1rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+  }
 
-    .TopicSolvedlanguageItem .NoProblems,
-    .TopicSolvedsection .TopicSolvedCount {
-        margin: 0.4rem 1rem 0.2rem 0;
-        font-size: 0.9rem;
-    }
+  .TopicSolvedlanguageItem .NoProblems,
+  .TopicSolvedsection .TopicSolvedCount {
+    margin: 0.4rem 1rem 0.2rem 0;
+    font-size: 0.9rem;
+  }
 }

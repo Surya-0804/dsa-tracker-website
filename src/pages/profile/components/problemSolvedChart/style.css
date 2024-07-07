@@ -1,0 +1,39 @@
+/* Import the Poppins font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+.ProblemSolvedFrame {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 90%;
+  max-height: 300px;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+}
+
+.ProblemsSolvedHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ProblemSolvedNavigation {
+  display: flex;
+  align-items: center;
+}
+
+.ProblemSolvedNavigation button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.ProblemSolvedNavigation span {
+  margin: 0 10px;
+}
+.ProblemsSolvedLineChart {
+  width: 90%;
+  height: 40%;
+}
