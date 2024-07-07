@@ -54,3 +54,8 @@
     border-bottom-left-radius: 0rem;
     border-bottom-right-radius: 0rem;
 }
+@media (max-width: 700px){
+    .topicsComponent{
+        width: 80vw;
+    }
+}
