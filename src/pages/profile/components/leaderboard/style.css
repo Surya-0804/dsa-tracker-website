@@ -54,7 +54,7 @@
 .leaderboard-name,
 .leaderboard-score {
   font-size: 1.2vw;
-  padding: 1vh 0;
+  padding: 1rem 0;
 }
 .leaderboard-rank {
   padding-left: 0.7vw;
@@ -83,7 +83,7 @@
   background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine 3s infinite linear;
+  animation: shining 3s infinite linear;
   animation-fill-mode: forwards;
   -webkit-text-size-adjust: none;
   font-weight: 600;
@@ -92,7 +92,7 @@
   white-space: nowrap;
   font-family: "Poppins", sans-serif;
 }
-@-moz-keyframes shine {
+@-moz-keyframes shining {
   0% {
     background-position: 0;
   }
@@ -103,7 +103,7 @@
     background-position: 180px;
   }
 }
-@-webkit-keyframes shine {
+@-webkit-keyframes shining {
   0% {
     background-position: 0;
   }
@@ -114,7 +114,7 @@
     background-position: 180px;
   }
 }
-@-o-keyframes shine {
+@-o-keyframes shining {
   0% {
     background-position: 0;
   }
@@ -125,7 +125,7 @@
     background-position: 180px;
   }
 }
-@keyframes shine {
+@keyframes shining {
   0% {
     background-position: 0;
   }
