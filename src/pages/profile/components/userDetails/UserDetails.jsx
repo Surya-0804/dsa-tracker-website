@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ImageUploading from "react-images-uploading";
 import { GoOrganization } from "react-icons/go";
-import { FaCode } from "react-icons/fa";
 import { CiLocationOn, CiEdit } from "react-icons/ci";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+
 import "./style.css";
 
 const ProfileCard = () => {
@@ -72,18 +74,6 @@ const ProfileCard = () => {
               >
                 Remove image
               </button>
-              {/* {imageList.map((image, index) => (
-                <div key={index} className="image-item">
-                  <div className="image-item__btn-wrapper">
-                    <button
-                      onClick={() => onImageUpdate(index)}
-                      className="profile-page-user-details-button"
-                    >
-                      Update
-                    </button>
-                  </div>
-                </div>
-              ))} */}
             </div>
           )}
         </ImageUploading>
@@ -119,12 +109,20 @@ const ProfileCard = () => {
           Vishnu Institute of Technology
         </div>
         <div className="profile-info-item">
-          <FaCode className="profile-info-icon" />
-          C++, Java, Python
-        </div>
-        <div className="profile-info-item">
           <CiLocationOn className="profile-info-icon" />
           Bhimavaram, Andhra Pradesh, India
+        </div>
+        <div className="profile-info-item">
+          <FaGithub className="profile-info-icon" />
+          <a href="https://github.com" target="_blank">
+            Github
+          </a>
+        </div>
+        <div className="profile-info-item">
+          <FaLinkedin className="profile-info-icon" />
+          <a href="https://linkedin.com" target="_blank">
+            LinkedIn
+          </a>
         </div>
       </div>
     </div>
