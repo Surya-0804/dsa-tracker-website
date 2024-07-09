@@ -7,20 +7,25 @@ const TopicSolved = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/stats/topicWiseStats`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}` 
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user._id;
+        const token = localStorage.getItem("token");
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/stats/topicWiseStats`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ userId }),
           }
-        });
+        );
 
         if (!response.ok) {
-          throw new Error('Network response was not ok');
-          console.log("not working");
+          throw new Error('Failed to fetch');
         }
-
         const data = await response.json();
+        console.log(data);
         const topicWiseCount = data.stats.topicWiseCount;
 
         // Transform the API data into the desired format

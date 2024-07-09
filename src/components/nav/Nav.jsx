@@ -8,9 +8,7 @@ import "./style.css";
 import "./style2.css";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
-import { MdHeight } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
-
 function Nav({ isLoginCompleted, setIsLoginCompleted }) {
   const clientUrl = process.env.CLIENT_URL;
   const { currentUser, logout } = useAuth();
@@ -108,7 +106,9 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
           {isLoginCompleted ? (
             <div className="profile" onClick={play}>
               <span className="name">{user.name}</span>
-              <img src="/images/userDummyDp.png" style={{}}></img>
+              <Link to="/profile">
+                <img src="/images/userDummyDp.png" alt="User Avatar" />
+              </Link>
               {/* <img src={currentUser.photoURL} alt="User Avatar" /> */}
               <button
                 className="Navbar-Logout-Btn"
