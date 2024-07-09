@@ -17,8 +17,8 @@ const Problems = ({ isLoginCompleted }) => {
     const [stats, setStats] = useState(null);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
-    const [selectedStatus,setSelectedStatus]=useState([]);
-    const [isFilterOpen,setIsFilterOpen]=useState(false);
+    const [selectedStatus, setSelectedStatus] = useState([]);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const successToast = () => {
         toast.success("Successfull!", {
             position: "top-right",
@@ -118,21 +118,21 @@ const Problems = ({ isLoginCompleted }) => {
             </div>
             <div  >
                 <button className="filter-button-opening" onClick={toggleFilter}>
-                <FaFilter />
+                    <FaFilter />
                 </button>
             </div>
 
             <div className={`filter-container ${isFilterOpen ? 'open' : ''}`}>
-            <button
-                onClick={toggleFilter}
-                className="filter-responsive-closing-button"
-              >
-                <FaArrowLeft />
-              </button>
-              <div className='overtopics-container'>
-                <Topics setSelectedTopics={setSelectedTopics} />
-                <Difficulty setSelectedDifficulties={setSelectedDifficulties} />
-                <StatusProblem setSelectedStatus={setSelectedStatus} /></div>
+                <button
+                    onClick={toggleFilter}
+                    className="filter-responsive-closing-button"
+                >
+                    <FaArrowLeft />
+                </button>
+                <div className='overtopics-container'>
+                    <Topics setSelectedTopics={setSelectedTopics} />
+                    <Difficulty setSelectedDifficulties={setSelectedDifficulties} />
+                    <StatusProblem setSelectedStatus={setSelectedStatus} /></div>
             </div>
             <div className={`filter-overlay ${isFilterOpen ? 'show' : ''}`} onClick={toggleFilter}></div>
         </div>

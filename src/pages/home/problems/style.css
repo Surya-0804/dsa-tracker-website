@@ -1,5 +1,5 @@
 .problems {
-  display: flex;
+  display: grid;
   grid-template-columns: 75% 25%;
   width: 65%;
   margin: 0 auto;
@@ -107,5 +107,5 @@
 
 .progress-bar .pb {
   width: 70%;
-  color: #85d1b5;
+  color: #e2ada6;
 }
