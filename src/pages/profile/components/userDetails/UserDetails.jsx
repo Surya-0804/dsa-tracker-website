@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageUploading from "react-images-uploading";
 import { GoOrganization } from "react-icons/go";
 import { CiLocationOn, CiEdit } from "react-icons/ci";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import "./style.css";
 
-const ProfileCard = () => {
+const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
   const [images, setImages] = useState([]);
-  const [name, setName] = useState("John Doe");
+  const [name, setName] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const maxNumber = 69;
 
@@ -19,7 +18,10 @@ const ProfileCard = () => {
   };
 
   const handleNameChange = (event) => {
-    setName(event.target.value);
+    setName((prevName) => ({
+      ...prevName,
+      name: event.target.value,
+    }));
   };
 
   const handleKeyDown = (event) => {
@@ -31,6 +33,16 @@ const ProfileCard = () => {
   const toggleEditing = () => {
     setIsEditing(!isEditing);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (token && user) {
+      setIsLoginCompleted(true);
+      setName(user);
+    }
+  }, [setIsLoginCompleted]);
 
   return (
     <div className="profile-card">
@@ -91,7 +103,7 @@ const ProfileCard = () => {
           {isEditing ? (
             <input
               type="text"
-              value={name}
+              value={name ? name.name : ""}
               onChange={handleNameChange}
               onKeyDown={handleKeyDown}
               onBlur={toggleEditing}
@@ -99,7 +111,7 @@ const ProfileCard = () => {
               autoFocus
             />
           ) : (
-            <h2>{name}</h2>
+            <h2>{name ? name.name : "Guest"}</h2>
           )}
         </div>
       </div>
@@ -114,13 +126,13 @@ const ProfileCard = () => {
         </div>
         <div className="profile-info-item">
           <FaGithub className="profile-info-icon" />
-          <a href="https://github.com" target="_blank">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
             Github
           </a>
         </div>
         <div className="profile-info-item">
           <FaLinkedin className="profile-info-icon" />
-          <a href="https://linkedin.com" target="_blank">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
         </div>
