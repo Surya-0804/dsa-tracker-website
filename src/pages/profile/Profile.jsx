@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProblemSolvedChart from "./components/problemSolvedChart/ProblemSolvedChart2";
 import TopicSolved from "./components/topicsolved/TopicSolved";
 import DonutChart from "./components/donutchart/DonutChart";
@@ -8,10 +8,11 @@ import UserDetails from "./components/userDetails/UserDetails";
 import "./style.css";
 
 export default function Profile() {
+  const [isLoginCompleted, setIsLoginCompleted] = new useState(false);
   return (
     <div>
       <div className="first-section-profile-page">
-        <UserDetails />
+      <UserDetails setIsLoginCompleted={setIsLoginCompleted} isLoginCompleted={isLoginCompleted} />
       </div>
       <hr className="first-divider-profile" />
       <div className="second-section-profile-page">
