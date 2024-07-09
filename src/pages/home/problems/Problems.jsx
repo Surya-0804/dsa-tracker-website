@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import ProblemsList from '../components/problems/ProblemList';
 import Topics from '../components/topics/Topics';
 import './style.css'
+import './style2.css'
 import Difficulty from '../components/difficulty/Difficulty';
 import LoadingComponent from "../../../components/loading/LoadingComponent";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import StatusProblem from '../components/Status/StatusProblem';
+import { FaArrowLeft } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
+
 const Problems = ({ isLoginCompleted }) => {
     const [stats, setStats] = useState(null);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
+    const [selectedStatus,setSelectedStatus]=useState([]);
+    const [isFilterOpen,setIsFilterOpen]=useState(false);
     const successToast = () => {
         toast.success("Successfull!", {
             position: "top-right",
@@ -77,6 +84,9 @@ const Problems = ({ isLoginCompleted }) => {
         }
 
     };
+    const toggleFilter = () => {
+        setIsFilterOpen(!isFilterOpen);
+    };
 
     useEffect(() => {
         fetchStats();
@@ -106,10 +116,25 @@ const Problems = ({ isLoginCompleted }) => {
                 {isLoginCompleted && <ProblemsList selectedTopics={selectedTopics} selectedDifficulties={selectedDifficulties} />}
 
             </div>
-            <div className="topics">
+            <div  >
+                <button className="filter-button-opening" onClick={toggleFilter}>
+                <FaFilter />
+                </button>
+            </div>
+
+            <div className={`filter-container ${isFilterOpen ? 'open' : ''}`}>
+            <button
+                onClick={toggleFilter}
+                className="filter-responsive-closing-button"
+              >
+                <FaArrowLeft />
+              </button>
+              <div className='overtopics-container'>
                 <Topics setSelectedTopics={setSelectedTopics} />
                 <Difficulty setSelectedDifficulties={setSelectedDifficulties} />
+                <StatusProblem setSelectedStatus={setSelectedStatus} /></div>
             </div>
+            <div className={`filter-overlay ${isFilterOpen ? 'show' : ''}`} onClick={toggleFilter}></div>
         </div>
     )
 }
