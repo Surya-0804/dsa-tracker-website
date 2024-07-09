@@ -4,8 +4,8 @@ import "./style.css";
 
 const ContributionBoard = () => {
   const ContributionStyle = {
-    width: "70vw",
-    margin: "5rem",
+    width: "90vw",
+    // margin: "5rem",
     borderRadius: "1rem",
     backgroundColor: "White",
   };
@@ -49,17 +49,19 @@ const ContributionBoard = () => {
   };
 
   return (
-    <div className="contribution-Container">    <div className="contribution-Board" style={ContributionStyle}>
-      <CalendarHeatmap
-        startDate={new Date("2024-01-01")}
-        endDate={new Date("2024-12-01")}
-        showWeekdayLabels={true}
-        titleForValue={titleForValue}
-        classForValue={classForValue}
-        values={dates}
-      />
-    </div></div>
-
+    <div className="contribution-Container">
+      {" "}
+      <div className="contribution-Board" style={ContributionStyle}>
+        <CalendarHeatmap
+          startDate={new Date("2024-01-01")}
+          endDate={new Date("2024-12-01")}
+          showWeekdayLabels={true}
+          titleForValue={titleForValue}
+          classForValue={classForValue}
+          values={dates}
+        />
+      </div>
+    </div>
   );
 };
 

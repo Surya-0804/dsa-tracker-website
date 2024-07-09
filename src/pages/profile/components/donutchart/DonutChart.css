@@ -2,9 +2,13 @@
 
 .user-stats-donutchart-container {
   position: relative;
-  width: 40%;
+  width: 90%;
   height: auto;
-  margin: 1rem;
+  /* margin: 1rem; */
+  border: 1.5px solid #ececec;
+  border-radius: 2rem;
+  padding: 2% 1%;
+  padding-bottom: 5%;
 }
 
 .user-stats-donutchart-inner-container1 {
@@ -80,7 +84,7 @@
   z-index: 3;
 }
 
-.user-stats-donutchart-diagaram-container{
+.user-stats-donutchart-diagaram-container {
   width: 250px;
   height: 250px;
 }
@@ -161,17 +165,17 @@
     padding: 10px 10px;
     font-size: 0.5rem;
     margin-bottom: 1rem;
-    right:50%;
-    left:50%;
+    right: 50%;
+    left: 50%;
     margin-left: -50%;
     margin-right: -50%;
   }
-  .user-stats-donutchart-legend-container-legend-dot{
+  .user-stats-donutchart-legend-container-legend-dot {
     width: 15px;
     height: 15px;
   }
-  .user-stats-donutchart-diagaram-container{
-    margin: 5rem 5rem  1rem 5rem;
+  .user-stats-donutchart-diagaram-container {
+    margin: 5rem 5rem 1rem 5rem;
     width: 200px;
     height: 200px;
   }
