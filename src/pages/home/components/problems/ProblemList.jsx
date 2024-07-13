@@ -3,7 +3,7 @@ import ProblemComponent from "./components/ProblemComponent.jsx";
 import "./style.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import LoadingComponent from "../../../../components/loading/LoadingComponent.jsx";
-
+import combineData from "./combineData.js";
 import { getUserIdFromToken } from '../../../../store/userInfo.js';
 
 const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
@@ -13,32 +13,46 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   const [error, setError] = useState(null);
   const topicsPerPage = 1;
 
+  const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  const userId = user._id;
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
   const fetchData = async () => {
     try {
+
       setLoading(true);
-
-      // Simulating a delay for demonstration
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      const token = localStorage.getItem('token');
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
-
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/home`, {
         method: 'GET',
         headers: headers,
       });
-
       if (!response.ok) {
         throw new Error('Failed to fetch');
       }
-
       const responseData = await response.json();
-      setData(responseData.data);
+
+
+      const response2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/stats/completeUserData`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          userId
+        })
+      })
+      if (!response2.ok) {
+        throw new Error('Failed to fetch user progress');
+      }
+      const userData = await response2.json();
+      const combinedData = combineData(responseData.data, userData.user);
+
+      setData(combinedData);
       setLoading(false);
+
+      console.log(combinedData);
+
     } catch (error) {
       console.error('Fetch error:', error);
       setError(error);
@@ -112,6 +126,13 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
               difficultyLevel={problem.Difficulty}
               URL={problem.URL}
               problemId={problem._id}
+              isBookmarked={problem.isBookmarked}
+              isFavourite={problem.isFavourite}
+              isSolved={problem.isSolved}
+              isRevision={problem.isRevision}
+              isUnsolved={problem.isUnsolved}
+              notes={problem.notes}
+              solutions={problem.solutions}
             />
           ))}
         </div>

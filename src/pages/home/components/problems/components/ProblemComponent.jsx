@@ -20,6 +20,11 @@ export default function ProblemComponent({
   difficultyLevel,
   URL,
   problemId,
+  isBookmarked,
+  isFavourite,
+  isSolved, isRevision,
+  isUnsolved,
+  problemNotes, solutions
 }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
@@ -365,7 +370,7 @@ export default function ProblemComponent({
                 marginTop: "0.3rem",
               }}
             >
-              {hoveredStar ? (
+              {hoveredStar || isFavourite ? (
                 <FaStar
                   className="problem-component-FaStar problem-component-4icon"
                   title={showText ? "Add to Favourites" : ""}
@@ -385,7 +390,7 @@ export default function ProblemComponent({
                 marginTop: "0.3rem",
               }}
             >
-              {hoveredBookMark ? (
+              {hoveredBookMark || isBookmarked ? (
                 <IoBookmark
                   className="problem-component-IoBookmark problem-component-4icon"
                   title={showText ? "Bookmark" : ""}
@@ -406,8 +411,8 @@ export default function ProblemComponent({
                 alignItems: "center",
               }}
             >
-              <span style={{ color: statusColors[selectedStatus] }}>
-                {selectedStatus}
+              <span style={{ color: statusColors[(isSolved) ? "Solved" : (isRevision) ? "Revision" : "Unsolved"] }}>
+                {(isSolved) ? "Solved" : (isRevision) ? "Revision" : "Unsolved"}
               </span>
               {!isDropdownVisible ? (
                 <IoIosArrowUp
