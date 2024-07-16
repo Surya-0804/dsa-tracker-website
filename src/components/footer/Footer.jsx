@@ -49,7 +49,7 @@ const Footer = () => {
         <div className='header'>
           <h1>DSA-Tracker</h1>
         </div>
-        <div className="container">
+        <div className="footer-container">
           <div className="row">
             <div className="footer-col">
               <h4>company</h4>
