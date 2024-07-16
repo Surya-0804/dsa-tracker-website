@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Anta&family=Archivo:ital,wght@0,100..900;1,100..900&family=Kanit&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:wght@400;500&display=swap");
 
+:root {
+  --problem-font-size: 1.3rem;
+  --box-height: 3.5vh;
+  --problem-box-height: 6vh;
+  --icon-height: 3vh;
+  --icon-width: 1.5vw;
+}
+
 .problem-rectangle {
-  min-height: 10vh;
+  min-height: var(--problem-box-height);
   width: 92%;
   border: 1px solid black;
   border-radius: 1rem;
@@ -23,7 +31,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 3vh;
+  font-size: var(--problem-font-size);
   /* min-height: 3rem; */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -38,7 +46,7 @@
 .problem-difficulty-indicator {
   background-color: white;
   min-width: 20%;
-  height: 6vh;
+  height: var(--box-height);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,20 +59,11 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 3vh;
+  font-size: var(--problem-font-size);
   position: absolute;
   right: 1vw;
 }
 
-x .problem-rectangle-company-logo {
-  width: 24px;
-  height: 24px;
-  clip-path: circle();
-  margin: -1.5%;
-  background-color: white;
-  transition: 0.5s ease-in-out;
-  display: none;
-}
 
 .problem-rectangle-company-logo:hover {
   transform: scale(1.2);
@@ -90,7 +89,7 @@ x .problem-rectangle-company-logo {
 .GFG-logo-problem-solve-rectangle {
   margin-left: 1.5vw;
   color: #44a44c;
-  font-size: 8vh;
+  font-size: 4vh;
 }
 
 .leetcode-logo-problem-solve-rectangle {
@@ -102,7 +101,7 @@ x .problem-rectangle-company-logo {
 .problem-completion-indicator {
   background-color: white;
   min-width: 20%;
-  height: 5vh;
+  height: var(--box-height);
   margin: 0;
   padding: 0;
   border-radius: 0.7rem;
@@ -118,7 +117,6 @@ x .problem-rectangle-company-logo {
   cursor: pointer;
   background-color: white;
   min-width: 20%;
-  height: 6vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,43 +128,43 @@ x .problem-rectangle-company-logo {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5vh;
+  font-size: var(--problem-font-size);
   /* margin-right: 3%; */
   position: absolute;
   right: 1vw;
 }
 
 .problem-component-IoNewspaper {
-  width: 1.7vw;
+  width: var(--icon-width);
   height: auto;
   cursor: pointer;
   /* margin-bottom: -1.25vh; */
 }
 
 .problem-component-IoNewspaperOutline {
-  width: 1.7vw;
-  height: auto;
+  width: var(--icon-width);
+  height: var(--icon-height);
   cursor: pointer;
   /* margin-bottom: -1.25vh; */
 }
 
 .problem-component-MdAddCircle {
-  width: 1.7vw;
-  height: auto;
+  width: var(--icon-width);
+  height: var(--icon-height);
   cursor: pointer;
   /* margin-bottom: -1.25vh; */
 }
 
 .problem-component-FaStar {
-  width: 1.7vw;
-  height: auto;
+  width: var(--icon-width);
+  height: var(--icon-height);
   cursor: pointer;
   /* margin-bottom: -1.25vh; */
 }
 
 .problem-component-IoBookmark {
-  width: 1.7vw;
-  height: auto;
+  width: var(--icon-width);
+  height: var(--icon-height);
   cursor: pointer;
   /* margin-bottom: -1.25vh; */
 }
@@ -235,7 +233,7 @@ x .problem-rectangle-company-logo {
   .problem-difficulty-indicator {
     right: 3vw;
     border-radius: 2vh;
-    font-size: 2.7vh;
+    font-size: var(--problem-font-size);
   }
 
   .GFG-logo-problem-solve-rectangle {
@@ -249,7 +247,7 @@ x .problem-rectangle-company-logo {
   .problem-completion-indicator {
     right: 3vw;
     border-radius: 2vh;
-    font-size: 2.7vh;
+    font-size: var(--problem-font-size);
   }
 }
 
