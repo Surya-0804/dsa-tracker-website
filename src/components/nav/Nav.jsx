@@ -98,7 +98,7 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
               </Link>
             </li>
             <li className="dropdown">
-              <Link to={clientUrl} onClick={play}>
+              <Link to="https://gvk-algorithm-visualizer.vercel.app/" onClick={play}>
                 AlgoVisualizer
               </Link>
             </li>
