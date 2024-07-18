@@ -12,12 +12,13 @@
 .footer-svg {
   display: block;
   width: 100%;
-  height: 50rem;
+  /* height: 50rem; */
+  min-height: 50rem;
 }
 
 .footerData {
   position: absolute;
-  top: 40%;
+  top: 65%;
   width: 100%;
   color: white;
   margin: 0;
@@ -27,7 +28,7 @@
 }
 
 .arrow {
-  stroke-width: .3px;
+  stroke-width: 0.3px;
   stroke: yellow;
 }
 
@@ -50,7 +51,7 @@
   animation: drop 5s ease infinite normal;
   stroke: #85d1b5;
   stroke-width: 0.5;
-  opacity: .6;
+  opacity: 0.6;
   transform: translateY(80%);
 }
 
@@ -77,28 +78,28 @@
 #wave2 {
   animation-duration: 5s;
   animation-direction: reverse;
-  opacity: .6
+  opacity: 0.6;
 }
 
 #wave3 {
   animation-duration: 7s;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 @keyframes drop {
   0% {
     transform: translateY(80%);
-    opacity: .6;
+    opacity: 0.6;
   }
 
   80% {
     transform: translateY(80%);
-    opacity: .6;
+    opacity: 0.6;
   }
 
   90% {
     transform: translateY(10%);
-    opacity: .6;
+    opacity: 0.6;
   }
 
   100% {

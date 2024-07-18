@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="svgContainer">
-        <svg viewBox="0 0 120 28" className="footer-svg">
+        <svg viewBox="0 0 120 15" className="footer-svg">
           <defs>
             <mask id="xxx">
               <circle cx="7" cy="15" r="40" fill="#000" />
