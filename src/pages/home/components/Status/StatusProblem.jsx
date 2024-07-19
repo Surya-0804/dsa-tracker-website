@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import './style.css';
 import useSound from 'use-sound';
-import loud_btn from '../sounds/loud_btn_clk.wav';
 import axios from 'axios';
+import loud_btn from '../sounds/loud_btn_clk.wav';
+import './style.css';
 
-const status = ['Unsolved', 'Solved', 'Revision'];
+const statusOptions = ['Unsolved', 'Solved', 'Revision'];
 
 function StatusProblem({ userId, setSelectedStatus, problemId }) {
     const [play] = useSound(loud_btn);
-    const [availableStatus, setAvailableStatus] = useState(status);
+    const [availableStatus, setAvailableStatus] = useState(statusOptions);
     const [selectedStatus, setSelectedStatusLocal] = useState([]);
 
     const updateStatusInDatabase = async (newStatus) => {
@@ -18,31 +18,37 @@ function StatusProblem({ userId, setSelectedStatus, problemId }) {
                 problemId,
                 status: newStatus
             });
+            
+            // Fetch the updated status
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/problems/status`, {
+                params: { userId, problemId },
+            });
+
+            // Update the parent component state with the new status
+            setSelectedStatus(response.data.status);
         } catch (error) {
             console.error("Failed to update status", error);
         }
     };
 
-    const handleStatusClick = (Status) => {
+    const handleStatusClick = (status) => {
         play();
-        const newAvailableStatus = availableStatus.filter(d => d !== Status);
-        const newSelectedStatus = [...selectedStatus, Status];
+        const newAvailableStatus = availableStatus.filter(d => d !== status);
+        const newSelectedStatus = [...selectedStatus, status];
         setAvailableStatus(newAvailableStatus);
         setSelectedStatusLocal(newSelectedStatus);
         setSelectedStatus(newSelectedStatus);
-        updateStatusInDatabase(Status); // Update parent state
+        updateStatusInDatabase(newSelectedStatus); // Update database with the new status
     };
 
-    const handleSelectedStatusClick = (Status) => {
+    const handleSelectedStatusClick = (status) => {
         play();
-        const newSelectedStatus = selectedStatus.filter(d => d !== Status);
-        const newAvailableStatus = [...availableStatus, Status];
+        const newSelectedStatus = selectedStatus.filter(d => d !== status);
+        const newAvailableStatus = [...availableStatus, status];
         setSelectedStatusLocal(newSelectedStatus);
         setAvailableStatus(newAvailableStatus);
-        setSelectedStatus(newSelectedStatus);
-        updateStatusInDatabase('Unsolved'); // Update parent state
+        updateStatusInDatabase(newSelectedStatus); // Update database with the new status
     };
-
 
     return (
         <div className="topicsComponent">
@@ -51,19 +57,20 @@ function StatusProblem({ userId, setSelectedStatus, problemId }) {
             </div>
             <div className='topics'>
                 <div className="selected">
-                    {selectedStatus.map((Status, index) => (
-                        <span key={index} onClick={() => handleSelectedStatusClick(Status)} className='eachTopic'>
-                            {Status} <i className="fa-solid fa-xmark"></i>
+                    {selectedStatus.map((status, index) => (
+                        <span key={index} onClick={() => handleSelectedStatusClick(status)} className='eachTopic'>
+                            {status} <i className="fa-solid fa-xmark"></i>
                         </span>
                     ))}
                 </div>
-                <div class="available-topics">
-                    {availableStatus.map((Status, index) => (
-                        <span key={index} onClick={() => handleStatusClick(Status)} className='eachTopic'>
-                            {Status}
+                <div className="available-topics">
+                    {availableStatus.map((status, index) => (
+                        <span key={index} onClick={() => handleStatusClick(status)} className='eachTopic'>
+                            {status}
                         </span>
                     ))}
-                </div></div>
+                </div>
+            </div>
         </div>
     );
 }
