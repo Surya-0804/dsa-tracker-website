@@ -22,9 +22,12 @@ export default function ProblemComponent({
   problemId,
   isBookmarked,
   isFavourite,
-  isSolved, isRevision,
+  isSolved,
+  isRevision,
   isUnsolved,
-  problemNotes, solutions
+  problemNotes,
+  solutions,
+  status
 }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
@@ -71,7 +74,11 @@ export default function ProblemComponent({
   const [hoveredStar, setHoveredStar] = useState(false);
   const [hoveredBookMark, setHoveredBookMark] = useState(false);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState("Unsolved");
+  const [selectedStatus, setSelectedStatus] = useState(() => {
+    if (isSolved) return "Solved";
+    if (isRevision) return "Revision";
+    return "Unsolved";
+  });
   const [selectedDifficulties, setSelectedDifficulties] = useState([]);
   const [isAddNotesVisible, setIsAddNotesVisible] = useState(false);
 
@@ -172,7 +179,6 @@ export default function ProblemComponent({
 
   const handleStatusChange = async (status) => {
     sound2.play();
-    console.log(status);
     try {
       const response = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/problemProgress/problemStatus`,
@@ -294,6 +300,7 @@ export default function ProblemComponent({
       setIsAddNotesVisible(false);
     }
   };
+
   return (
     <>
       <div
@@ -411,8 +418,12 @@ export default function ProblemComponent({
                 alignItems: "center",
               }}
             >
-              <span style={{ color: statusColors[(isSolved) ? "Solved" : (isRevision) ? "Revision" : "Unsolved"] }}>
-                {(isSolved) ? "Solved" : (isRevision) ? "Revision" : "Unsolved"}
+              <span
+                style={{
+                  color: statusColors[selectedStatus],
+                }}
+              >
+                {selectedStatus}
               </span>
               {!isDropdownVisible ? (
                 <IoIosArrowUp
