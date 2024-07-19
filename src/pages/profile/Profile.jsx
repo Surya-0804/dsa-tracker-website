@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProblemSolvedChart from "./components/problemSolvedChart/ProblemSolvedChart2";
 import TopicSolved from "./components/topicsolved/TopicSolved";
 import DonutChart from "./components/donutchart/DonutChart";
