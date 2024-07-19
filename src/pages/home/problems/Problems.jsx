@@ -12,13 +12,16 @@ import "react-toastify/dist/ReactToastify.css";
 import StatusProblem from '../components/Status/StatusProblem';
 import { FaArrowLeft } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
-
-const Problems = ({ isLoginCompleted }) => {
+import { useAuth } from '../../../AuthContext';
+const Problems = () => {
     const [stats, setStats] = useState(null);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState([]);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+    const { currentUser } = useAuth();
+
     const successToast = () => {
         toast.success("Successfull!", {
             position: "top-right",
@@ -45,7 +48,7 @@ const Problems = ({ isLoginCompleted }) => {
         });
     };
     let user, userId, token;
-    if (isLoginCompleted) {
+    if (currentUser) {
         user = JSON.parse(localStorage.getItem("user"));
         userId = user._id;
         token = localStorage.getItem("token");
@@ -54,7 +57,7 @@ const Problems = ({ isLoginCompleted }) => {
 
 
     const fetchStats = async () => {
-        if (isLoginCompleted) {
+        if (currentUser) {
             try {
                 const response = await fetch(
                     `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
@@ -90,7 +93,7 @@ const Problems = ({ isLoginCompleted }) => {
 
     useEffect(() => {
         fetchStats();
-    }, [isLoginCompleted]);
+    }, []);
     const storedStats = JSON.parse(localStorage.getItem("stats"));
     const totalProblems = storedStats ? storedStats.totalProblems : 0;
     const totalProblemsSolved = storedStats ? storedStats.totalProblemsSolved : 0;
@@ -107,12 +110,12 @@ const Problems = ({ isLoginCompleted }) => {
                         <span>{totalProblemsSolved}</span> / {totalProblems}
                     </div>
                 </div>
-                {!isLoginCompleted && <div>
+                {!currentUser && <div>
                     {Array.from({ length: 4 }).map((_, index) => (
                         <LoadingComponent key={index} />
                     ))}
                 </div>}
-                {isLoginCompleted && <ProblemsList selectedTopics={selectedTopics} selectedDifficulties={selectedDifficulties} />}
+                {currentUser && <ProblemsList selectedTopics={selectedTopics} selectedDifficulties={selectedDifficulties} />}
 
             </div>
 

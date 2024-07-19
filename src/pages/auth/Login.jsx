@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { MdAlternateEmail } from "react-icons/md";
@@ -10,25 +9,17 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const Login = ({ toggleLoginModal, setIsLoginCompleted }) => {
+import { useAuth } from '../../AuthContext';
+
+
+const Login = ({ toggleLoginModal }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    // const isLoginCompleted = localStorage.getItem('isLoginCompleted');
-
-    if (token && user) {
-      setIsLoginCompleted(true);
-    }
-  }, [setIsLoginCompleted]);
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,10 +48,8 @@ const Login = ({ toggleLoginModal, setIsLoginCompleted }) => {
 
       const data = await response.json();
 
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        setIsLoginCompleted(true);
+      if (data.token && data.user) {
+        login(data.user, data.token);
         toggleLoginModal();
       } else {
         throw new Error("Failed to log in");
@@ -99,7 +88,7 @@ const Login = ({ toggleLoginModal, setIsLoginCompleted }) => {
         if (data.token) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          setIsLoginCompleted(true);
+
           toast.success('Registration successfully completed!', {
             position: "top-right",
             autoClose: 5000,

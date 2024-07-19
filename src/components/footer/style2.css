@@ -51,14 +51,11 @@
     content: '';
     position: absolute;
     left: 0;
-    bottom: -0px;
     background-color: #0a0a0a;
     height: 2px;
     box-sizing: border-box;
     width: 50px;
 }
-
-.footer-col ul li:not(:last-child) {}
 
 .footer-col ul li a {
     font-size: 1rem;

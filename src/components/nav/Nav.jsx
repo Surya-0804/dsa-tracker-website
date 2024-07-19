@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../pages/auth/AuthContext";
+import { Link, useLocation } from "react-router-dom";
 import useSound from "use-sound";
 import { useCookies } from "react-cookie";
 import loud_btn from "../sounds/loud_btn_clk.wav";
@@ -9,17 +8,22 @@ import "./style2.css";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import { FaArrowLeft } from "react-icons/fa";
-function Nav({ isLoginCompleted, setIsLoginCompleted }) {
+import { useAuth } from '../../AuthContext';
+
+function Nav() {
   const clientUrl = process.env.CLIENT_URL;
-  const { currentUser, logout } = useAuth();
+
   const [play] = useSound(loud_btn);
   const [showMenu, setShowMenu] = useState(false);
-
+  const location = useLocation();
   const [showLoginModel, setShowLoginModel] = useState(false);
   const [showSignupModel, setShowSignupModel] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["userToken"]);
   const isModalOpen = showLoginModel || showSignupModel;
   const [user, setUser] = useState(null);
+
+  const { currentUser, logout } = useAuth();
+
   const toggleLoginModal = () => {
     setShowLoginModel((prevState) => !prevState);
   };
@@ -30,10 +34,7 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
 
   const handleLogout = async () => {
     try {
-      removeCookie("userToken", { path: "/" });
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      setIsLoginCompleted(false);
+      logout();
     } catch {
       console.error("Failed to log out");
     }
@@ -60,14 +61,8 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
   }, [showLoginModel, showSignupModel]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user"));
 
-    if (token && user) {
-      setIsLoginCompleted(true);
-      setUser(user);
-    }
-  }, [setIsLoginCompleted]);
+  }, []);
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
@@ -83,17 +78,17 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
           </div>
           <nav className="fill stroke">
             <li>
-              <Link to={clientUrl} className="active" onClick={play}>
+              <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={play}>
                 Home
               </Link>
             </li>
             <li>
-              <Link to={clientUrl} onClick={play}>
+              <Link to="/about" className={location.pathname === "/about" ? "active" : ""} onClick={play}>
                 About
               </Link>
             </li>
             <li className="dropdown">
-              <Link to={clientUrl} onClick={play}>
+              <Link to="/leaderboard" className={location.pathname === "/leaderboard" ? "active" : ""} onClick={play}>
                 LeaderBoard
               </Link>
             </li>
@@ -103,9 +98,9 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
               </Link>
             </li>
           </nav>
-          {isLoginCompleted ? (
+          {currentUser ? (
             <div className="profile" onClick={play}>
-              <span className="name">{user.name}</span>
+              <span className="name">{currentUser.name}</span>
               <Link to="/profile">
                 <img src="/images/userDummyDp.png" alt="User Avatar" />
               </Link>
@@ -197,7 +192,7 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
                   </Link>
                 </div>
 
-                {isLoginCompleted && user ? (
+                {currentUser ? (
                   <>
                     <div className="nav-responsive-tags">
                       <Link to="/profile" className="link-no-underline">
@@ -252,7 +247,6 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
           <div className="login-modal">
             <Login
               toggleLoginModal={toggleLoginModal}
-              setIsLoginCompleted={setIsLoginCompleted}
             />
           </div>
         </div>
@@ -271,7 +265,6 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
           <div className="login-modal">
             <Login
               toggleLoginModal={toggleLoginModal}
-              setIsLoginCompleted={setIsLoginCompleted}
             />
           </div>
         </div>
@@ -282,7 +275,6 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
           <div className="signup-modal">
             <Signup
               toggleSignupModal={toggleSignupModal}
-              setIsLoginCompleted={setIsLoginCompleted}
             />
           </div>
         </div>
