@@ -1,11 +1,14 @@
 .footer-container {
   position: relative;
-  width: 100dvw;
-  height: 30rem;
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(#fff, #8dd3ba);
 }
 .footer-svg-style {
-  height: 30rem;
+  height: 35rem;
   width: 100dvw;
+  margin: 0;
+  padding: 0;
 }
 .footerMain-content {
   display: flex;
@@ -13,6 +16,7 @@
   align-items: center;
   padding: 0;
   position: absolute;
+  bottom: 0;
   top: 50%;
   width: 95%;
   transform: translateY(-50%);
