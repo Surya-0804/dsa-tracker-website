@@ -1,36 +1,16 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 
-export default function ProblemsSolvedTable() {
-  const easyTasks = [
-    "Reverse a linked list",
-    "Occurrence of an integer in a Linked List",
-    "Given a linked list of 0s, 1s and 2s, sort it.",
-    "Detect Loop in linked list",
-    "Remove duplicates from an unsorted linked list",
-    "Reverse a Doubly Linked List",
-    "Check for BST",
-    "Given a linked list of 0s, 1s and 2s, sort it.",
-    "Detect Loop in linked list",
-    "Remove duplicates from an unsorted linked list",
-    "Reverse a Doubly Linked List",
-    "Check for BST",
-  ];
-
-  const mediumTasks = [
-    "Count Pairs whose sum is equal to X",
-    "Find length of Loop",
-    "Queue Reversal",
-    "Reverse First K elements of Queue",
-    "Magical Number",
-  ];
-
-  const hardTasks = [
-    "Move all zeros to the front of the linked list",
-    "The New Line",
-  ];
+export default function ProblemsSolvedTable({
+  easyTasks,
+  mediumTasks,
+  hardTasks,
+  easyCount,
+  mediumCount,
+  hardCount,
+}) {
   const [activeTab, setActiveTab] = useState("easy");
+
   return (
     <div className="outer-container-probelms-solved-table">
       <div className="inner-container-probelms-solved-table">
@@ -44,7 +24,9 @@ export default function ProblemsSolvedTable() {
         >
           <h1 className="probelms-solved-table-heading-h1">
             Easy
-            <span className="probelms-solved-table-heading-h1-span">(90)</span>
+            <span className="probelms-solved-table-heading-h1-span">
+              ({easyCount})
+            </span>
           </h1>
         </div>
         <div
@@ -57,7 +39,9 @@ export default function ProblemsSolvedTable() {
         >
           <h1 className="probelms-solved-table-heading-h1">
             Medium
-            <span className="probelms-solved-table-heading-h1-span">(40)</span>
+            <span className="probelms-solved-table-heading-h1-span">
+              ({mediumCount})
+            </span>
           </h1>
         </div>
         <div
@@ -70,7 +54,9 @@ export default function ProblemsSolvedTable() {
         >
           <h1 className="probelms-solved-table-heading-h1">
             Hard
-            <span className="probelms-solved-table-heading-h1-span">(10)</span>
+            <span className="probelms-solved-table-heading-h1-span">
+              ({hardCount})
+            </span>
           </h1>
         </div>
       </div>

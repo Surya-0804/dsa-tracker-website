@@ -39,8 +39,8 @@ const DonutChart = ({ Easy, Medium, Hard }) => {
     datasets: [
       {
         data: [Easy, Medium, Hard],
-        backgroundColor: ["#4285F4", "#A3A0FB", "#212529"],
-        hoverBackgroundColor: ["#357ae8", "#8f8dff", "#1b1d23"],
+        backgroundColor: ["#23C483", "#80D178", "#BCDC77"],
+        hoverBackgroundColor: ["#00AC90", "#00AC90", "#00AC90"],
       },
     ],
   };
@@ -70,7 +70,7 @@ const DonutChart = ({ Easy, Medium, Hard }) => {
           </button>
         </div>
       </div>
-      <div >
+      <div>
         <Doughnut
           className="user-stats-donutchart-diagaram-container"
           data={data}
@@ -78,9 +78,9 @@ const DonutChart = ({ Easy, Medium, Hard }) => {
         />
       </div>
       <div className="user-stats-donutchart-legend-container">
-        <LegendItem color="#4285F4" label="Easy" value={Easy} />
-        <LegendItem color="#A3A0FB" label="Medium" value={Medium} />
-        <LegendItem color="#212529" label="Hard" value={Hard} />
+        <LegendItem color="#23C483" label="Easy" value={Easy} />
+        <LegendItem color="#80D178" label="Medium" value={Medium} />
+        <LegendItem color="#BCDC77" label="Hard" value={Hard} />
       </div>
     </div>
   );
