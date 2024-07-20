@@ -21,6 +21,7 @@ import TopicSolved from "./pages/profile/components/topicsolved/TopicSolved";
 import ProblemsSolvedTable from "./pages/profile/components/problemssovedtable/ProblemsSolvedTable";
 import DeveloperDetails from "./pages/about/components/developerDetails/DeveloperDetails";
 import Profile from "./pages/profile/Profile";
+import About from "./pages/about/About";
 function App() {
   return (
     <div className="App">
@@ -55,6 +56,7 @@ function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/cookie" element={<CookieConsentComponent />} />
             <Route path="/developer" element={<DeveloperDetails />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </AuthProvider>
       </Router>

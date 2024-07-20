@@ -92,12 +92,12 @@ function Nav({ isLoginCompleted, setIsLoginCompleted }) {
               </Link>
             </li>
             <li>
-              <Link to={clientUrl} onClick={play}>
+              <Link to="/about" onClick={play}>
                 About
               </Link>
             </li>
             <li className="dropdown">
-              <Link to={clientUrl} onClick={play}>
+              <Link to="/leaderboard" onClick={play}>
                 LeaderBoard
               </Link>
             </li>
