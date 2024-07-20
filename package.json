@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
     "@mui/material": "^5.15.21",
     "@ramonak/react-progress-bar": "^5.2.0",
     "@testing-library/jest-dom": "^5.17.0",

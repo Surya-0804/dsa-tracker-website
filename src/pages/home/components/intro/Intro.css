@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 .intro {
   width: 100%;
   border-bottom: 2px dashed rgb(185, 194, 190);
@@ -8,18 +9,21 @@
   justify-content: center;
   height: auto;
   align-items: center;
-  /* margin: 0 auto; */
+  margin: 3.5vh auto;
   color: rgb(65, 64, 64);
   flex-wrap: wrap;
+  margin-top: 10vh;
 }
 
-.dsa-photo-1 img {
-  width: 16vw;
-  height: 32vh;
+.dsa-photo-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -2vw;
 }
 
 .dsa-content {
-  margin: 0 2vw;
+  margin: 0 5vw;
 }
 
 .dsa-description h2 {
@@ -39,15 +43,94 @@
   width: 15vw;
   height: 30vh;
 }
+.image-for-dsa-intro {
+  width: 15vw;
+  height: 30vh;
+}
+.image-for-dsa-intro-2 {
+  width: 20vw;
+  height: 35vh;
+}
+.dsa-description h2 {
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shining 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  /* font-size: 2vw; */
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+  line-height: 1;
+  margin-bottom: 1vh;
+  margin-top: 5vh;
+}
+@-moz-keyframes shining {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shining {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shining {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shining {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+
+.dsa-description p {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.2;
+  font-size: 2.5vh;
+}
 
 @media (max-width: 1000px) {
   .dsa-description {
     align-items: center;
     justify-content: center;
+    margin-top: 0;
   }
 
   .dsa-description h2 {
-    font-size: 4vw;
+    font-size: 2rem;
     margin-top: 0;
     text-align: center;
   }
@@ -69,7 +152,9 @@
     width: 40vw;
     height: auto;
   }
-
+  .image-for-dsa-intro {
+    display: none;
+  }
   .dsa-photo-2 img {
     display: none;
   }

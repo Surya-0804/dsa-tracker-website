@@ -3,6 +3,7 @@ import "./Intro.css";
 import photo1 from "./assets/Programmer.gif";
 import photo2 from "./assets/about1.jpg";
 import code from "./assets/coding.png";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const Intro = () => {
   return (
@@ -11,18 +12,23 @@ const Intro = () => {
       <div className="hero-section">
         <div className="hero-content">
           <div className="dsa-photo-1">
-            <img src={photo1} alt="programming"></img>
+            <Player
+              src="https://lottie.host/9a1c37d9-7845-4d58-8b37-06dc07f07728/ryhNVmKJ08.json"
+              className="image-for-dsa-intro image-for-dsa-intro-2"
+              loop
+              autoplay
+            />
             <br />
           </div>
           <div className="dsa-content">
             <div className="dsa-description">
               <h2>
                 Our DSA Sheet{" "}
-                <img
+                {/* <img
                   src={code}
                   alt="code"
                   style={{ marginLeft: "2rem", height: "2.4rem", width: "2.9rem" }}
-                />
+                /> */}
               </h2>
 
               <p>
@@ -39,11 +45,17 @@ const Intro = () => {
             </div>
           </div>
           <div className="dsa-photo-2">
-            <img
+            {/* <img
               src={photo2}
               alt="communication"
               style={{ position: "relative", zIndex: "-1" }}
-            ></img>
+            ></img> */}
+            <Player
+              src="https://lottie.host/424dc29f-4d13-499c-9d76-2a9f79bedb7d/JkyKVwGNAH.json"
+              className="image-for-dsa-intro"
+              loop
+              autoplay
+            />
           </div>
         </div>
       </div>
