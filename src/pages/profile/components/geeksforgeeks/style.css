@@ -1,0 +1,95 @@
+.profile-page-geeksforgeeks-container {
+  width: 90%;
+  margin-left: 5vw;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.profile-page-geeksforgeeks-header {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2.5vw;
+  display: flex;
+  align-items: center;
+  margin-top: 6vh;
+  justify-content: center;
+}
+.profile-page-geeksforgeeks-header img {
+  padding-left: 1vw;
+}
+.profile-page-geeksforgeeks-inner-container {
+  display: flex;
+  height: 100%;
+  margin-bottom: 8vh;
+}
+.profile-page-geeksforgeeks-inner-container-1 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile-page-geeksforgeeks-username {
+  color: #2f8d46;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  margin-bottom: 1vh;
+
+  font-size: 4vh;
+}
+.profile-page-geeksforgeeks-institute-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-page-geeksforgeeks-medal-icon {
+  font-size: 4vh;
+  margin-right: 0.5vw;
+  margin-left: -1vw;
+}
+.profile-page-geeksforgeeks-institute-rank h2 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  font-size: 3.5vh;
+}
+.profile-page-geeksforgeeks-institute-rank span {
+  font-weight: 600;
+}
+.profile-page-geeksforgeeks-inner-sub-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 7vh;
+}
+.profile-page-geeksforgeeks-problems-solved {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+}
+.profile-page-geeksforgeeks-problems-solved h2 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 3.5vh;
+}
+.profile-page-geeksforgeeks-vertical-line {
+  border-left: 2px solid #c7c2c2;
+  height: auto;
+  align-self: stretch;
+}
+.profile-page-geeksforgeeks-donutchart {
+  border: none;
+}
