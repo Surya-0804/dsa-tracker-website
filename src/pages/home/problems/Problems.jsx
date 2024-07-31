@@ -107,7 +107,7 @@ const Problems = () => {
                         <ProgressBar completed={progressWidth.toFixed(2)} bgColor='#85d1b5' baseBgColor='#e2ada6' height='3vh' labelSize='1.2rem' />
                     </div>
                     <div className="container-showTag">
-                        <span>{totalProblemsSolved}</span> / {totalProblems}
+                        <span> {!currentUser && '--'} {currentUser && { totalProblemsSolved }}</span> / {totalProblems}
                     </div>
                 </div>
                 {!currentUser && <div>
