@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 .intro {
   width: 100%;
   border-bottom: 2px dashed rgb(185, 194, 190);
@@ -27,7 +28,7 @@
 }
 
 .dsa-description h2 {
-  font-size: 2vw;
+  font-size: 1.6rem;
 }
 
 .dsa-description {
@@ -43,14 +44,17 @@
   width: 15vw;
   height: 30vh;
 }
+
 .image-for-dsa-intro {
   width: 15vw;
   height: 30vh;
 }
+
 .image-for-dsa-intro-2 {
   width: 20vw;
   height: 35vh;
 }
+
 .dsa-description h2 {
   color: #fff;
   background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
@@ -68,46 +72,58 @@
   margin-bottom: 1vh;
   margin-top: 5vh;
 }
+
 @-moz-keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
 }
+
 @-webkit-keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
 }
+
 @-o-keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
 }
+
 @keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
@@ -119,7 +135,7 @@
   font-weight: 500;
   font-style: normal;
   line-height: 1.2;
-  font-size: 2.5vh;
+  font-size: 1.13rem;
 }
 
 @media (max-width: 1000px) {
@@ -152,9 +168,11 @@
     width: 40vw;
     height: auto;
   }
+
   .image-for-dsa-intro {
     display: none;
   }
+
   .dsa-photo-2 img {
     display: none;
   }
