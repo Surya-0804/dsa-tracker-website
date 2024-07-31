@@ -5,12 +5,14 @@
   margin-top: 10rem;
   background: linear-gradient(#fff, #8dd3ba);
 }
+
 .footer-svg-style {
-  height: 35rem;
+  height: 28rem;
   width: 100dvw;
   margin: 0;
   padding: 0;
 }
+
 .footerMain-content {
   display: flex;
   justify-content: center;
@@ -33,14 +35,14 @@
 }
 
 .footer-header {
-  font-size: 2dvw;
+  font-size: 2.2dvw;
   text-align: center;
   margin-bottom: 20px;
   width: 50%;
 }
 
 .footer-section h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-family: "Poppins", sans-serif;
   position: relative;
 }
@@ -75,7 +77,7 @@
 
 .footer-section ul li {
   margin-bottom: 1px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .follow-us .social-icons {
@@ -105,21 +107,17 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .footer-container {
+    width: 100%;
+  }
   .footerMain-content {
     flex-direction: column;
-    padding: 10px;
-    top: 55%;
+    top: 50%;
+    width: 95%;
   }
   .footer-svg-style {
     height: 33rem;
-    /* width: 100dvw; */
   }
-
-  /* .footer-section-line1 {
-      flex-direction: column;
-      align-items: center;
-    } */
-
   .footer-section {
     margin: 1rem 0;
   }
@@ -146,20 +144,18 @@
 }
 
 @media (max-width: 480px) {
+  .footer-container {
+    width: 100%;
+  }
   .footerMain-content {
-    padding: 5px;
-    top: 60%;
+    margin: 0;
+    top: 55%;
+    width: 98%;
   }
   .footer-svg-style {
     height: 32rem;
-    /* width: 100dvw; */
+    width: 100dvw;
   }
-
-  /* .footer-section-line1 {
-      flex-direction: column;
-      align-items: center;
-    } */
-
   .footer-section {
     margin: 0.5rem 0;
   }
@@ -167,6 +163,44 @@
   .footer-header {
     font-size: 5vw;
     margin-bottom: 5px;
+  }
+
+  .footer-section h3 {
+    font-size: 1rem;
+  }
+
+  .footer-section ul li {
+    font-size: 0.8rem;
+  }
+
+  .follow-us .social-icons a {
+    height: 1.8rem;
+    width: 1.8rem;
+    font-size: 1rem;
+    margin: 0 3px;
+  }
+}
+
+@media (max-width: 410px) {
+  .footer-container {
+    width: 100%;
+  }
+  .footerMain-content {
+    margin: 0;
+    top: 50%;
+    width: 98%;
+  }
+  .footer-svg-style {
+    height: 28rem;
+    width: 100vw;
+  }
+  .footer-section {
+    margin: 0.2rem 0;
+  }
+
+  .footer-header {
+    font-size: 5vw;
+    margin-bottom: 3px;
   }
 
   .footer-section h3 {
