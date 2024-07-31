@@ -140,6 +140,10 @@
   margin-right: 0.3vw;
 }
 
+.navbar-container .NavContainer .profile {
+  margin-right: 18vw;
+}
+
 .navbar-container .NavContainer .profile .name {
   font-size: 1.3rem;
 }
