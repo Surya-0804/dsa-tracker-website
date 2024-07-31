@@ -20,6 +20,7 @@ import TopicSolved from "./pages/profile/components/topicsolved/TopicSolved";
 import ProblemsSolvedTable from "./pages/profile/components/problemssovedtable/ProblemsSolvedTable";
 import DeveloperDetails from "./pages/about/components/developerDetails/DeveloperDetails";
 import Profile from "./pages/profile/Profile";
+import About from "./pages/about/About";
 import { AuthProvider } from './AuthContext';
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                 }
               />
               <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/contribution" element={<ContributionBoard />} />
               <Route path="/addnotes" element={<AddNotes />} />
