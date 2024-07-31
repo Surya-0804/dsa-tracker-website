@@ -59,7 +59,7 @@ const NewFooter = () => {
               </ul>
             </div>
           </div>
-          <div className="footer-section follow-us" style={{marginTop:"0"}}>
+          <div className="footer-section follow-us" style={{ marginTop: "0" }}>
             <h3>Follow Us</h3>
             <div className="social-icons">
               <a href="#"><i className="fab fa-facebook"></i></a>

@@ -111,7 +111,7 @@ const Problems = () => {
                     </div>
                 </div>
                 {!currentUser && <div>
-                    {Array.from({ length: 4 }).map((_, index) => (
+                    {Array.from({ length: 8 }).map((_, index) => (
                         <LoadingComponent key={index} />
                     ))}
                 </div>}

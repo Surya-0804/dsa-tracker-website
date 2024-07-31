@@ -64,15 +64,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return (
-      <div>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <LoadingComponent key={index} />
-        ))}
-      </div>
-    );
-  }
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -82,19 +74,19 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   const filteredData =
     selectedTopics.length || selectedDifficulties.length
       ? Object.keys(data).reduce((acc, topic) => {
-          if (selectedTopics.length && !selectedTopics.includes(topic)) {
-            return acc;
-          }
-          const filteredProblems = data[topic].filter((problem) =>
-            selectedDifficulties.length
-              ? selectedDifficulties.includes(problem.Difficulty)
-              : true
-          );
-          if (filteredProblems.length) {
-            acc[topic] = filteredProblems;
-          }
+        if (selectedTopics.length && !selectedTopics.includes(topic)) {
           return acc;
-        }, {})
+        }
+        const filteredProblems = data[topic].filter((problem) =>
+          selectedDifficulties.length
+            ? selectedDifficulties.includes(problem.Difficulty)
+            : true
+        );
+        if (filteredProblems.length) {
+          acc[topic] = filteredProblems;
+        }
+        return acc;
+      }, {})
       : data;
 
   // Flatten problems from all topics for pagination
