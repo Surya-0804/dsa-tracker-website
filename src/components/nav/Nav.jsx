@@ -83,12 +83,12 @@ export default function Nav() {
               </Link>
             </li>
             <li>
-              <Link to="/about" onClick={play}>
+              <Link to="/about" className={location.pathname === "/about" ? "active" : ""} onClick={play}>
                 About
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="/leaderboard" onClick={play}>
+              <Link to="/leaderboard" onClick={play} className={location.pathname === "/leaderboard" ? "active" : ""}>
                 LeaderBoard
               </Link>
             </li>
