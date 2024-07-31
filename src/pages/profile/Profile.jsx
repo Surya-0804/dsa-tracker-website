@@ -6,6 +6,8 @@ import ContributionBoard from "../contibutionboard/ContributionBoard";
 import ProblemsSolvedTable from "./components/problemssovedtable/ProblemsSolvedTable";
 import UserDetails from "./components/userDetails/UserDetails";
 import "./style.css";
+import GeeksforGeeks from "./components/geeksforgeeks/GeeksforGeeks";
+import LeetCode from "./components/leetcode/LeetCode";
 
 export default function Profile() {
   const [isLoginCompleted, setIsLoginCompleted] = useState(false);
@@ -76,6 +78,8 @@ export default function Profile() {
         />
       </div>
       <hr className="first-divider-profile" />
+      <GeeksforGeeks />
+      <LeetCode />
       <div className="second-section-profile-page">
         <TopicSolved topics={problemsData.topics} />
         <ProblemSolvedChart />

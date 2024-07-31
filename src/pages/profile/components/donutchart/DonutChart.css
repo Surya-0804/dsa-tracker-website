@@ -5,16 +5,20 @@
   width: 90%;
   height: auto;
   /* margin: 1rem; */
-  border: 1.5px solid #ececec;
   border-radius: 2rem;
   padding: 2% 1%;
   padding-bottom: 5%;
 }
-
+.user-stats-donutchart-container.bordered {
+  border: 1.5px solid #ececec;
+  width: 90%;
+}
 .user-stats-donutchart-inner-container1 {
   display: flex;
   margin-bottom: 2rem;
   padding: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-stats-donutchart-container-heading {

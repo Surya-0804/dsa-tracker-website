@@ -33,7 +33,7 @@ const LegendItem = ({ color, label, value }) => {
   );
 };
 
-const DonutChart = ({ Easy, Medium, Hard }) => {
+const DonutChart = ({ Easy, Medium, Hard, showBorder = true }) => {
   const data = {
     labels: ["Easy", "Medium", "Hard"],
     datasets: [
@@ -57,18 +57,22 @@ const DonutChart = ({ Easy, Medium, Hard }) => {
   };
 
   return (
-    <div className="user-stats-donutchart-container">
+    <div
+      className={`user-stats-donutchart-container ${
+        showBorder ? "bordered" : ""
+      }`}
+    >
       <div className="user-stats-donutchart-inner-container1">
         <h3 className="user-stats-donutchart-container-heading">
           Total Problems Solved
         </h3>
-        <div className="view-report-btn-container">
+        {/* <div className="view-report-btn-container">
           <button className="user-stats-donutchart-container-viewreport-btn">
             <span className="user-stats-donutchart-container-viewreport-btn-spn2">
               View Report
             </span>
           </button>
-        </div>
+        </div> */}
       </div>
       <div>
         <Doughnut

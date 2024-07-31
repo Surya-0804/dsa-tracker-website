@@ -4,46 +4,47 @@ import "./style.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import LoadingComponent from "../../../../components/loading/LoadingComponent.jsx";
 import combineData from "./combineData.js";
-import { getUserIdFromToken } from '../../../../store/userInfo.js';
+import { getUserIdFromToken } from "../../../../store/userInfo.js";
 
 const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   const [data, setData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const topicsPerPage = 1;
+  const problemsPerPage = 10;
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
 
   const userId = user._id;
   const headers = {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const fetchData = async () => {
     try {
-
       setLoading(true);
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/home`, {
-        method: 'GET',
+        method: "GET",
         headers: headers,
       });
       if (!response.ok) {
-        throw new Error('Failed to fetch');
+        throw new Error("Failed to fetch");
       }
       const responseData = await response.json();
 
-
-      const response2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/stats/completeUserData`, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify({
-          userId
-        })
-      })
+      const response2 = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/stats/completeUserData`,
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({
+            userId,
+          }),
+        }
+      );
       if (!response2.ok) {
-        throw new Error('Failed to fetch user progress');
+        throw new Error("Failed to fetch user progress");
       }
 
       const userData = await response2.json();
@@ -53,9 +54,8 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
       setLoading(false);
 
       console.log(combinedData);
-
     } catch (error) {
-      console.error('Fetch error:', error);
+      console.error("Fetch error:", error);
       setError(error);
       setLoading(false);
     }
@@ -82,61 +82,172 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   const filteredData =
     selectedTopics.length || selectedDifficulties.length
       ? Object.keys(data).reduce((acc, topic) => {
-        if (selectedTopics.length && !selectedTopics.includes(topic)) {
+          if (selectedTopics.length && !selectedTopics.includes(topic)) {
+            return acc;
+          }
+          const filteredProblems = data[topic].filter((problem) =>
+            selectedDifficulties.length
+              ? selectedDifficulties.includes(problem.Difficulty)
+              : true
+          );
+          if (filteredProblems.length) {
+            acc[topic] = filteredProblems;
+          }
           return acc;
-        }
-        const filteredProblems = data[topic].filter((problem) =>
-          selectedDifficulties.length
-            ? selectedDifficulties.includes(problem.Difficulty)
-            : true
-        );
-        if (filteredProblems.length) {
-          acc[topic] = filteredProblems;
-        }
-        return acc;
-      }, {})
+        }, {})
       : data;
 
-  // Pagination logic
-  const totalTopics = Object.keys(filteredData).length;
-  const totalPages = Math.ceil(totalTopics / topicsPerPage);
+  // Flatten problems from all topics for pagination
+  const allProblems = Object.values(filteredData).flat();
+  const totalProblems = allProblems.length;
+  const totalPages = Math.ceil(totalProblems / problemsPerPage);
 
-  const startTopicIndex = (currentPage - 1) * topicsPerPage;
-  const endTopicIndex = Math.min(startTopicIndex + topicsPerPage, totalTopics);
-  const currentTopics = Object.keys(filteredData).slice(
-    startTopicIndex,
-    endTopicIndex
+  const startProblemIndex = (currentPage - 1) * problemsPerPage;
+  const endProblemIndex = Math.min(
+    startProblemIndex + problemsPerPage,
+    totalProblems
   );
+  const currentProblems = allProblems.slice(startProblemIndex, endProblemIndex);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  const renderPaginationButtons = () => {
+    const paginationButtons = [];
+    const maxButtonsToShow = 7;
+
+    if (totalPages <= maxButtonsToShow) {
+      for (let i = 1; i <= totalPages; i++) {
+        paginationButtons.push(
+          <button
+            key={i}
+            className="DSA-problems-pagination-button"
+            onClick={() => paginate(i)}
+            disabled={currentPage === i}
+          >
+            {i}
+          </button>
+        );
+      }
+    } else {
+      if (currentPage <= 4) {
+        for (let i = 1; i <= 5; i++) {
+          paginationButtons.push(
+            <button
+              key={i}
+              className="DSA-problems-pagination-button"
+              onClick={() => paginate(i)}
+              disabled={currentPage === i}
+            >
+              {i}
+            </button>
+          );
+        }
+        paginationButtons.push(
+          <span key="ellipsis-end" className="ellipse-pagination">
+            ...
+          </span>
+        );
+        paginationButtons.push(
+          <button
+            key={totalPages}
+            className="DSA-problems-pagination-button"
+            onClick={() => paginate(totalPages)}
+          >
+            {totalPages}
+          </button>
+        );
+      } else if (currentPage >= totalPages - 3) {
+        paginationButtons.push(
+          <button
+            key={1}
+            className="DSA-problems-pagination-button"
+            onClick={() => paginate(1)}
+          >
+            1
+          </button>
+        );
+        paginationButtons.push(
+          <span key="ellipsis-start" className="ellipse-pagination">
+            ...
+          </span>
+        );
+        for (let i = totalPages - 4; i <= totalPages; i++) {
+          paginationButtons.push(
+            <button
+              key={i}
+              className="DSA-problems-pagination-button"
+              onClick={() => paginate(i)}
+              disabled={currentPage === i}
+            >
+              {i}
+            </button>
+          );
+        }
+      } else {
+        paginationButtons.push(
+          <button
+            key={1}
+            className="DSA-problems-pagination-button"
+            onClick={() => paginate(1)}
+          >
+            1
+          </button>
+        );
+        paginationButtons.push(
+          <span key="ellipsis-start" className="ellipse-pagination">
+            ...
+          </span>
+        );
+        for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+          paginationButtons.push(
+            <button
+              key={i}
+              className="DSA-problems-pagination-button"
+              onClick={() => paginate(i)}
+              disabled={currentPage === i}
+            >
+              {i}
+            </button>
+          );
+        }
+        paginationButtons.push(
+          <span key="ellipsis-end" className="ellipse-pagination">
+            ...
+          </span>
+        );
+        paginationButtons.push(
+          <button
+            key={totalPages}
+            className="DSA-problems-pagination-button"
+            onClick={() => paginate(totalPages)}
+          >
+            {totalPages}
+          </button>
+        );
+      }
+    }
+    return paginationButtons;
+  };
+
   return (
     <div>
-      {currentTopics.map((topic) => (
-        <div key={topic}>
-          <div className="Topics">
-            <span>{topic}</span>
-            <i className="fa-solid fa-caret-down"></i>
-          </div>
-          {filteredData[topic].map((problem, index) => (
-            <ProblemComponent
-              key={index}
-              problemName={problem.Problem}
-              difficultyLevel={problem.Difficulty}
-              URL={problem.URL}
-              problemId={problem._id}
-              isBookmarked={problem.isBookmarked}
-              isFavourite={problem.isFavourite}
-              isSolved={problem.isSolved}
-              isRevision={problem.isRevision}
-              isUnsolved={problem.isUnsolved}
-              notes={problem.notes}
-              solutions={problem.solutions}
-            />
-          ))}
-        </div>
+      {currentProblems.map((problem, index) => (
+        <ProblemComponent
+          key={index}
+          problemName={problem.Problem}
+          difficultyLevel={problem.Difficulty}
+          URL={problem.URL}
+          problemId={problem._id}
+          isBookmarked={problem.isBookmarked}
+          isFavourite={problem.isFavourite}
+          isSolved={problem.isSolved}
+          isRevision={problem.isRevision}
+          isUnsolved={problem.isUnsolved}
+          notes={problem.notes}
+          solutions={problem.solutions}
+        />
       ))}
       <div className="DSA-problems-pagination">
         <button
@@ -146,16 +257,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
         >
           <IoIosArrowBack style={{ fontSize: "1.3rem" }} />
         </button>
-        {[...Array(totalPages)].map((_, index) => (
-          <button
-            key={index + 1}
-            className="DSA-problems-pagination-button"
-            onClick={() => paginate(index + 1)}
-            disabled={currentPage === index + 1}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {renderPaginationButtons()}
         <button
           className="DSA-problems-pagination-director"
           onClick={() => paginate(currentPage + 1)}
