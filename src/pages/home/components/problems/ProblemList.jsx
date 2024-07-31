@@ -45,6 +45,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
       if (!response2.ok) {
         throw new Error('Failed to fetch user progress');
       }
+
       const userData = await response2.json();
       const combinedData = combineData(responseData.data, userData.user);
 
@@ -66,7 +67,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   if (loading) {
     return (
       <div>
-        {Array.from({ length: 4 }).map((_, index) => (
+        {Array.from({ length: 10 }).map((_, index) => (
           <LoadingComponent key={index} />
         ))}
       </div>

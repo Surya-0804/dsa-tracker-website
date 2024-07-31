@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 import { BsAwardFill } from "react-icons/bs";
 import Nav from '../../../../components/nav/Nav'
-
 export default function Leaderboard() {
   return (
     <>

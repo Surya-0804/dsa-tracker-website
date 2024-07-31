@@ -7,10 +7,10 @@ import "./style.css";
 import "./style2.css";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaCircleUser, FaCode } from "react-icons/fa";
 import { useAuth } from '../../AuthContext';
 
-function Nav() {
+export default function Nav() {
   const clientUrl = process.env.CLIENT_URL;
 
   const [play] = useSound(loud_btn);
@@ -73,7 +73,7 @@ function Nav() {
       <div className={`navbar-container ${isModalOpen ? "blur" : ""}`}>
         <div className="NavContainer">
           <div className="logo">
-            <FaCode className="dsa-tracker-logo" />
+            {/* <FaCode className="dsa-tracker-logo" /> */}
             <h4>DSA-Tracker</h4>
           </div>
           <nav className="fill stroke">
@@ -105,7 +105,7 @@ function Nav() {
             <div className="profile" onClick={play}>
               <span className="name">{currentUser.name}</span>
               <Link to="/profile">
-                <FaCircleUser className="user-image-navbar" />
+                {/* <FaCircleUser className="user-image-navbar" /> */}
               </Link>
               {/* <img src={currentUser.photoURL} alt="User Avatar" /> */}
               <button
@@ -164,7 +164,7 @@ function Nav() {
                 onClick={toggleMenu}
                 className="nav-responsive-closing-button"
               >
-                <FaArrowLeft />
+                {/* <FaArrowLeft /> */}
               </button>
               <div className="dsa-tags show">
                 <div className="nav-responsive-tags">
@@ -295,4 +295,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+
