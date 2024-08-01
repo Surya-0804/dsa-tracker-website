@@ -10,7 +10,7 @@
 .horizontal-scroll-content {
   display: flex;
   white-space: nowrap;
-  font-size: 2.6vw;
+  font-size: 2vw;
 }
 
 .horizontal-scroll-span-text {
