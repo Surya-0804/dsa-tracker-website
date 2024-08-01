@@ -103,8 +103,9 @@ export default function Nav() {
           </nav>
           {currentUser ? (
             <div className="profile" onClick={play}>
+              
+              <Link to="/profile" style={{textDecoration:"none",marginRight:"2rem",color:"#000"}}>
               <span className="name">{currentUser.name}</span>
-              <Link to="/profile">
                 {/* <FaCircleUser className="user-image-navbar" /> */}
               </Link>
               {/* <img src={currentUser.photoURL} alt="User Avatar" /> */}
