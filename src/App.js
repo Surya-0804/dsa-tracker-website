@@ -5,7 +5,6 @@ import Solution from "./pages/solution/Solution";
 import Home from "./pages/home/Home";
 import Settings from "./pages/settings/Settings";
 import Signup from "./pages/auth/Signup";
-import { AuthProvider } from "./pages/auth/AuthContext";
 import PrivateRoute from "./pages/auth/PrivateRoute";
 import Dashboard from "./pages/auth/Dashboard";
 import Login from "./pages/auth/Login";
@@ -22,44 +21,47 @@ import ProblemsSolvedTable from "./pages/profile/components/problemssovedtable/P
 import DeveloperDetails from "./pages/about/components/developerDetails/DeveloperDetails";
 import Profile from "./pages/profile/Profile";
 import About from "./pages/about/About";
+import { AuthProvider } from './AuthContext';
 function App() {
   return (
     <div className="App">
-      <Router>
-        <AuthProvider>
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-            <Route path="/" element={<Home />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/contribution" element={<ContributionBoard />} />
-            <Route path="/addnotes" element={<AddNotes />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route
-              path="/donut"
-              element={<DonutChart Easy={20} Medium={30} Hard={40} />}
-            />
-            <Route path="/topic" element={<TopicSolved />} />
-            <Route
-              path="/solution"
-              element={<Solution problemName={"Kadane's Algorithm"} />}
-            />
-            <Route path="/problemtable" element={<ProblemsSolvedTable />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/cookie" element={<CookieConsentComponent />} />
-            <Route path="/developer" element={<DeveloperDetails />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </AuthProvider>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <AuthProvider>
+            <Routes>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/contribution" element={<ContributionBoard />} />
+              <Route path="/addnotes" element={<AddNotes />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/donut"
+                element={<DonutChart Easy={20} Medium={30} Hard={40} />}
+              />
+              <Route path="/topic" element={<TopicSolved />} />
+              <Route
+                path="/solution"
+                element={<Solution problemName={"Kadane's Algorithm"} />}
+              />
+              <Route path="/problemtable" element={<ProblemsSolvedTable />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/cookie" element={<CookieConsentComponent />} />
+              <Route path="/developer" element={<DeveloperDetails />} />
+            </Routes>
+          </AuthProvider>
+        </Router>
+      </AuthProvider>
       <ToastContainer position="top-right" style={{ zIndex: 9999999 }} />
       <CookieConsentComponent />
     </div>

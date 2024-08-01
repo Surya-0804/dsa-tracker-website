@@ -6,14 +6,15 @@ import Problems from './problems/Problems.jsx'
 import { Analytics } from "@vercel/analytics/react";
 import Nav from '../../components/nav/Nav.jsx';
 import NewFooter from '../../components/footer/NewFooter.jsx';
+
 function Home() {
-    const [isLoginCompleted, setIsLoginCompleted] = new useState(false);
     return (
         <div className="App">
-            <Nav setIsLoginCompleted={setIsLoginCompleted} isLoginCompleted={isLoginCompleted} />
+
+            <Nav />
             <div className="main">
                 <Intro />
-                <Problems isLoginCompleted={isLoginCompleted} />
+                <Problems />
             </div>
             <NewFooter />
         </div>

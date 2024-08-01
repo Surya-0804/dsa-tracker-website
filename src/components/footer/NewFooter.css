@@ -7,7 +7,7 @@
 }
 
 .footer-svg-style {
-  height: 28rem;
+  height: 30rem;
   width: 100dvw;
   margin: 0;
   padding: 0;
@@ -110,14 +110,17 @@
   .footer-container {
     width: 100%;
   }
+
   .footerMain-content {
     flex-direction: column;
     top: 50%;
     width: 95%;
   }
+
   .footer-svg-style {
     height: 33rem;
   }
+
   .footer-section {
     margin: 1rem 0;
   }
@@ -147,15 +150,18 @@
   .footer-container {
     width: 100%;
   }
+
   .footerMain-content {
     margin: 0;
     top: 55%;
     width: 98%;
   }
+
   .footer-svg-style {
     height: 32rem;
     width: 100dvw;
   }
+
   .footer-section {
     margin: 0.5rem 0;
   }
@@ -185,15 +191,18 @@
   .footer-container {
     width: 100%;
   }
+
   .footerMain-content {
     margin: 0;
     top: 50%;
     width: 98%;
   }
+
   .footer-svg-style {
     height: 28rem;
     width: 100vw;
   }
+
   .footer-section {
     margin: 0.2rem 0;
   }

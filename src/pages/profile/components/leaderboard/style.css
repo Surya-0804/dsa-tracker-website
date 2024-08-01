@@ -1,21 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Anta&family=Archivo:ital,wght@0,100..900;1,100..900&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cutive&family=Kanit&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:wght@400;500;700&family=REM:ital,wght@0,100..900;1,100..900&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Special+Elite&display=swap");
+
 @keyframes borderAnimation {
   0% {
     border-color: #06ffb0;
   }
+
   25% {
     border-color: #37b68e;
   }
+
   50% {
     border-color: #128560;
   }
+
   75% {
     border-color: #65edc2;
   }
+
   100% {
     border-color: #06ffb0;
   }
 }
+
 .leaderboard-container {
   padding: 1% 1% 1% 3%;
   border: 2px solid #61d8ad;
@@ -24,8 +30,10 @@
   animation: borderAnimation 4s infinite;
   font-style: normal;
   border-radius: 2vw;
-  margin: 1%;
+  margin-top: 15vh;
+  margin-left: 10vw;
 }
+
 .leaderboard-heading {
   font-weight: 700;
   font-size: 1.8vw;
@@ -33,19 +41,23 @@
   margin-bottom: 0;
   text-align: center;
 }
+
 .leaderboard-heading-description {
   font-weight: 400;
   font-size: 1.2vw;
 }
+
 .leaderboard-label {
   font-size: 1.2vw;
   font-weight: 400;
   text-align: left;
   color: #a8a0a8;
 }
+
 .leaderboard-label-rank {
   width: 5vw;
 }
+
 .leaderboard-label-name {
   width: 18vw;
 }
@@ -56,28 +68,33 @@
   font-size: 1.2vw;
   padding: 1rem 0;
 }
+
 .leaderboard-rank {
   padding-left: 0.7vw;
   padding: 2vh 0 1vh 0.7vw;
 }
+
 .leaderboard-rank-1 {
   font-size: 1.5vw;
   padding-left: 0.4vw;
   color: #ffd700;
   padding: 2vh 0 1vh 0.4vw;
 }
+
 .leaderboard-rank-2 {
   font-size: 1.5vw;
   padding-left: 0.4vw;
   color: #c0c0c0;
   padding: 2vh 0 1vh 0.4vw;
 }
+
 .leaderboard-rank-3 {
   font-size: 1.5vw;
   padding-left: 0.4vw;
   color: #cd7f32;
   padding: 2vh 0 1vh 0.4vw;
 }
+
 .leaderboard-top-ranks-shine {
   color: #fff;
   background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
@@ -92,46 +109,58 @@
   white-space: nowrap;
   font-family: "Poppins", sans-serif;
 }
+
 @-moz-keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
 }
+
 @-webkit-keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
 }
+
 @-o-keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }
 }
+
 @keyframes shining {
   0% {
     background-position: 0;
   }
+
   60% {
     background-position: 180px;
   }
+
   100% {
     background-position: 180px;
   }

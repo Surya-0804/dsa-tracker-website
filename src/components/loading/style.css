@@ -69,7 +69,7 @@
 */
 .problem-component-loading {
   height: 13vh;
-  width: 90%;
+  width: 45vw;
   background: linear-gradient(90deg,
       #0000 33%,
       rgba(255, 255, 255, 0.8) 50%,
@@ -78,6 +78,7 @@
   animation: shine 2s infinite;
   border-radius: 1rem;
   margin-top: 2vh;
+  margin-right: 2vw;
 }
 
 @keyframes shine {
