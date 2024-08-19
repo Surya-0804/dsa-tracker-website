@@ -135,6 +135,9 @@
   .logout-button-res:active {
     box-shadow: 4px 4px 12px #c5c5c5, -4px -4px 12px #ffffff;
   }
+  .logout-button-res svg{
+    height: 1.5rem;
+  }
 
   .nav-responsive-tags {
     --color: #00a97f;
