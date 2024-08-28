@@ -1,7 +1,9 @@
 // Signup.js
 import React, { useRef, useState } from "react";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
+// import { collection, addDoc } from "firebase/firestore";
+import { db, auth, googleProvider } from "./firebase";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "./firebase";
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,74 +21,38 @@ const Signup = () => {
   const confirmPasswordRef = useRef();
   const nameRef = useRef();
   const phoneRef = useRef();
+  const { login } = useAuth();
+  const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-      return setError("Passwords do not match");
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+    const name = nameRef.current.value;
+    const phoneNo = phoneRef.current.value;
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
     }
 
+    setError("");
+    setLoading(true);
+
     try {
-      setError("");
-      setLoading(true);
-
-      const email = emailRef.current.value;
-      const name = nameRef.current.value;
-      const password = passwordRef.current.value;
-      const phoneNo = phoneRef.current.value;
-
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, name, phoneNo }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to register");
-      }
-
-      // Use the login function from context
-      const loginResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!loginResponse.ok) {
-        throw new Error("Failed to log in");
-      }
-
-      const data = await loginResponse.json();
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        toast.success('Registration successfully completed!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-
-        navigate("/");
-      } else {
-        throw new Error("Failed to log in");
-      }
-    } catch (error) {
-      setError(error.message);
+      await signup(email, password, name, phoneNo);
+      // toggleSignupModal(); // Close the signup modal on success
+      navigate("/"); // Redirect to home or other page after successful signup
+    } catch (err) {
+      setError('Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
+
 
   const handleGoogleSignUp = async () => {
     try {

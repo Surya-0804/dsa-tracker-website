@@ -27,7 +27,8 @@ export default function ProblemComponent({
   isUnsolved,
   problemNotes,
   solutions,
-  status
+  status,
+  stats
 }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
@@ -81,7 +82,8 @@ export default function ProblemComponent({
   });
   const [selectedDifficulties, setSelectedDifficulties] = useState([]);
   const [isAddNotesVisible, setIsAddNotesVisible] = useState(false);
-
+  const [notes, setNotes] = useState(problemNotes || "");
+  
   const handleMouseEnterSolution = () => {
     setHoveredSolution(true);
     setShowText(true);
@@ -245,6 +247,35 @@ export default function ProblemComponent({
     };
   }, []);
 
+  useEffect(() => {
+    const fetchNotes = () => {
+      try {
+        const extractedNotes = stats ? stats.notes : "";
+        
+        if (extractedNotes && extractedNotes.length > 0) {
+          const filteredNotes = extractedNotes.filter(entry => entry[0] === problemId);
+
+            filteredNotes.forEach(entry => {
+              const problemId = entry[0];
+              const notesArray = entry[1]; 
+              setNotes(notesArray[notesArray.length-1].value[0]);
+          });
+        } else {
+            console.log("No notes available.");
+        }
+        
+      } catch (err) {
+        console.error("Failed to extract notes from stats:", err);
+      }
+    };
+  
+    fetchNotes();
+  }, [stats,problemId]); // Depend on stats, which includes problemId and other relevant data
+  
+   // Depend on problemId and token
+  
+  
+
   const handleAddNotesClick = () => {
     setIsAddNotesVisible(true);
   };
@@ -252,14 +283,16 @@ export default function ProblemComponent({
   const notify = () => {
     toast.success("Notes Saved");
   };
-
-  const [notes, setNotes] = useState("");
-
-  const handleInputChange = (event) => {
-    setNotes(event.target.value);
+  const handleNotesClose = (updatedNotes) => {
+    if (updatedNotes !== undefined) {
+      setNotes(updatedNotes);
+      handleSaveNotes(updatedNotes); // Save the updated notes
+    }
+    setIsAddNotesVisible(false);
   };
-
-  const handleSaveNotes = async () => {
+  
+  // Ensure you have defined handleSaveNotes as well
+  const handleSaveNotes = async (updatedNotes) => {
     sound3.play();
     try {
       const response = await fetch(
@@ -273,22 +306,24 @@ export default function ProblemComponent({
           body: JSON.stringify({
             userId,
             problemId,
-            notes,
+            notes: updatedNotes,
           }),
         }
       );
-
+  
       if (!response.ok) {
         errorToast();
       } else {
         successToast();
-        setIsAddNotesVisible(false);
-        setNotes("");
+        console.log("Updated notes:", updatedNotes);
       }
     } catch (err) {
       errorToast();
     }
   };
+  
+
+  
 
   const handleCancel = (e) => {
     sound3.play();
@@ -300,7 +335,7 @@ export default function ProblemComponent({
       setIsAddNotesVisible(false);
     }
   };
-
+  
   return (
     <>
       <div
@@ -463,26 +498,12 @@ export default function ProblemComponent({
         </div>
       </div>
       {isAddNotesVisible && (
-        <div className="addnotes-modal">
-          <div className="addnotes-main-container">
-            <div className="addnotes-container">
-              <textarea
-                placeholder="Type your notes ..."
-                value={notes}
-                onChange={handleInputChange}
-              ></textarea>
-              <div className="buttons">
-                <button className="save-btn" onClick={handleSaveNotes}>
-                  Save
-                </button>
-                <button className="cancel-btn" onClick={handleCancel}>
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+  <AddNotes
+    existingNotes={notes}
+    onClose={handleNotesClose}
+  />
+)}
+
     </>
   );
 }
