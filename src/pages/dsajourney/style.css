@@ -1,0 +1,13 @@
+.dsa-journey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dsa-journey-header {
+  font-family: "Poppins", system-ui;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  color: #393e46;
+  font-size: 5vh;
+}
