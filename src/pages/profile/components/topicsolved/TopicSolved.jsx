@@ -94,7 +94,7 @@ const TopicSolved = ({ topics }) => {
             </span>
           </div>
         ))}
-        <div className="TopicShowMore">Show more</div>
+        {/* <div className="TopicShowMore">Show more</div> */}
       </div>
     </div>
   );
