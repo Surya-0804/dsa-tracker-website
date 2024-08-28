@@ -1,16 +1,34 @@
 const combineData = (problemsData, userProgressData) => {
+    // If userProgressData is undefined, return problemsData directly
+    if (!userProgressData) {
+        return problemsData;
+    }
+
     const combinedData = {};
 
     for (const topic in problemsData) {
         combinedData[topic] = problemsData[topic].map(problem => {
             const { _id } = problem;
-            const isBookmarked = userProgressData.bookmarks.includes(_id);
-            const isFavourite = userProgressData.favourites.includes(_id);
-            const notes = userProgressData.notes[_id] || [];
-            const solutions = userProgressData.solutions[_id] || [];
-            const isSolved = userProgressData.solvedProblems.includes(_id);
-            const isUnsolved = userProgressData.unsolvedProblems.includes(_id);
-            const isRevision = userProgressData.revisionProblems.includes(_id);
+
+            // Check if the problem is bookmarked
+            const isBookmarked = userProgressData.bookmarks.some(bookmark => bookmark.value === _id);
+
+            // Check if the problem is a favorite
+            const isFavourite = userProgressData.favourites.some(favourite => favourite.value === _id);
+
+            // Get the notes associated with this problem
+            const notesEntry = userProgressData.notes.find(note => note[0] === _id);
+            const notes = notesEntry ? notesEntry[1] : [];
+
+            // Get the solutions associated with this problem
+            const solutionsEntry = userProgressData.solutions.find(solution => solution[0] === _id);
+            const solutions = solutionsEntry ? solutionsEntry[1] : [];
+
+            // Check if the problem is solved
+            const isSolved = userProgressData.solvedProblems.some(solved => solved.value === _id);
+
+            // Check if the problem is for revision
+            const isRevision = userProgressData.revisionProblems.some(revision => revision.value === _id);
 
             return {
                 ...problem,
@@ -19,7 +37,6 @@ const combineData = (problemsData, userProgressData) => {
                 notes,
                 solutions,
                 isSolved,
-                isUnsolved,
                 isRevision
             };
         });

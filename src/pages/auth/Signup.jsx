@@ -1,43 +1,40 @@
-// Signup Component
+// Signup.js
 import React, { useRef, useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
-import { db, auth, googleProvider } from "./firebase";
 import { signInWithPopup } from "firebase/auth";
-import "./Signup.css";
+import { auth, googleProvider } from "./firebase";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { MdAlternateEmail } from "react-icons/md";
 import { BiRename } from "react-icons/bi";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLockClosed } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "./Signup.css";
 
-const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
+const Signup = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const nameRef = useRef();
   const phoneRef = useRef();
-  const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       return setError("Passwords do not match");
     }
+
     try {
       setError("");
       setLoading(true);
 
       const email = emailRef.current.value;
       const name = nameRef.current.value;
-      const password =
-        passwordRef.current.value
+      const password = passwordRef.current.value;
       const phoneNo = phoneRef.current.value;
 
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
@@ -45,75 +42,56 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email,
-          password,
-          name,
-          phoneNo
-        }),
+        body: JSON.stringify({ email, password, name, phoneNo }),
       });
 
       if (!response.ok) {
+        throw new Error("Failed to register");
+      }
+
+      // Use the login function from context
+      const loginResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!loginResponse.ok) {
         throw new Error("Failed to log in");
-        console.log("sdlkfj")
       }
-      else {
-        try {
-          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: email,
-              password: password,
-            }),
-          });
 
-          if (!response.ok) {
-            throw new Error("Failed to log in");
-          }
+      const data = await loginResponse.json();
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        toast.success('Registration successfully completed!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
 
-          const data = await response.json();
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-
-            setIsLoginCompleted(true);
-
-            toast.success('Registartion Succesfully completed!', {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
-
-            toggleSignupModal();
-          } else {
-            console.error(data.error);
-            throw new Error("Failed to log in");
-          }
-        }
-        catch (err) {
-        }
+        navigate("/");
+      } else {
+        throw new Error("Failed to log in");
       }
-      navigate("/");
     } catch (error) {
-      setError("Failed to create an account");
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleGoogleSignUp = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const { user } = result;
-
       const userData = user.providerData;
 
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
@@ -121,7 +99,6 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           name: user.displayName,
           email: user.email,
@@ -134,56 +111,30 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
 
       if (!response.ok) {
         throw new Error("Failed to log in");
-        console.log("sdlkfj")
-      }
-      else {
-        toggleSignupModal();
-        try {
-          const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: userData.email,
-              password: user.uid,
-              isGoogleUser: true
-            }),
-          });
-          if (!response.ok) {
-            throw new Error("Failed to log in");
-          }
-          const data = await response.json();
-          console.log(data);
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-            toast.success('Registartion Succesfully completed!', {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
-          } else {
-            console.error(data.error);
-            throw new Error("Failed to log in");
-          }
-        }
-        catch (err) {
-        }
       }
 
-      navigate("/");
+      const data = await response.json();
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        toast.success('Registration successfully completed!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        navigate("/");
+      } else {
+        throw new Error("Failed to log in");
+      }
     } catch (error) {
       setError("Failed to sign up with Google");
     }
   };
-
-
 
   return (
     <>
@@ -206,11 +157,10 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
               Sign Up
               <IoIosCloseCircle
                 className="signup-component-close-mark"
-                onClick={toggleSignupModal}
               />
             </h2>
           </div>
-          {error && <p>{error}</p>}
+          {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="signup-component-label-and-input-container">
               <label className="signup-component-label">Email</label>
@@ -292,14 +242,8 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
                 disabled={loading}
                 type="submit"
                 className="signup-component-signup-button"
-                alt="Signup"
               >
-                <i>s</i>
-                <i>i</i>
-                <i>g</i>
-                <i>n</i>
-                <i>u</i>
-                <i>p</i>
+                Sign Up
               </button>
             </div>
             <div className="signup-component-or-description"> OR </div>
@@ -307,44 +251,32 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
               <button
                 onClick={handleGoogleSignUp}
                 className="signup-component-google-button"
-                alt="Sign Up with Google"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid"
-                  viewBox="0 0 256 262"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 262">
                   <path
                     fill="#4285F4"
-                    d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
-                  ></path>
+                    d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.315-1.609c33.453-31.039 52.087-76.518 52.087-129.528z"
+                  />
                   <path
                     fill="#34A853"
-                    d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
-                  ></path>
+                    d="M130.55 81.696c-7.575-6.982-17.132-10.658-27.492-10.658-20.013 0-37.703 13.764-43.846 32.143l-2.619 1.564-38.573-29.553-2.645 1.612C21.972 72.512 61.73 17.155 113.34 4.936l2.277-1.54-38.004-30.22-1.572 1.04C35.565 22.438 74.838 76.919 130.55 81.696z"
+                  />
                   <path
                     fill="#FBBC05"
-                    d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
-                  ></path>
+                    d="M87.058 93.875c-5.866-5.321-12.91-9.644-20.806-12.546L40.026 79.564C28.293 101.975 20.874 124.748 20.874 148.453c0 8.46 1.393 16.45 3.974 24.066L75.5 148.28c9.226-18.216 20.717-33.84 30.557-41.676l-1.978-1.477z"
+                  />
                   <path
-                    fill="#EB4335"
-                    d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
-                  ></path>
+                    fill="#EA4335"
+                    d="M20.874 148.453c0 8.452 1.486 16.766 4.245 24.633L87.58 148.828c-7.208-13.784-21.693-29.584-30.72-34.12L28.317 93.08C20.874 106.42 20.874 118.733 20.874 148.453z"
+                  />
                 </svg>
-                Continue with Google
+                Sign Up with Google
               </button>
             </div>
           </form>
-          <div className="signup-component-login-redirect-description">
-            Already have an account?{" "}
-            <a href="/login" className="signup-component-login-redirect">
-              Login
-            </a>
-          </div>
         </div>
       </div>
     </>
-
   );
 };
 

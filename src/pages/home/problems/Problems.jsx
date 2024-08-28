@@ -14,7 +14,6 @@ import { useAuth } from '../../../AuthContext';
 
 const Problems = () => {
     const [stats, setStats] = useState(() => {
-        // Initialize state with localStorage data if available
         const storedStats = localStorage.getItem('stats');
         return storedStats ? JSON.parse(storedStats) : null;
     });
@@ -22,7 +21,6 @@ const Problems = () => {
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState([]);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-
     const { currentUser } = useAuth();
 
     const successToast = () => {
@@ -69,11 +67,12 @@ const Problems = () => {
                 );
 
                 if (!response.ok) {
-                    console.log(response);
+                    errorToast();
                 } else {
                     const data = await response.json();
                     localStorage.setItem('stats', JSON.stringify(data.stats));
                     setStats(data.stats);
+                    successToast();
                 }
             } catch (err) {
                 errorToast();
@@ -82,10 +81,11 @@ const Problems = () => {
     };
 
     useEffect(() => {
-        if (!stats) {
+        // Fetch stats if currentUser is available and stats are not yet loaded
+        if (currentUser && !stats) {
             fetchStats();
         }
-    }, [stats, currentUser]);
+    }, [currentUser, stats]); // Depend on both currentUser and stats
 
     const toggleFilter = () => {
         setIsFilterOpen(!isFilterOpen);
@@ -93,8 +93,7 @@ const Problems = () => {
 
     const totalProblems = stats ? stats.totalProblems : 0;
     const totalProblemsSolved = stats ? stats.totalProblemsSolved : 0;
-
-    const progressWidth = totalProblems > 0 ? (totalProblemsSolved / 450) * 100 : 0;
+    const progressWidth = totalProblems > 0 ? (totalProblemsSolved / totalProblems) * 100 : 0;
 
     return (
         <div className='problems'>

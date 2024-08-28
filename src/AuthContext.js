@@ -1,5 +1,5 @@
-// AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const AuthContext = createContext();
 
@@ -30,8 +30,20 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
     };
 
+    const signup = async (email, password) => {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+            const token = await user.getIdToken();
+            return { user, token };
+        } catch (error) {
+            console.error("Error signing up: ", error.message);
+            throw new Error(error.message);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ currentUser, token, login, logout }}>
+        <AuthContext.Provider value={{ currentUser, token, login, logout, signup }}>
             {children}
         </AuthContext.Provider>
     );
