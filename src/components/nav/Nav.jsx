@@ -112,9 +112,7 @@ export default function Nav() {
             <div className="profile" onClick={play}>
               <span className="name">{currentUser.name}</span>
               <Link to="/profile">
-                {/* <FaCircleUser className="user-image-navbar" /> */}
               </Link>
-              {/* <img src={currentUser.photoURL} alt="User Avatar" /> */}
               <button
                 className="logout-button-navbar"
                 onClick={() => handleLogout()}

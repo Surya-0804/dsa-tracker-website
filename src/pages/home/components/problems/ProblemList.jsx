@@ -21,6 +21,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
+
   const fetchData = async () => {
     try {
       setLoading(true);
