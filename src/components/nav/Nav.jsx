@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
 import useSound from "use-sound";
 import { useCookies } from "react-cookie";
 import loud_btn from "../sounds/loud_btn_clk.wav";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./style.css";
 import "./style2.css";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import { auth, googleProvider } from "../../pages/auth/firebase";
 import { signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaCircleUser, FaCode } from "react-icons/fa";
 import { useAuth } from '../../AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Nav() {
+
+  const navigate = useNavigate();
+  const navigateToSignup = () => {
+    navigate('/signup');
+  };
   const clientUrl = process.env.CLIENT_URL;
 
   const [play] = useSound(loud_btn);
@@ -26,7 +30,6 @@ export default function Nav() {
   const isModalOpen = showLoginModel || showSignupModel;
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-  const navigate=useNavigate();
 
   const { currentUser, logout } = useAuth();
 
@@ -127,18 +130,12 @@ export default function Nav() {
       <div className={`navbar-container ${isModalOpen ? "blur" : ""}`}>
         <div className="NavContainer">
           <div className="logo">
-            {/* <FaCode className="dsa-tracker-logo" /> */}
             <h4>DSA-Tracker</h4>
           </div>
           <nav className="fill stroke">
             <li>
               <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={play}>
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className={location.pathname === "/about" ? "active" : ""} onClick={play}>
-                About
               </Link>
             </li>
             <li className="dropdown">
@@ -152,6 +149,14 @@ export default function Nav() {
                 onClick={play}
               >
                 AlgoVisualizer
+              </Link>
+            </li>
+            <li className="dropdown">
+              <Link
+                to="/stats"
+                onClick={play}
+              >
+                Stats
               </Link>
             </li>
           </nav>
@@ -196,7 +201,7 @@ export default function Nav() {
                 Login
               </button>
               <button
-                onClick={toggleSignupModal}
+                onClick={navigateToSignup}
                 className="login-signup-button-nav"
               >
                 Signup

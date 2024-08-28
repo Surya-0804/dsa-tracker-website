@@ -31,6 +31,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
       if (!response.ok) {
         throw new Error("Failed to fetch");
       }
+
       const responseData = await response.json();
 
       const response2 = await fetch(
@@ -48,12 +49,18 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
       }
 
       const userData = await response2.json();
-      const combinedData = combineData(responseData.data, userData.user);
 
-      setData(combinedData);
-      setLoading(false);
-
-      console.log(combinedData);
+      if (userData.stats === null) {
+        setData(responseData.data);
+      }
+      else {
+        console.log(userData.stats);
+        console.log(responseData)
+        const combinedData = combineData(responseData.data, userData.stats);
+        console.log(combinedData);
+        setData(combinedData);
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Fetch error:", error);
       setError(error);
