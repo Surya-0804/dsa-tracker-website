@@ -21,7 +21,8 @@ import ProblemsSolvedTable from "./pages/profile/components/problemssovedtable/P
 import DeveloperDetails from "./pages/about/components/developerDetails/DeveloperDetails";
 import Profile from "./pages/profile/Profile";
 import About from "./pages/about/About";
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from "./AuthContext";
+import DSAJourney from "./pages/dsajourney/DSAJourney";
 function App() {
   return (
     <div className="App">
@@ -58,6 +59,7 @@ function App() {
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/cookie" element={<CookieConsentComponent />} />
               <Route path="/developer" element={<DeveloperDetails />} />
+              <Route path="/dsajourney" element={<DSAJourney />} />
             </Routes>
           </AuthProvider>
         </Router>

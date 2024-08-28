@@ -4,6 +4,8 @@ import photo1 from "./assets/Programmer.gif";
 import photo2 from "./assets/about1.jpg";
 import code from "./assets/coding.png";
 import { Player } from "@lottiefiles/react-lottie-player";
+import HorizontalScroll from "../../../about/components/horizontalScroll/HorizontalScroll1";
+import HorizontalScrollReversed from "../../../about/components/horizontalScroll/HorizontalScroll2";
 
 const Intro = () => {
   return (
@@ -59,6 +61,8 @@ const Intro = () => {
           </div>
         </div>
       </div>
+      <HorizontalScroll />
+      <HorizontalScrollReversed />
     </div>
   );
 };
