@@ -1,5 +1,5 @@
-// AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const AuthContext = createContext();
 
@@ -30,8 +30,42 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
     };
 
+    const signup = async (email, password, name, phoneNo) => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+                password,
+                name,
+                phoneNo
+            }),
+        });
+
+        console.log("Response status:", response.status);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error data:", errorData);
+            throw new Error(errorData.message || "Failed to register");
+        }
+
+        const data = await response.json();
+        login(data.user, data.token);
+        return { user: data.user, token: data.token };
+
+    } catch (error) {
+        console.error("Failed to signup:", error);
+        throw error;
+    }
+};
+
+
     return (
-        <AuthContext.Provider value={{ currentUser, token, login, logout }}>
+        <AuthContext.Provider value={{ currentUser, token, login, logout, signup }}>
             {children}
         </AuthContext.Provider>
     );

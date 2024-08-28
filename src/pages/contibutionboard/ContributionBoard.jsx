@@ -1,37 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "./style.css";
 
 const ContributionBoard = () => {
+  const [contributionData, setContributionData] = useState([]);
+
+  useEffect(() => {
+    const fetchContributionData = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?._id;
+        const token = localStorage.getItem("token");
+
+        if (!userId || !token) {
+          throw new Error("User ID or token is missing");
+        }
+
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/stats/completeUserData`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ userId }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch: ${response.status} ${response.statusText}`
+          );
+        }
+
+        const data = await response.json();
+        console.log("Fetched data:", data);
+
+        // Transform the solvedProblems data to the heatmap format
+        const dateCountMap = data?.stats?.solvedProblems.reduce(
+          (acc, problem) => {
+            const date = new Date(problem.timestamp)
+              .toISOString()
+              .split("T")[0]; // Format date as YYYY-MM-DD
+            acc[date] = (acc[date] || 0) + 1;
+            return acc;
+          },
+          {}
+        );
+
+        const transformedData = Object.entries(dateCountMap).map(
+          ([date, count]) => ({
+            date,
+            count,
+          })
+        );
+
+        setContributionData(transformedData);
+      } catch (error) {
+        console.error("Error fetching contribution data:", error);
+      }
+    };
+
+    fetchContributionData();
+  }, []);
+
   const ContributionStyle = {
     width: "90vw",
-    // margin: "5rem",
     borderRadius: "1rem",
-    backgroundColor: "White",
+    backgroundColor: "white",
   };
-
-  const dates = [
-    { date: "2024-01-03", count: 2 },
-    { date: "2024-01-22", count: 122 },
-    { date: "2024-04-30", count: 38 },
-    { date: "2024-01-10", count: 55 },
-    { date: "2024-02-15", count: 78 },
-    { date: "2024-03-05", count: 34 },
-    { date: "2024-05-01", count: 90 },
-    { date: "2024-05-15", count: 46 },
-    { date: "2024-06-01", count: 20 },
-    { date: "2024-06-15", count: 63 },
-  ];
 
   const classForValue = (value) => {
     if (!value) {
       return "color-empty";
     }
-    if (value.count >= 100) {
+    if (value.count >= 10) {
       return "color-scale-4";
-    } else if (value.count >= 50) {
+    } else if (value.count >= 5) {
       return "color-scale-3";
-    } else if (value.count >= 20) {
+    } else if (value.count >= 2) {
       return "color-scale-2";
     } else if (value.count > 0) {
       return "color-scale-1";
@@ -42,7 +90,7 @@ const ContributionBoard = () => {
 
   const titleForValue = (value) => {
     if (!value || !value.date) {
-      return "No problem solved";
+      return "No problems solved";
     }
     const date = new Date(value.date);
     return `${value.count} problems solved on ${date.toDateString()}`;
@@ -50,15 +98,14 @@ const ContributionBoard = () => {
 
   return (
     <div className="contribution-Container">
-      {" "}
       <div className="contribution-Board" style={ContributionStyle}>
         <CalendarHeatmap
           startDate={new Date("2024-01-01")}
-          endDate={new Date("2024-12-01")}
+          endDate={new Date("2024-12-31")}
           showWeekdayLabels={true}
           titleForValue={titleForValue}
           classForValue={classForValue}
-          values={dates}
+          values={contributionData}
         />
       </div>
     </div>

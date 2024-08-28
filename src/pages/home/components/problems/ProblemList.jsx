@@ -11,6 +11,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userStats,setUserStats]=useState({});
   const problemsPerPage = 10;
 
   const token = localStorage.getItem("token");
@@ -31,6 +32,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
       if (!response.ok) {
         throw new Error("Failed to fetch");
       }
+
       const responseData = await response.json();
 
       const response2 = await fetch(
@@ -48,12 +50,19 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
       }
 
       const userData = await response2.json();
-      const combinedData = combineData(responseData.data, userData.user);
 
-      setData(combinedData);
-      setLoading(false);
-
-      console.log(combinedData);
+      if (userData.stats === null) {
+        setData(responseData.data);
+      }
+      else {
+        console.log(userData.stats);
+        setUserStats(userData.stats);
+        console.log(responseData)
+        const combinedData = combineData(responseData.data, userData.stats);
+        console.log(combinedData);
+        setData(combinedData);
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Fetch error:", error);
       setError(error);
@@ -239,6 +248,7 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
           isUnsolved={problem.isUnsolved}
           notes={problem.notes}
           solutions={problem.solutions}
+          stats={userStats}
         />
       ))}
       <div className="DSA-problems-pagination">

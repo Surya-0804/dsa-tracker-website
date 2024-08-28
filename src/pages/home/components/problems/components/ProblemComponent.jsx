@@ -27,7 +27,8 @@ export default function ProblemComponent({
   isUnsolved,
   problemNotes,
   solutions,
-  status
+  status,
+  stats
 }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
@@ -247,32 +248,31 @@ export default function ProblemComponent({
   }, []);
 
   useEffect(() => {
-    const fetchNotes = async () => {
+    const fetchNotes = () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_SERVER_URL}/problemProgress/notes?problemId=${problemId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-  
-        if (!response.ok) {
-          throw new Error("Failed to fetch notes");
+        const extractedNotes = stats ? stats.notes : "";
+        
+        if (extractedNotes && extractedNotes.length > 0) {
+          const filteredNotes = extractedNotes.filter(entry => entry[0] === problemId);
+
+            filteredNotes.forEach(entry => {
+              const problemId = entry[0];
+              const notesArray = entry[1]; 
+              setNotes(notesArray[notesArray.length-1].value[0]);
+          });
+        } else {
+            console.log("No notes available.");
         }
-  
-        const data = await response.json();
-        setNotes(data.notes || ""); // Update state with fetched notes
+        
       } catch (err) {
-        console.error(err);
+        console.error("Failed to extract notes from stats:", err);
       }
     };
   
     fetchNotes();
-  }, [problemId, token]); // Depend on problemId and token
+  }, [stats,problemId]); // Depend on stats, which includes problemId and other relevant data
+  
+   // Depend on problemId and token
   
   
 
@@ -315,7 +315,7 @@ export default function ProblemComponent({
         errorToast();
       } else {
         successToast();
-        console.log("Updated notes:", updatedNotes); // Log updated notes here
+        console.log("Updated notes:", updatedNotes);
       }
     } catch (err) {
       errorToast();

@@ -40,9 +40,8 @@ const AddNotes = ({ onClose, existingNotes }) => {
         ></textarea>
         <div className='buttons'>
           {/* Conditionally render the Save button if there are no existing notes */}
-          {!existingNotes && (
             <button className="save-btn" onClick={handleSaveNotes}>Save</button>
-          )}
+          
           <button className="cancel-btn" onClick={handleClose}>
             {existingNotes ? 'Close' : 'Cancel'}
           </button>

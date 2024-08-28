@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -13,9 +13,8 @@ import {
 import {
   format,
   addDays,
-  subDays,
-  addWeeks,
   subWeeks,
+  addWeeks,
   startOfWeek,
   endOfWeek,
   startOfMonth,
@@ -47,9 +46,73 @@ ChartJS.defaults.font.family = "Poppins, sans-serif";
 const ProblemSolvedChart = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [range, setRange] = useState("week"); // "week" or "month"
-  const [data, setData] = useState(
-    Array.from({ length: 30 }, () => Math.floor(Math.random() * 10))
-  );
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?._id;
+        const token = localStorage.getItem("token");
+
+        if (!userId || !token) {
+          throw new Error("User ID or token is missing");
+        }
+
+        const start =
+          range === "week"
+            ? startOfWeek(currentDate)
+            : startOfMonth(currentDate);
+        const end =
+          range === "week" ? endOfWeek(currentDate) : endOfMonth(currentDate);
+
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/stats/completeUserData`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              userId,
+              start: start.toISOString(),
+              end: end.toISOString(),
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch: ${response.status} ${response.statusText}`
+          );
+        }
+
+        const data = await response.json();
+
+        // Transform solvedProblems data for the chart
+        const dateCountMap = data?.stats?.solvedProblems.reduce(
+          (acc, problem) => {
+            const date = new Date(problem.timestamp)
+              .toISOString()
+              .split("T")[0]; // Format as YYYY-MM-DD
+            acc[date] = (acc[date] || 0) + 1;
+            return acc;
+          },
+          {}
+        );
+
+        const labels = generateLabels();
+        const chartData = labels.map((label) => dateCountMap[label] || 0);
+
+        setData(chartData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [currentDate, range]);
 
   const handlePrevious = () => {
     if (range === "week") {
@@ -73,13 +136,13 @@ const ProblemSolvedChart = () => {
       const start = startOfWeek(currentDate);
       const end = endOfWeek(currentDate);
       for (let day = start; day <= end; day = addDays(day, 1)) {
-        labels.push(format(day, "d"));
+        labels.push(format(day, "yyyy-MM-dd"));
       }
     } else {
       const start = startOfMonth(currentDate);
       const end = endOfMonth(currentDate);
       for (let day = start; day <= end; day = addDays(day, 1)) {
-        labels.push(format(day, "d"));
+        labels.push(format(day, "yyyy-MM-dd"));
       }
     }
     return labels;
@@ -90,10 +153,10 @@ const ProblemSolvedChart = () => {
     datasets: [
       {
         label: "Problems Solved",
-        data: data.slice(0, generateLabels().length),
+        data: data, // Use the dynamically fetched and transformed data
         fill: false,
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgb(35, 196, 131,0.2)",
+        borderColor: "#23C483",
         tension: 0.4,
         pointRadius: 5,
       },
@@ -102,6 +165,13 @@ const ProblemSolvedChart = () => {
 
   const options = {
     scales: {
+      x: {
+        ticks: {
+          callback: function (value, index, values) {
+            return this.getLabelForValue(value); // Display only the day number
+          },
+        },
+      },
       y: {
         beginAtZero: true,
       },
@@ -136,7 +206,14 @@ const ProblemSolvedChart = () => {
               style={{ fontSize: "1.2em" }}
             />
           </button>
-          <span>{format(currentDate, "yyyy MMM")}</span>
+          <span>
+            {range === "week"
+              ? `${format(startOfWeek(currentDate), "d MMM")} - ${format(
+                  endOfWeek(currentDate),
+                  "d MMM"
+                )}`
+              : format(currentDate, "MMMM yyyy")}
+          </span>
           <button onClick={handleNext}>
             <FontAwesomeIcon
               icon={faChevronRight}
