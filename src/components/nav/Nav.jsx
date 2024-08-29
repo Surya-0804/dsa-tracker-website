@@ -12,7 +12,6 @@ import { signInWithPopup } from "firebase/auth";
 import { FaArrowLeft, FaCircleUser, FaCode } from "react-icons/fa";
 import { useAuth } from "../../AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-
 export default function Nav() {
   const navigate = useNavigate();
   const navigateToSignup = () => {
@@ -152,10 +151,7 @@ export default function Nav() {
               </Link>
             </li>
             <li className="dropdown">
-              <Link
-                to="https://gvk-algorithm-visualizer.vercel.app/"
-                onClick={play}
-              >
+              <Link to="/algoVisualiser" onClick={play}>
                 AlgoVisualizer
               </Link>
             </li>

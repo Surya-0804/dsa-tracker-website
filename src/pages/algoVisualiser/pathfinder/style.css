@@ -1,0 +1,46 @@
+.pathfinder nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pathfinder {
+    min-height: 95vh;
+}
+
+.PathFinder {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pathfinder .selectAlgo {
+    display: flex;
+}
+
+.pathfinder .selectOtions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pathfinder .selectOptions button {
+    background: #569E61;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 0.6rem;
+    padding: 0.4rem 1rem;
+    margin: 0 0.4rem;
+    transition: 0.5s;
+}
+
+.pathfinder .selectOptions button:hover {
+    color: #569E61;
+    background: #fff;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    transition: 0.5s;
+}

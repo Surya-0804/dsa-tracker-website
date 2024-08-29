@@ -1,0 +1,57 @@
+.square {
+    height: 80px;
+    width: 80px;
+    margin: 5px;
+    float: left;
+    border-radius: 10px;
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.painted {
+    background-color: #569E61;
+}
+
+.correct {
+    background-color: #d79566;
+}
+
+.full-height {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-height .puzzContainer div {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+}
+
+.full-height button {
+    font-family: 'poppins';
+    width: 7vw;
+    border: none;
+    background: #569E61;
+    color: #ffff;
+    font-size: 1.3rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 450;
+    font-style: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0.2rem 0.4rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.full-height button:hover {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}

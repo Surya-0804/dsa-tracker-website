@@ -44,7 +44,7 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
 
     try {
       await signup(email, password, name, phoneNo);
-      // toggleSignupModal(); // Close the signup modal on success
+      toggleSignupModal(); // Close the signup modal on success
       navigate("/"); // Redirect to home or other page after successful signup
     } catch (err) {
       setError('Signup failed. Please try again.');

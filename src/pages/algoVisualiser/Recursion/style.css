@@ -1,0 +1,44 @@
+.recursion {
+    min-height: 150vh;
+}
+
+.recursion .main {
+    margin-top: 5vh;
+    min-height: 120vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.recursion .graph {
+    display: flex;
+    width: 45vw;
+    justify-content: space-between;
+}
+
+.recursion .info-container div {
+    font-size: 1.05rem;
+    width: 20vw;
+    word-wrap: break-word;
+}
+
+.recursion .graph button {
+    font-family: 'poppins';
+    width: auto;
+    border: none;
+    background: #569E61;
+    color: #ffff;
+    font-size: 1.05rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 450;
+    font-style: normal;
+    padding: 0.4rem 0.6rem;
+    margin: 0.2rem 0.4rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.recursion .graph .select {
+    width: 25vw;
+}
