@@ -67,7 +67,7 @@ export default function Nav() {
     };
   }, [showLoginModel, showSignupModel]);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
@@ -156,8 +156,8 @@ export default function Nav() {
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="/dsajourney" onClick={play}>
-                DSAJourney
+              <Link to="/stats" onClick={play}>
+                Stats
               </Link>
             </li>
           </nav>
