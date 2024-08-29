@@ -1,0 +1,231 @@
+.home {
+    min-height: 120vh;
+    background: #fff;
+}
+
+
+.intro-algo {
+    height: 15vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-radius: 2px dashed var(--black-color);
+}
+
+.intro-algo .showcase,
+.intro-algo .topicsShowcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-algo .showcase {
+    flex-direction: column;
+}
+
+.searchLinks {
+    height: 15vh;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    align-items: center;
+}
+
+.searchLinks a,
+.searchLinks .searchBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+}
+
+.body .algos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+}
+
+.body .algos {
+    padding: 0 10vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.algos .component {
+    text-align: center;
+    height: 30vh;
+    width: 17vw;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    transition: box-shadow 0.5s;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.5s;
+}
+
+.algos .component:hover {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+    transition: 0.5s;
+}
+
+.algos .component div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--green-color);
+    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 1.2rem;
+    opacity: 1;
+    color: #000;
+    flex: 0 1 25%;
+}
+
+@media screen and (max-width:1100px) {
+    .algos .component {
+        text-align: center;
+        height: 35vh;
+        width: 25vw;
+    }
+}
+
+.algos .component img {
+    height: 75%;
+    width: 100%;
+    border-radius: 1.2rem 1.2rem 0 0;
+    object-fit: cover;
+    flex: 1 1 auto;
+}
+
+.algos .component span {
+    font-size: 1.5rem;
+}
+
+.intro-algo .showcase {
+    font-size: 1.55rem;
+    text-align: center;
+    color: var(--black-color);
+    text-wrap: wrap;
+    display: flex;
+    justify-content: center;
+
+}
+
+.intro-algo .showcase span {
+    width: 35%;
+}
+
+.intro-algo .topicsShowcase {
+    font-size: 1.3rem;
+    color: var(--black-color);
+    ;
+    font-size: 1.55rem;
+}
+
+.intro-algo {
+    border-bottom: 2px dashed var(--grey-color);
+}
+
+.searchLinks a {
+    color: var(--green-color);
+    font-size: 1.5rem;
+}
+
+.searchLinks .searchBox {
+    border: var(--green-color);
+    border: 2px solid var(--green-color);
+    border-radius: 3.5rem;
+    box-sizing: border-box;
+    color: var(--green-color);
+    height: 6vh;
+    padding: 1rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.searchLinks .searchBox i {
+    font-size: 1.4rem;
+    margin-right: 0.3rem;
+}
+
+.searchLinks input,
+.searchLinks input::placeholder {
+    color: var(--green-color);
+    font-size: 1.4rem;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.searchLinks input {}
+
+.home {
+    min-height: 120vh;
+}
+
+.theme-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 1.2rem;
+    width: 8vw;
+    cursor: pointer;
+    color: #000;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    background-color: #fff;
+    border-top: none;
+    margin-top: 6px;
+    color: #000;
+    cursor: pointer;
+    border: 1px solid var(--green-color);
+    border-radius: 0.8rem;
+    font-size: 1.05rem;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-menu i {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.06rem;
+}
+
+
+.header .themeSelector {
+    position: absolute;
+    right: 5vw;
+}

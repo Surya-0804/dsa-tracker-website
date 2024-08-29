@@ -24,6 +24,7 @@ import About from "./pages/about/About";
 import { AuthProvider } from "./AuthContext";
 import Nav from "./components/nav/Nav";
 import DSAJourney from "./pages/dsajourney/DSAJourney";
+import AlgoVisualiser from "./pages/algoVisualiser/home/AlgoVisualiser";
 import StreakPopup from "./components/streakpopup/StreakPopup";
 import DateStreak from "./components/datestreak/DateStreak";
 function App() {
@@ -66,6 +67,7 @@ function App() {
               <Route path="/cookie" element={<CookieConsentComponent />} />
               <Route path="/developer" element={<DeveloperDetails />} />
               <Route path="/dsajourney" element={<DSAJourney />} />
+              <Route path="/algoVisualiser" element={<AlgoVisualiser />} />
               <Route path="/streakpopup" element={<StreakPopup />} />
               <Route path="/datestreak" element={<DateStreak />} />
             </Routes>

@@ -1,0 +1,61 @@
+.sorting .flip-move {
+    justify-content: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.mainSorting {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sorting .mainSorting .nav {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.sorting .mainSorting .nav .outer {
+    display: flex;
+    align-items: center;
+    margin: 1.3rem 0;
+    gap: 5vw;
+}
+
+.sorting .mainSorting .nav .outer div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.sorting .nav .visualize {
+    margin-bottom: 4rem;
+}
+
+.sorting .nav button {
+    font-family: 'poppins';
+    width: auto;
+    border: none;
+    background: #569E61;
+    color: #ffff;
+    font-size: 1.1rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 450;
+    font-style: normal;
+    padding: 0.3rem 0.6rem;
+    margin: 0.2rem 0.4rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.sorting .nav button:hover {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+}

@@ -182,6 +182,7 @@ export default function ProblemComponent({
   const handleStatusChange = async (status) => {
     sound2.play();
     try {
+      console.log("Changing status to:", status);  // Debugging log
       const response = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/problemProgress/problemStatus`,
         {
@@ -197,18 +198,25 @@ export default function ProblemComponent({
           }),
         }
       );
-
+  
+      console.log("Response status:", response.status); // Log response status
       if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error response data:", errorData); // Log error details
         errorToast();
       } else {
+        const responseData = await response.json();
+        console.log("Successful response data:", responseData); // Log success details
         successToast();
         setSelectedStatus(status);
         setIsDropdownVisible(false);
       }
     } catch (err) {
+      console.error("Error during status change:", err); // Catch any other errors
       errorToast();
     }
   };
+  
 
   const statusColors = {
     Solved: "#50c878",

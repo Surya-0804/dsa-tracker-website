@@ -1,0 +1,49 @@
+.nQueens {
+    min-height: 120vh;
+}
+
+.nQueens button {
+    font-family: 'poppins';
+    width: auto;
+    border: none;
+    background: #569E61;
+    color: #ffff;
+    font-size: 1.3rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 450;
+    font-style: normal;
+    padding: 0.1rem 0.6rem;
+    margin: 0.2rem 0.4rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+    height: 5vh;
+    margin: 0 2vw;
+}
+
+.nQueens button:hover {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+.nQueens .slider h3 {
+    font-size: 1.2rem;
+    color: var(--main-green);
+}
+
+.nQueens .nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 25vh;
+    align-items: center;
+}
+
+.nQueens .slider {
+    width: 12vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1vw;
+}
