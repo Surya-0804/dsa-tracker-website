@@ -1,0 +1,59 @@
+.dark {
+    background: #3C403D;
+    opacity: 0.9;
+}
+
+.dark .intro {
+    border-radius: 2px dashed #fff;
+}
+
+.dark .algos .component:hover {
+    box-shadow: 3px 3px 5px rgba(255, 255, 255, 0.6);
+}
+
+.dark .algos .component div {
+    background: #fff;
+    color: #000;
+    opacity: 1;
+}
+
+.dark .intro .showcase {
+    color: #fff;
+
+}
+
+.dark .dropdown-toggle {
+    background: #fff;
+}
+
+.dark .intro .topicsShowcase {
+    font-size: 1.3rem;
+    color: #fff;
+    font-size: 1.55rem;
+}
+
+.dark .intro {
+    border-bottom: 2px dashed #fff;
+}
+
+.dark .searchLinks a {
+    color: #8679DB;
+}
+
+.dark .searchLinks .searchBox {
+    border: 2px solid #569E61;
+    color: #000;
+    background: #fff;
+}
+
+
+.dark .searchLinks input,
+.dark .searchLinks input::placeholder {
+    color: #569E61;
+    background: #fff;
+    border: #569E61;
+}
+
+.dark .searchLinks i {
+    color: #569E61;
+}

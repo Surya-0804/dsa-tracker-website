@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
+:root {
+  --green-color: #8ed8be;
+  --red-color: #F3A8A8;
+  --yellow-color: #FBEDA6;
+  --grey-color: rgb(186, 185, 185);
+}
+
 body {
   margin: 0;
   font-family: "Jost", sans-serif;

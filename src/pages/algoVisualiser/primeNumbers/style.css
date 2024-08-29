@@ -1,0 +1,21 @@
+.primeNumbers .main {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: var(--main-green);
+}
+
+.primeNumbers .main h1 {
+    color: var(--main-green);
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.primeNumbers .main h3 {
+    font-size: 1.7rem;
+    margin: 0;
+}
+
+

@@ -145,7 +145,7 @@ export default function Nav() {
             </li>
             <li className="dropdown">
               <Link
-                to="https://gvk-algorithm-visualizer.vercel.app/"
+                to="/algoVisualiser"
                 onClick={play}
               >
                 AlgoVisualizer
