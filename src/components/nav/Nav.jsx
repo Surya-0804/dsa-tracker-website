@@ -12,7 +12,6 @@ import { signInWithPopup } from "firebase/auth";
 import { FaArrowLeft, FaCircleUser, FaCode } from "react-icons/fa";
 import { useAuth } from '../../AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
-
 export default function Nav() {
 
   const navigate = useNavigate();
@@ -204,7 +203,7 @@ export default function Nav() {
                 Login
               </button>
               <button
-                onClick={toggleSignupModal}
+                onClick={navigateToSignup}
                 className="login-signup-button-nav"
               >
                 Signup
