@@ -10,14 +10,13 @@ import Signup from "../../pages/auth/Signup";
 import { auth, googleProvider } from "../../pages/auth/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { FaArrowLeft, FaCircleUser, FaCode } from "react-icons/fa";
-import { useAuth } from '../../AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { useAuth } from "../../AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Nav() {
-
   const navigate = useNavigate();
   const navigateToSignup = () => {
-    navigate('/signup');
+    navigate("/signup");
   };
   const clientUrl = process.env.CLIENT_URL;
 
@@ -69,9 +68,7 @@ export default function Nav() {
     };
   }, [showLoginModel, showSignupModel]);
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
@@ -81,17 +78,20 @@ export default function Nav() {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: user.email,
-            password: user.uid,
-            isGoogleUser: true
-          }),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              password: user.uid,
+              isGoogleUser: true,
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to log in");
@@ -99,10 +99,10 @@ export default function Nav() {
 
         const data = await response.json();
         if (data.token) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
 
-          toast.success('Registration successfully completed!', {
+          toast.success("Registration successfully completed!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -134,12 +134,20 @@ export default function Nav() {
           </div>
           <nav className="fill stroke">
             <li>
-              <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={play}>
+              <Link
+                to="/"
+                className={location.pathname === "/" ? "active" : ""}
+                onClick={play}
+              >
                 Home
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="/leaderboard" onClick={play} className={location.pathname === "/leaderboard" ? "active" : ""}>
+              <Link
+                to="/leaderboard"
+                onClick={play}
+                className={location.pathname === "/leaderboard" ? "active" : ""}
+              >
                 LeaderBoard
               </Link>
             </li>
@@ -152,22 +160,21 @@ export default function Nav() {
               </Link>
             </li>
             <li className="dropdown">
-              <Link
-                to="/stats"
-                onClick={play}
-              >
-                Stats
+              <Link to="/dsajourney" onClick={play}>
+                DSAJourney
               </Link>
             </li>
           </nav>
           {currentUser ? (
             <div className="profile" onClick={play}>
-
-              <Link to="/profile" style={{ textDecoration: "none", color: "#000" }}>
+              <Link
+                to="/stats"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
                 {/* <span className="name">{currentUser.name}</span>
                  */}
                 <div className="userProfileContainer">
-                  <img src="/images/userProfile.png" ></img>
+                  <img src="/images/userProfile.png"></img>
                   <button
                     className="logout-button-navbar"
                     onClick={() => handleLogout()}
@@ -189,14 +196,10 @@ export default function Nav() {
                     </svg>
                   </button>
                 </div>
-
               </Link>
             </div>
           ) : (
-
             <div className="login-signup-buttons">
-
-
               <button
                 onClick={toggleLoginModal}
                 className="login-signup-button-nav"
@@ -381,9 +384,7 @@ export default function Nav() {
       {showLoginModel && (
         <div className="modal-overlay">
           <div className="login-modal">
-            <Login
-              toggleLoginModal={toggleLoginModal}
-            />
+            <Login toggleLoginModal={toggleLoginModal} />
           </div>
         </div>
       )}
@@ -399,9 +400,7 @@ export default function Nav() {
       {showLoginModel && (
         <div className="modal-overlay">
           <div className="login-modal">
-            <Login
-              toggleLoginModal={toggleLoginModal}
-            />
+            <Login toggleLoginModal={toggleLoginModal} />
           </div>
         </div>
       )}
@@ -409,14 +408,10 @@ export default function Nav() {
       {showSignupModel && (
         <div className="modal-overlay">
           <div className="signup-modal">
-            <Signup
-              toggleSignupModal={toggleSignupModal}
-            />
+            <Signup toggleSignupModal={toggleSignupModal} />
           </div>
         </div>
       )}
     </>
   );
 }
-
-
