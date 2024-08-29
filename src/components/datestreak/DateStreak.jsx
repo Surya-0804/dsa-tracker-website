@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DateStreak.css";
+import LoadingComponent from "../loading/LoadingComponent";
 
 const DateStreak = () => {
   const [dates, setDates] = useState([]);
@@ -13,7 +14,7 @@ const DateStreak = () => {
     const fetchDates = async () => {
       if (!token || !userId) {
         setIsLoading(false);
-        setError("User not logged in or missing data.");
+        // setError("User not logged in or missing data.");
         return;
       }
 
@@ -71,12 +72,9 @@ const DateStreak = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingComponent/>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   return (
     <div className="calendar-container">
