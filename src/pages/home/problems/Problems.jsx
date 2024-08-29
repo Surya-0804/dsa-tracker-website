@@ -13,10 +13,11 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useAuth } from '../../../AuthContext';
 
 const Problems = () => {
-    const [stats, setStats] = useState(() => {
-        const storedStats = localStorage.getItem('stats');
-        return storedStats ? JSON.parse(storedStats) : null;
-    });
+    // const [stats, setStats] = useState(() => {
+    //     const storedStats = localStorage.getItem('stats');
+    //     return storedStats ? JSON.parse(storedStats) : null;
+    // });
+    const [stats,setStats]=useState();
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState([]);
@@ -48,12 +49,18 @@ const Problems = () => {
     };
 
     const fetchStats = async () => {
+        // Check if the user is logged in
         if (currentUser) {
             try {
                 const user = JSON.parse(localStorage.getItem('user'));
-                const userId = user._id;
+                const userId = user?._id; // Optional chaining to avoid errors
                 const token = localStorage.getItem('token');
-
+    
+                if (!userId || !token) {
+                    throw new Error('User ID or token is missing');
+                }
+    
+                // Always fetch fresh stats from the server
                 const response = await fetch(
                     `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
                     {
@@ -65,27 +72,35 @@ const Problems = () => {
                         body: JSON.stringify({ userId }),
                     }
                 );
-
+    
                 if (!response.ok) {
-                    errorToast();
+                    throw new Error(`Failed to fetch stats: ${response.status} ${response.statusText}`);
                 } else {
                     const data = await response.json();
-                    localStorage.setItem('stats', JSON.stringify(data.stats));
-                    setStats(data.stats);
-                    successToast();
+                    
+                    if (data && data.stats) {
+                        // Store fresh stats in local storage
+                        // localStorage.setItem('stats', JSON.stringify(data.stats));
+                        // Update the state with the new stats
+                        setStats(data.stats);
+                    } else {
+                        throw new Error('Invalid data format received');
+                    }
                 }
             } catch (err) {
-                errorToast();
+                console.error("Error fetching stats:", err);
+                // errorToast();
             }
+        } else {
+            console.warn('No current user found, skipping stats fetch.');
         }
     };
+    
 
     useEffect(() => {
-        // Fetch stats if currentUser is available and stats are not yet loaded
-        if (currentUser && !stats) {
-            fetchStats();
-        }
-    }, [currentUser, stats]); // Depend on both currentUser and stats
+        fetchStats();
+    }, [currentUser, selectedStatus]);  // Ensure stats are fetched when selectedStatus changes
+    
 
     const toggleFilter = () => {
         setIsFilterOpen(!isFilterOpen);
@@ -94,14 +109,15 @@ const Problems = () => {
     const totalProblems = stats ? stats.totalProblems : 0;
     const totalProblemsSolved = stats ? stats.totalProblemsSolved : 0;
     const progressWidth = totalProblems > 0 ? (totalProblemsSolved / totalProblems) * 100 : 0;
-
+    console.log(totalProblemsSolved)
+    console.log(stats)
     return (
         <div className='problems'>
             <div className="problemsandStatus">
                 <div className="progress-bar">
                     <div className="pb">
                         <ProgressBar
-                            completed={progressWidth.toFixed(2)}
+                            completed={progressWidth}
                             bgColor='#85d1b5'
                             baseBgColor='#e2ada6'
                             height='3vh'
@@ -110,7 +126,7 @@ const Problems = () => {
                         />
                     </div>
                     <div className="container-showTag">
-                        <span> {!currentUser && '--'} {currentUser && totalProblemsSolved.toString()} </span> / {totalProblems}
+                        <span> {!currentUser && '--'} {currentUser && totalProblemsSolved} </span> / {totalProblems}
                     </div>
                 </div>
                 {!currentUser && (
