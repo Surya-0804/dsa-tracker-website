@@ -49,45 +49,59 @@ const Problems = () => {
     });
   };
 
-  const fetchStats = async () => {
-    if (currentUser) {
-      try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const userId = user._id;
-        const token = localStorage.getItem("token");
-
-        const response = await fetch(
-          `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ userId }),
-          }
-        );
-
-        if (!response.ok) {
-          errorToast();
+    const fetchStats = async () => {
+        // Check if the user is logged in
+        if (currentUser) {
+            try {
+                const user = JSON.parse(localStorage.getItem('user'));
+                const userId = user?._id; // Optional chaining to avoid errors
+                const token = localStorage.getItem('token');
+    
+                if (!userId || !token) {
+                    throw new Error('User ID or token is missing');
+                }
+    
+                // Always fetch fresh stats from the server
+                const response = await fetch(
+                    `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({ userId }),
+                    }
+                );
+    
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch stats: ${response.status} ${response.statusText}`);
+                } else {
+                    const data = await response.json();
+                    
+                    if (data && data.stats) {
+                        // Store fresh stats in local storage
+                        // localStorage.setItem('stats', JSON.stringify(data.stats));
+                        // Update the state with the new stats
+                        setStats(data.stats);
+                    } else {
+                        throw new Error('Invalid data format received');
+                    }
+                }
+            } catch (err) {
+                console.error("Error fetching stats:", err);
+                // errorToast();
+            }
         } else {
-          const data = await response.json();
-          localStorage.setItem("stats", JSON.stringify(data.stats));
-          setStats(data.stats);
-          successToast();
+            console.warn('No current user found, skipping stats fetch.');
         }
-      } catch (err) {
-        errorToast();
-      }
-    }
-  };
+    };
+    
 
-  useEffect(() => {
-    // Fetch stats if currentUser is available and stats are not yet loaded
-    if (currentUser && !stats) {
-      fetchStats();
-    }
-  }, [currentUser, stats]); // Depend on both currentUser and stats
+    useEffect(() => {
+        fetchStats();
+    }, [currentUser, selectedStatus]);  // Ensure stats are fetched when selectedStatus changes
+    
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
