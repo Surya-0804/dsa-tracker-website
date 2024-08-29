@@ -22,13 +22,16 @@ import DeveloperDetails from "./pages/about/components/developerDetails/Develope
 import Profile from "./pages/profile/Profile";
 import About from "./pages/about/About";
 import { AuthProvider } from "./AuthContext";
+import Nav from "./components/nav/Nav";
 import DSAJourney from "./pages/dsajourney/DSAJourney";
 function App() {
   return (
     <div className="App">
+
       <AuthProvider>
         <Router>
           <AuthProvider>
+            <Nav />
             <Routes>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
@@ -40,12 +43,13 @@ function App() {
                   </PrivateRoute>
                 }
               />
+
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/contribution" element={<ContributionBoard />} />
               <Route path="/addnotes" element={<AddNotes />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/stats" element={<Profile />} />
               <Route
                 path="/donut"
                 element={<DonutChart Easy={20} Medium={30} Hard={40} />}

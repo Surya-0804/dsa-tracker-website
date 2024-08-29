@@ -163,31 +163,34 @@ export default function Nav() {
           {currentUser ? (
             <div className="profile" onClick={play}>
 
-              <Link to="/profile" style={{ textDecoration: "none", marginRight: "2rem", color: "#000" }}>
-                <span className="name">{currentUser.name}</span>
-                <Link to="/profile">
-                  {/* <FaCircleUser className="user-image-navbar" /> */}
-                </Link>
-                <button
-                  className="logout-button-navbar"
-                  onClick={() => handleLogout()}
-                >
-                  <p>Logout</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="4"
+              <Link to="/profile" style={{ textDecoration: "none", color: "#000" }}>
+                {/* <span className="name">{currentUser.name}</span>
+                 */}
+                <div className="userProfileContainer">
+                  <img src="/images/userProfile.png" ></img>
+                  <button
+                    className="logout-button-navbar"
+                    onClick={() => handleLogout()}
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    ></path>
-                  </svg>
-                </button>
+                    <p>Logout</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+
+              </Link>
             </div>
           ) : (
 

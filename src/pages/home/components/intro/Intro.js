@@ -61,8 +61,6 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <HorizontalScroll />
-      <HorizontalScrollReversed />
     </div>
   );
 };

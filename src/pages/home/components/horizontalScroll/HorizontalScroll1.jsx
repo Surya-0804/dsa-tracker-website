@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 
-const HorizontalScrollReversed = () => {
+const HorizontalScroll = () => {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -9,10 +9,7 @@ const HorizontalScrollReversed = () => {
 
   const handleScroll = () => {
     const scrollTop = window.scrollY;
-    const maxScroll =
-      contentRef.current.scrollWidth - containerRef.current.clientWidth;
-
-    setScrollPosition(maxScroll - scrollTop);
+    setScrollPosition(scrollTop);
   };
 
   useEffect(() => {
@@ -23,9 +20,11 @@ const HorizontalScrollReversed = () => {
     };
 
     updateContentWidth();
+    window.addEventListener("resize", updateContentWidth);
     window.addEventListener("scroll", handleScroll);
 
     return () => {
+      window.removeEventListener("resize", updateContentWidth);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -34,8 +33,9 @@ const HorizontalScrollReversed = () => {
     if (contentRef.current) {
       const scrollableWidth = contentWidth;
       const maxScroll = contentRef.current.scrollWidth / 2;
-      if (scrollPosition <= 0) {
-        window.scrollTo(0, maxScroll + scrollPosition);
+
+      if (scrollPosition >= maxScroll) {
+        window.scrollTo(0, scrollPosition - scrollableWidth);
       }
     }
   }, [scrollPosition, contentWidth]);
@@ -48,20 +48,22 @@ const HorizontalScrollReversed = () => {
         style={{ transform: `translateX(-${scrollPosition}px)` }}
       >
         <span className="horizontal-scroll-span-text">Heaps</span>
+        <span className="horizontal-scroll-span-text">Binary Search</span>
+        <span className="horizontal-scroll-span-text">Binary Tree</span>
+        <span className="horizontal-scroll-span-text">Graph</span>
+        <span className="horizontal-scroll-span-text">Stacks</span>
+        <span className="horizontal-scroll-span-text">Linked List</span>
+        <span className="horizontal-scroll-span-text">Matrix</span>
+        <span className="horizontal-scroll-span-text">Arrays</span>
+        <span className="horizontal-scroll-span-text">Trie</span>
+        <span className="horizontal-scroll-span-text">String</span>
         <span className="horizontal-scroll-span-text">Bit Manipulation</span>
         <span className="horizontal-scroll-span-text">Backtracking</span>
         <span className="horizontal-scroll-span-text">Dynamic Programming</span>
-        <span className="horizontal-scroll-span-text">Heaps</span>
-        <span className="horizontal-scroll-span-text">Queues</span>
-        <span className="horizontal-scroll-span-text">Searching</span>
-        <span className="horizontal-scroll-span-text">Sorting</span>
-        <span className="horizontal-scroll-span-text">Greedy</span>
-        <span className="horizontal-scroll-span-text">Dynamic Programming</span>
-        <span className="horizontal-scroll-span-text">Stacks</span>
-        <span className="horizontal-scroll-span-text">Heaps</span>
+        <span className="horizontal-scroll-span-text">Matrix</span>
       </div>
     </div>
   );
 };
 
-export default HorizontalScrollReversed;
+export default HorizontalScroll;

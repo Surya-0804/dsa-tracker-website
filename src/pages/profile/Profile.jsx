@@ -78,8 +78,7 @@ export default function Profile() {
         />
       </div>
       <hr className="first-divider-profile" />
-      <GeeksforGeeks />
-      <LeetCode />
+
       <div className="second-section-profile-page">
         <TopicSolved topics={problemsData.topics} />
         <ProblemSolvedChart />
@@ -111,6 +110,8 @@ export default function Profile() {
           hardCount={problemsData.difficultyCounts.Hard}
         />
       </div>
+      <GeeksforGeeks />
+      <LeetCode />
     </div>
   );
 }

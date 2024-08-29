@@ -186,6 +186,14 @@
   width: 17px;
 }
 
+.profile .userProfileContainer {
+  display: flex;
+}
+
+.profile .userProfileContainer img {
+  width: 4vw;
+}
+
 /* .Navbar-Logout-sign svg path {
   fill: white;
 } */
@@ -293,9 +301,11 @@
   background-color: #fff;
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
-.login-signup-button-nav svg{
+
+.login-signup-button-nav svg {
   height: 1.7rem;
 }
+
 .profile {
   position: absolute;
   right: 0;

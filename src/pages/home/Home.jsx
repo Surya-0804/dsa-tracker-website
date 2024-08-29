@@ -11,7 +11,6 @@ function Home() {
     return (
         <div className="App">
 
-            <Nav />
             <div className="main">
                 <Intro />
                 <Problems />
