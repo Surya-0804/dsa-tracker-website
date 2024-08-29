@@ -84,7 +84,6 @@ export default function Leaderboard() {
                 </tr>
               ))}
 
-              {/* Static rows for positions 4 and beyond */}
               <tr>
                 <td className="leaderboard-rank">4.</td>
                 <td className="leaderboard-name">Sophia Williams</td>
