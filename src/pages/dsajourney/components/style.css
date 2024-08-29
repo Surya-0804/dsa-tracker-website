@@ -1,0 +1,35 @@
+.problem-history-container {
+  display: flex;
+  font-family: "Poppins", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  width: 90vw;
+  position: relative;
+  align-items: center;
+  border-bottom: 1px solid rgba(199, 194, 194, 1);
+  padding-bottom: 1.5vw;
+  padding-top: 1.5vw;
+}
+.problem-history-left-part h1 {
+  font-weight: 400;
+  font-size: 4vh;
+  margin: 0;
+}
+.problem-history-left-part h2 {
+  font-weight: 400;
+  font-size: 2vh;
+  margin: 0;
+  margin-top: 1vh;
+}
+.problem-history-right-part {
+  display: flex;
+  justify-content: center;
+  font-size: 3vh;
+  font-weight: 600;
+  height: fit-content;
+  padding: 0.7vw 2.5vw;
+  border-radius: 2vw;
+  color: white;
+  position: absolute;
+  right: 0;
+}
