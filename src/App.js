@@ -25,6 +25,7 @@ import { AuthProvider } from "./AuthContext";
 import Nav from "./components/nav/Nav";
 import DSAJourney from "./pages/dsajourney/DSAJourney";
 import AlgoVisualiser from "./pages/algoVisualiser/home/AlgoVisualiser";
+import ComingSoon from "./pages/algoVisualiser/comingSoon/ComingSoon";
 function App() {
   return (
     <div className="App">
@@ -66,6 +67,7 @@ function App() {
               <Route path="/developer" element={<DeveloperDetails />} />
               <Route path="/dsajourney" element={<DSAJourney />} />
               <Route path="/algoVisualiser" element={<AlgoVisualiser />} />
+              <Route path="/algoVisualiser/comingSoon" element={<ComingSoon />} />
             </Routes>
           </AuthProvider>
         </Router>

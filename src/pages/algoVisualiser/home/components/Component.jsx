@@ -9,7 +9,7 @@ function Component({ name, image }) {
     const handleClick = () => {
         play();
         const route = name.toLowerCase().replace(/\s+/g, '');
-        navigate(`/${route}`);
+        navigate(`/algoVisualiser/comingSoon`);
     };
 
     return (

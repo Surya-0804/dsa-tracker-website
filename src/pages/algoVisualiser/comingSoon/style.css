@@ -1,0 +1,12 @@
+.comingSoon {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comingSoon p {
+    font-size: 2rem;
+    font-weight: 550;
+    color: var(--hovered-green-color);
+}
