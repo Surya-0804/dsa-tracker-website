@@ -6,6 +6,7 @@ import Problems from './problems/Problems.jsx'
 import { Analytics } from "@vercel/analytics/react";
 import Nav from '../../components/nav/Nav.jsx';
 import NewFooter from '../../components/footer/NewFooter.jsx';
+import DateStreak from '../../components/datestreak/DateStreak.jsx';
 
 function Home() {
     return (
@@ -13,6 +14,7 @@ function Home() {
 
             <div className="main">
                 <Intro />
+                <DateStreak/>
                 <Problems />
             </div>
             <NewFooter />
