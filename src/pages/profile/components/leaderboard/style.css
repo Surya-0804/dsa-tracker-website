@@ -21,7 +21,11 @@
     border-color: #06ffb0;
   }
 }
-
+.leaderboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .leaderboard-container {
   padding: 1% 1% 1% 3%;
   border: 2px solid #61d8ad;
@@ -31,7 +35,6 @@
   font-style: normal;
   border-radius: 2vw;
   margin-top: 15vh;
-  margin-left: 10vw;
 }
 
 .leaderboard-heading {

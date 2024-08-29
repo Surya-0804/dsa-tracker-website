@@ -1,0 +1,43 @@
+.calendar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem auto;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.4rem 0.5rem;
+  border-radius: 50%;
+  width: 3.125rem;
+  height: 3.125rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+.day-name {
+  font-size: 0.75rem;
+  color: #737373;
+  margin-bottom: 0.3rem;
+}
+
+.date-number {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+.highlight {
+  background-color: #62d8af69; /* Highlight color similar to the image */
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

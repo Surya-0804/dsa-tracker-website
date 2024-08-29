@@ -1,0 +1,42 @@
+.streakpopup-container {
+  margin-top: 10rem;
+  width: 40dvw;
+  height: 10dvh;
+  background-color: #62d8af50;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.streakpopup-contents {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.streakpopup-image {
+  padding: 1.2rem;
+  margin-top: -1.5rem;
+}
+
+.streakpopup-fire-image {
+  height: 6rem;
+}
+
+.streakpopup-text {
+  flex: 1;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3a3a3a;
+}
+
+.streakpopup-close {
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #3a3a3a;
+}

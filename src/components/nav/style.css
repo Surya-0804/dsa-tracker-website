@@ -52,7 +52,7 @@
 }
 
 .navbar-container .active {
-  border-bottom: 3px solid #a1e5cd;
+  border-bottom: 3px solid var(--hovered-green-color);
 }
 
 .navbar-container .NavContainer {
@@ -406,4 +406,39 @@
   position: relative;
   width: 1vw;
   transition-delay: 0.2s;
+}
+
+/* Animation for navigation links */
+nav.fill.stroke li a {
+  position: relative;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Add underline effect on hover */
+nav.fill.stroke li a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--hovered-green-color);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Show underline and color transition on hover */
+nav.fill.stroke li a:hover {
+  color: var(--hovered-green-color);
+}
+
+nav.fill.stroke li a:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
 }

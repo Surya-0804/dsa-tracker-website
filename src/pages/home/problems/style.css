@@ -109,3 +109,11 @@
   width: 70%;
   color: #e2ada6;
 }
+.problem-progress-bar-history-icon {
+  width: 2.3vw;
+  height: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

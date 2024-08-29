@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
 import ProblemHistory from "./components/ProblemHistory";
+import "./style.css";
 
 export default function DSAJourney() {
   const [problemsSolved, setProblemsSolved] = useState([]);
@@ -17,9 +17,8 @@ export default function DSAJourney() {
           throw new Error("User ID or token is missing");
         }
 
-        // Fetch solved problems (includes problemId 'value')
         const response = await fetch(
-          `${process.env.REACT_APP_SERVER_URL}/stats/completeUserData`,
+          `${process.env.REACT_APP_SERVER_URL}/stats/fetchAllHistory`,
           {
             method: "POST",
             headers: {
@@ -37,46 +36,36 @@ export default function DSAJourney() {
         }
 
         const data = await response.json();
-        const solvedProblems = data?.stats?.solvedProblems || [];
-        setProblemsSolved(solvedProblems);
+        console.log("Fetched data:", data); // Log the entire fetched data to inspect
 
-        // Fetch all problem names in parallel
-        const fetchProblemNames = async (problemId) => {
-          const response = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/home`,
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
+        // Access the array within data.data.data
+        if (Array.isArray(data.data.data)) {
+          // Creating a mapping of problem IDs to their titles (names)
+          const problemNamesMapping = data.data.data.reduce(
+            (acc, problemData) => {
+              const problemId = problemData.problem.id;
+              const problemTitle = problemData.problem.title;
+              if (problemId && problemTitle) {
+                acc[problemId] = problemTitle; // Map problem ID to problem title (name)
+              }
+              return acc;
+            },
+            {}
           );
 
-          if (!response.ok) {
-            throw new Error("Failed to fetch problem names");
-          }
-
-          const homeData = await response.json();
-          console.log("homeData:", homeData); // Debugging: Log the structure of homeData
-
-          // Flatten the data across all categories
-          const allProblems = Object.values(homeData.data).flat();
-
-          // Find the problem with the matching _id
-          const foundProblem = allProblems.find(
-            (problem) => problem._id === problemId
+          // Sort problems by timestamp in reverse order
+          const sortedProblems = data.data.data.sort(
+            (a, b) => new Date(b.title.timestamp) - new Date(a.title.timestamp)
           );
 
-          return foundProblem ? foundProblem.Problem : null;
-        };
-
-        const problemNamesMap = {};
-        for (const problem of solvedProblems) {
-          const problemName = await fetchProblemNames(problem.value); // 'value' is the problemId
-          problemNamesMap[problem.value] = problemName;
+          setProblemNames(problemNamesMapping);
+          setProblemsSolved(sortedProblems);
+        } else {
+          console.error(
+            "Expected data.data.data to be an array, but got:",
+            data.data.data
+          );
         }
-
-        setProblemNames(problemNamesMap);
       } catch (error) {
         console.error("Error fetching contribution data:", error);
       }
@@ -88,11 +77,12 @@ export default function DSAJourney() {
   return (
     <div className="dsa-journey">
       <h1 className="dsa-journey-header">DSA Journey</h1>
-      {problemsSolved.map((problem, index) => (
+      {problemsSolved.map((problemData, index) => (
         <ProblemHistory
           key={index}
-          problemName={problemNames[problem.value]} // Get the problem name from problemNames map
-          timestamp={problem.timestamp}
+          problemName={problemNames[problemData.problem.id]} // Map problem ID to name using the mapping
+          timestamp={problemData.title.timestamp}
+          status={problemData.title.value} // Pass the status ("Solved" or "Bookmarked")
         />
       ))}
     </div>

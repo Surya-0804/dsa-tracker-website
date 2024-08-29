@@ -12,7 +12,7 @@
 }
 .problem-history-left-part h1 {
   font-weight: 400;
-  font-size: 4vh;
+  font-size: 1.5rem;
   margin: 0;
 }
 .problem-history-left-part h2 {
@@ -24,7 +24,7 @@
 .problem-history-right-part {
   display: flex;
   justify-content: center;
-  font-size: 3vh;
+  font-size: 2.6vh;
   font-weight: 600;
   height: fit-content;
   padding: 0.7vw 2.5vw;
