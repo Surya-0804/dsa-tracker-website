@@ -204,7 +204,7 @@ export default function Nav() {
                 Login
               </button>
               <button
-                onClick={navigateToSignup}
+                onClick={toggleSignupModal}
                 className="login-signup-button-nav"
               >
                 Signup
