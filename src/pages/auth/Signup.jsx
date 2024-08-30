@@ -38,18 +38,25 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
       setError("Passwords do not match");
       return;
     }
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    setError("");
-    setLoading(true);
-
-    try {
-      await signup(email, password, name, phoneNo);
-      toggleSignupModal(); // Close the signup modal on success
-      navigate("/"); // Redirect to home or other page after successful signup
-    } catch (err) {
-      setError('Signup failed. Please try again.');
-    } finally {
-      setLoading(false);
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        phoneNo,
+        isGoogleUser: false
+      }),
+    });
+    if (response.ok) {
+      navigate("/");
+    }
+    else {
+      console.log('Registration Failed');
     }
   };
 
@@ -61,7 +68,7 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
 
       const userData = user.providerData;
       console.log(userData);
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,7 +97,7 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: userData.email,
+              email: user.email,
               password: user.uid,
               isGoogleUser: true
             }),

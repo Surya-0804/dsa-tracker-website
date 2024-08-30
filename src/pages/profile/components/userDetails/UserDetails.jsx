@@ -14,8 +14,6 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
   const onChange = async (imageList, addUpdateIndex) => {
     const formData = new FormData();
     formData.append("image", imageList[0].file); // Append the image file
-
-<<<<<<< HEAD
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/userDetails/uploadImage`, {
       method: "POST",
       headers: {
@@ -29,39 +27,6 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
       setImages(imageList);
     } else {
       console.error("Failed to upload image");
-=======
-  // Handle image upload and send it to the backend
-  const onChange = async (imageList) => {
-    setImages(imageList);
-
-    if (imageList.length > 0) {
-      const formData = new FormData();
-      formData.append("userId", name?.id); // Ensure user ID is available
-      formData.append("image", imageList[0].file);
-
-      try {
-        const token = localStorage.getItem("token");
-        const response = await fetch(
-          `${process.env.REACT_APP_SERVER_URL}/userDetails/uploadImage`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            body: formData,
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to upload image");
-        }
-
-        const result = await response.json();
-        console.log("Image uploaded successfully", result);
-      } catch (error) {
-        console.error("Error uploading image:", error);
-      }
->>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127
     }
   };
 

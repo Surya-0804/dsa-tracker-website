@@ -4,13 +4,7 @@ import GFG from "./GFG.svg";
 import { LuMedal } from "react-icons/lu";
 import DonutChart from "../donutchart/DonutChart";
 
-
-import { useEffect } from 'react';
 export default function GeeksforGeeks() {
-<<<<<<< HEAD
-
-=======
->>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127
   useEffect(() => {
     const fetchGfgStats = async () => {
       try {
@@ -21,26 +15,16 @@ export default function GeeksforGeeks() {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-<<<<<<< HEAD
-              Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({ userName: "gantavenkatakousik2021" })
-=======
               Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({ userName: "venkatmiriyala" }),
->>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127
           }
         );
 
         if (!response.ok) {
-<<<<<<< HEAD
-          throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
-=======
           throw new Error(
             `Failed to fetch: ${response.status} ${response.statusText}`
           );
->>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127
         }
 
         const data = await response.json();
@@ -52,10 +36,6 @@ export default function GeeksforGeeks() {
 
     fetchGfgStats();
   }, []);
-<<<<<<< HEAD
-=======
-
->>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127
   return (
     <div className="profile-page-geeksforgeeks-container">
       <h1 className="profile-page-geeksforgeeks-header">

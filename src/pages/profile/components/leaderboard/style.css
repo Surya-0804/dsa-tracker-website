@@ -170,10 +170,8 @@
   100% {
     background-position: 180px;
   }
-<<<<<<< HEAD
 }
-=======
-}
+
 @media (max-width: 768px) {
   /* .leaderboard-name {
     padding: 0;
@@ -191,42 +189,50 @@
     padding-bottom: 0;
   } */
 }
+
 .leaderboard-table {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 @media (max-width: 768px) {
   .leaderboard-container {
     width: 80vw;
     margin-top: 5vh;
     height: auto;
   }
+
   .leaderboard-heading {
     font-size: large;
   }
+
   .leaderboard-heading-description {
     font-size: small;
     text-align: center;
   }
+
   .leaderboard-label {
     font-size: small;
     text-align: center;
   }
+
   .leaderboard-name {
     font-size: medium;
     padding: 0 1rem;
   }
+
   .leaderboard-rank {
     font-size: medium;
   }
+
   .leaderboard-score {
     font-size: medium;
   }
+
   .leaderboard-rank-1,
   .leaderboard-rank-2,
   .leaderboard-rank-3 {
     font-size: large;
   }
 }
->>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127

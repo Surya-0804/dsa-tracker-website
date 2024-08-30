@@ -67,7 +67,7 @@ export default function Nav() {
     };
   }, [showLoginModel, showSignupModel]);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
