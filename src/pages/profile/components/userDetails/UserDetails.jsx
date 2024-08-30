@@ -3,7 +3,6 @@ import ImageUploading from "react-images-uploading";
 import { GoOrganization } from "react-icons/go";
 import { CiLocationOn, CiEdit } from "react-icons/ci";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-
 import "./style.css";
 
 const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
@@ -16,6 +15,7 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
     const formData = new FormData();
     formData.append("image", imageList[0].file); // Append the image file
 
+<<<<<<< HEAD
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/userDetails/uploadImage`, {
       method: "POST",
       headers: {
@@ -29,6 +29,39 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
       setImages(imageList);
     } else {
       console.error("Failed to upload image");
+=======
+  // Handle image upload and send it to the backend
+  const onChange = async (imageList) => {
+    setImages(imageList);
+
+    if (imageList.length > 0) {
+      const formData = new FormData();
+      formData.append("userId", name?.id); // Ensure user ID is available
+      formData.append("image", imageList[0].file);
+
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/userDetails/uploadImage`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to upload image");
+        }
+
+        const result = await response.json();
+        console.log("Image uploaded successfully", result);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+>>>>>>> aec692b2e83ed4f368dce7ef30ac315728d91127
     }
   };
 
@@ -80,8 +113,6 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
             imageList,
             onImageUpload,
             onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
             isDragging,
             dragProps,
           }) => (
@@ -141,13 +172,21 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
         </div>
         <div className="profile-info-item">
           <FaGithub className="profile-info-icon" />
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Github
           </a>
         </div>
         <div className="profile-info-item">
           <FaLinkedin className="profile-info-icon" />
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LinkedIn
           </a>
         </div>

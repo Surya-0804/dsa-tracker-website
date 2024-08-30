@@ -19,7 +19,8 @@
 
 .addnotes-main-container {
   font-family: "Poppins", sans-serif;
-  position: absolute;
+  position: fixed;
+  z-index: 33;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

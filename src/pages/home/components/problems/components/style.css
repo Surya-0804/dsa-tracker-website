@@ -219,7 +219,9 @@
 .problemBottom {
   display: "flex";
 }
-
+.add-notes-container{
+  display: fixed;
+}
 @media (max-width: 430px) {
   .problem-rectangle {
     width: 100%;
