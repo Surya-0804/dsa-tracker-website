@@ -55,7 +55,7 @@ export default function Leaderboard() {
   return (
     <>
       <div className="leaderboard">
-        <Nav />
+        {/* <Nav /> */}
         <div className="leaderboard-container">
           <h1 className="leaderboard-heading">Leaderboard</h1>
           <h2 className="leaderboard-heading-description">
