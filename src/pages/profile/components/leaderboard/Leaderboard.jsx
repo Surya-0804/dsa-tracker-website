@@ -5,7 +5,7 @@ import Nav from "../../../../components/nav/Nav";
 import NewFooter from "../../../../components/footer/NewFooter";
 
 export default function Leaderboard() {
-  const [topThree, setTopThree] = useState([]);
+  const [topTen, setTopTen] = useState([]);
 
   useEffect(() => {
     const fetchLeaderboardData = async () => {
@@ -36,9 +36,13 @@ export default function Leaderboard() {
         const data = await response.json();
         console.log("Fetched leaderboard data:", data);
 
-        // Only set the top 3 scores from the fetched data
-        if (data.leaderboardStats && data.leaderboardStats.scores) {
-          setTopThree(data.leaderboardStats.scores.slice(0, 3));
+        // Sort the leaderboard data by score in descending order
+        if (data.leaderboardStats) {
+          const sortedData = data.leaderboardStats.sort(
+            (a, b) => b.score - a.score
+          );
+          // Set the top 10 scores from the sorted data
+          setTopTen(sortedData.slice(0, 10));
         }
       } catch (error) {
         console.error("Error fetching leaderboard data:", error);
@@ -71,54 +75,28 @@ export default function Leaderboard() {
               </tr>
             </thead>
             <tbody>
-              {/* Dynamically render top 3 users */}
-              {topThree.map((user, index) => (
+              {/* Dynamically render top 10 users */}
+              {topTen.map((user, index) => (
                 <tr key={user._id}>
                   <td className="leaderboard-rank-container">
-                    <BsAwardFill className={`leaderboard-rank-${index + 1}`} />
+                    {index < 3 ? (
+                      <BsAwardFill
+                        className={`leaderboard-rank-${index + 1}`}
+                      />
+                    ) : (
+                      <span className="leaderboard-rank">{index + 1}.</span>
+                    )}
                   </td>
-                  <td className="leaderboard-name leaderboard-top-ranks-shine">
-                    {user.name}
+                  <td
+                    className={`leaderboard-name ${
+                      index < 3 ? "leaderboard-top-ranks-shine" : ""
+                    }`}
+                  >
+                    {user.userName}
                   </td>
                   <td className="leaderboard-score">{user.score} SP</td>
                 </tr>
               ))}
-
-              <tr>
-                <td className="leaderboard-rank">4.</td>
-                <td className="leaderboard-name">Sophia Williams</td>
-                <td className="leaderboard-score">133 SP</td>
-              </tr>
-              <tr>
-                <td className="leaderboard-rank">5.</td>
-                <td className="leaderboard-name">Liam Brown</td>
-                <td className="leaderboard-score">120 SP</td>
-              </tr>
-              <tr>
-                <td className="leaderboard-rank">6.</td>
-                <td className="leaderboard-name">Emma Jones</td>
-                <td className="leaderboard-score">114 SP</td>
-              </tr>
-              <tr>
-                <td className="leaderboard-rank">7.</td>
-                <td className="leaderboard-name">Noah Davis</td>
-                <td className="leaderboard-score">106 SP</td>
-              </tr>
-              <tr>
-                <td className="leaderboard-rank">8.</td>
-                <td className="leaderboard-name">Ava Miller</td>
-                <td className="leaderboard-score">102 SP</td>
-              </tr>
-              <tr>
-                <td className="leaderboard-rank">9.</td>
-                <td className="leaderboard-name">James Wilson</td>
-                <td className="leaderboard-score">97 SP</td>
-              </tr>
-              <tr>
-                <td className="leaderboard-rank">10.</td>
-                <td className="leaderboard-name">Isabella Taylor</td>
-                <td className="leaderboard-score">88 SP</td>
-              </tr>
             </tbody>
           </table>
         </div>
