@@ -247,7 +247,7 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
                 <i>p</i>
               </button>
             </div>
-            <div className="signup-component-or-description"> OR </div>
+            {/* <div className="signup-component-or-description"> OR </div>
             <div className="signup-component-google-button-container">
               <button
                 onClick={handleGoogleSignUp}
@@ -278,7 +278,7 @@ const Signup = ({ toggleSignupModal, setIsLoginCompleted }) => {
                 </svg>
                 Continue with Google
               </button>
-            </div>
+            </div> */}
           </form>
           <div className="signup-component-login-redirect-description">
             Already have an account?{" "}

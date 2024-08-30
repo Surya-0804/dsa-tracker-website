@@ -172,7 +172,7 @@ const Login = ({ toggleLoginModal }) => {
               <i>n</i>
             </button>
           </div>
-          <div className="login-component-or-description"> OR </div>
+          {/* <div className="login-component-or-description"> OR </div>
           <div className="login-component-google-button-container">
             <button
               onClick={handleGoogleLogin}
@@ -203,7 +203,7 @@ const Login = ({ toggleLoginModal }) => {
               </svg>
               Continue with Google
             </button>
-          </div>
+          </div> */}
         </form>
         <div className="login-component-signup-redirect-description">
           Need an account?{" "}

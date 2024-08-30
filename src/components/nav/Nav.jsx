@@ -330,7 +330,7 @@ export default function Nav() {
                         Login
                       </button>
                     </div>
-                    <div>
+                    {/* <div>
                       <button
                         onClick={handleGoogleLogin}
                         className="logout-button-res"
@@ -359,7 +359,7 @@ export default function Nav() {
                           ></path>
                         </svg>
                       </button>
-                    </div>
+                    </div> */}
                     <div style={{ paddingLeft: "2rem" }}>
                       <button
                         onClick={toggleSignupModal}
