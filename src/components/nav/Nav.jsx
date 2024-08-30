@@ -267,7 +267,7 @@ export default function Nav() {
                 onClick={toggleMenu}
                 className="nav-responsive-closing-button"
               >
-                {/* <FaArrowLeft /> */}
+                <FaArrowLeft />
               </button>
               <div className="dsa-tags show">
                 <div className="nav-responsive-tags">

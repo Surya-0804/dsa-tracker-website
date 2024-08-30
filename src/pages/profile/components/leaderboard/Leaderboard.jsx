@@ -62,43 +62,45 @@ export default function Leaderboard() {
             Code, Compete, Conquer - Unleash your coding prowess and dominate
             the leaderboard
           </h2>
-          <table>
-            <thead>
-              <tr>
-                <th className="leaderboard-label leaderboard-label-rank">
-                  Rank
-                </th>
-                <th className="leaderboard-label leaderboard-label-name">
-                  Name
-                </th>
-                <th className="leaderboard-label">Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Dynamically render top 10 users */}
-              {topTen.map((user, index) => (
-                <tr key={user._id}>
-                  <td className="leaderboard-rank-container">
-                    {index < 3 ? (
-                      <BsAwardFill
-                        className={`leaderboard-rank-${index + 1}`}
-                      />
-                    ) : (
-                      <span className="leaderboard-rank">{index + 1}.</span>
-                    )}
-                  </td>
-                  <td
-                    className={`leaderboard-name ${
-                      index < 3 ? "leaderboard-top-ranks-shine" : ""
-                    }`}
-                  >
-                    {user.userName}
-                  </td>
-                  <td className="leaderboard-score">{user.score} SP</td>
+          <div className="leaderboard-table">
+            <table>
+              <thead>
+                <tr>
+                  <th className="leaderboard-label leaderboard-label-rank">
+                    Rank
+                  </th>
+                  <th className="leaderboard-label leaderboard-label-name">
+                    Name
+                  </th>
+                  <th className="leaderboard-label">Score</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {/* Dynamically render top 10 users */}
+                {topTen.map((user, index) => (
+                  <tr key={user._id}>
+                    <td className="leaderboard-rank-container">
+                      {index < 3 ? (
+                        <BsAwardFill
+                          className={`leaderboard-rank-${index + 1}`}
+                        />
+                      ) : (
+                        <span className="leaderboard-rank">{index + 1}.</span>
+                      )}
+                    </td>
+                    <td
+                      className={`leaderboard-name ${
+                        index < 3 ? "leaderboard-top-ranks-shine" : ""
+                      }`}
+                    >
+                      {user.userName}
+                    </td>
+                    <td className="leaderboard-score">{user.score} SP</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
