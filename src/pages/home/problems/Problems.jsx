@@ -113,23 +113,23 @@ const Problems = () => {
       <div className="problemsandStatus">
         <div className="progress-bar">
           <div className="pb">
-            {/* <ProgressBar
+            <ProgressBar
               completed={progressWidth.toFixed(2)}
               bgColor="#85d1b5"
               baseBgColor="#e2ada6"
               height="3vh"
               labelSize="0rem"
               labelAlignment="hidden"
-            /> */}
+            />
           </div>
-          {/* <div className="container-showTag">
+          <div className="container-showTag">
             <span>
               {" "}
               {!currentUser && "--"}{" "}
               {currentUser && totalProblemsSolved.toString()}{" "}
             </span>{" "}
             / {totalProblems}
-          </div> */}
+          </div>
           <Link to="/dsajourney">
             <img
               src={HistoryIcon}
