@@ -442,3 +442,6 @@ nav.fill.stroke li a:hover:before {
   visibility: visible;
   transform: scaleX(1);
 }
+.navbar-container .active {
+  border-bottom: 3px solid var(--hovered-green-color);
+}
