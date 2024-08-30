@@ -4,7 +4,39 @@ import GFG from "./GFG.svg";
 import { LuMedal } from "react-icons/lu";
 import DonutChart from "../donutchart/DonutChart";
 
+
+import { useEffect } from 'react';
 export default function GeeksforGeeks() {
+
+  useEffect(() => {
+    const fetchGfgStats = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/codingStats/gfgStats`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ userName: "gantavenkatakousik2021" })
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched GFG stats data:", data);
+      } catch (error) {
+        console.error("Error fetching GFG stats:", error);
+      }
+    };
+
+    fetchGfgStats();
+  }, []);
   return (
     <div className="profile-page-geeksforgeeks-container">
       <h1 className="profile-page-geeksforgeeks-header">

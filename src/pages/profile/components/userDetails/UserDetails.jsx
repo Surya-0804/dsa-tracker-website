@@ -11,10 +11,25 @@ const ProfileCard = ({ isLoginCompleted, setIsLoginCompleted }) => {
   const [name, setName] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const maxNumber = 69;
+  const token = localStorage.getItem('token');
+  const onChange = async (imageList, addUpdateIndex) => {
+    const formData = new FormData();
+    formData.append("image", imageList[0].file); // Append the image file
 
-  const onChange = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
-    setImages(imageList);
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/userDetails/uploadImage`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in headers for authorization
+      },
+      body: formData, // Send the FormData object
+    });
+
+    if (response.ok) {
+      // If the image is uploaded successfully, update the state
+      setImages(imageList);
+    } else {
+      console.error("Failed to upload image");
+    }
   };
 
   const handleNameChange = (event) => {
