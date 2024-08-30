@@ -84,8 +84,7 @@ const Login = ({ toggleLoginModal }) => {
         }
         const data = await response.json();
         if (data.token && data.user) {
-          login(data.user, data.token);  // Set user and token in AuthContext
-          toggleLoginModal();
+          login(data.user, data.token);
           navigate('/');
         } else {
           throw new Error("Failed to log in");
