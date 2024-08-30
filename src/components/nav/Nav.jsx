@@ -272,36 +272,48 @@ export default function Nav() {
               <div className="dsa-tags show">
                 <div className="nav-responsive-tags">
                   <Link
-                    to={clientUrl}
+                    to="/"
                     className="active link-no-underline"
-                    onClick={play}
+                    onClick={() => {
+                      play();
+                      toggleMenu();
+                    }}
                   >
                     Home
                   </Link>
                 </div>
-                <div className="nav-responsive-tags">
+                {/* <div className="nav-responsive-tags">
                   <Link
                     to={clientUrl}
                     className="link-no-underline"
-                    onClick={play}
+                    onClick={() => {
+          play();
+          toggleMenu();
+        }}
                   >
                     About
                   </Link>
-                </div>
+                </div> */}
                 <div className="nav-responsive-tags">
                   <Link
-                    to={clientUrl}
+                    to="/leaderboard"
                     className="link-no-underline"
-                    onClick={play}
+                    onClick={() => {
+                      play();
+                      toggleMenu();
+                    }}
                   >
                     Leaderboard
                   </Link>
                 </div>
                 <div className="nav-responsive-tags">
                   <Link
-                    to={clientUrl}
+                    to="/algoVisualiser"
                     className="link-no-underline"
-                    onClick={play}
+                    onClick={() => {
+                      play();
+                      toggleMenu();
+                    }}
                   >
                     Algo Visualizer
                   </Link>
@@ -310,7 +322,14 @@ export default function Nav() {
                 {currentUser ? (
                   <>
                     <div className="nav-responsive-tags">
-                      <Link to="/profile" className="link-no-underline">
+                      <Link
+                        to="/stats"
+                        className="link-no-underline"
+                        onClick={() => {
+                          play();
+                          toggleMenu();
+                        }}
+                      >
                         Profile
                       </Link>
                     </div>
