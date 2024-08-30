@@ -67,7 +67,7 @@ export default function Nav() {
     };
   }, [showLoginModel, showSignupModel]);
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
@@ -151,12 +151,22 @@ export default function Nav() {
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="/algoVisualiser" onClick={play}>
+              <Link
+                to="/algoVisualiser"
+                onClick={play}
+                className={
+                  location.pathname === "/algoVisualiser" ? "active" : ""
+                }
+              >
                 AlgoVisualizer
               </Link>
             </li>
             <li className="dropdown">
-              <Link to="/stats" onClick={play}>
+              <Link
+                to="/stats"
+                onClick={play}
+                className={location.pathname === "/stats" ? "active" : ""}
+              >
                 Stats
               </Link>
             </li>

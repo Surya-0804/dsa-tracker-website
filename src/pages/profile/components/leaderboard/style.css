@@ -168,3 +168,20 @@
     background-position: 180px;
   }
 }
+@media (max-width: 768px) {
+  .leaderboard-name {
+    padding: 0;
+  }
+  .leaderboard-score {
+    padding: 0;
+  }
+  .leaderboard-rank-1,
+  .leaderboard-rank-2,
+  .leaderboard-rank-3 {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  .leaderboard-rank-1 {
+    padding-bottom: 0;
+  }
+}
