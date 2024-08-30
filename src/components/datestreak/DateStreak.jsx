@@ -72,7 +72,7 @@ const DateStreak = () => {
   };
 
   if (isLoading) {
-    return <LoadingComponent/>;
+    return <div className="date-streak-lc"><LoadingComponent /></div>;
   }
 
 

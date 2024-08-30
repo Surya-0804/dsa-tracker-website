@@ -68,8 +68,8 @@
 }
 */
 .problem-component-loading {
-  height: 13vh;
-  width: 45vw;
+  height: 15vh;
+  width: 42vw;
   background: linear-gradient(90deg,
       #0000 33%,
       rgba(255, 255, 255, 0.8) 50%,

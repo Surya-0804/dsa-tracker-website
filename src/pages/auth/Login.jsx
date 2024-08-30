@@ -31,6 +31,7 @@ const Login = ({ toggleLoginModal }) => {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       const token = localStorage.getItem('token');
+      console.log("Server URL:", process.env.REACT_APP_SERVER_URL);
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
         method: "POST",
         headers: {

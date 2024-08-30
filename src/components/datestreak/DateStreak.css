@@ -7,14 +7,37 @@
   border-radius: 1rem;
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  max-width: 35vw;
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+}
+
+.date-streak-lc {
+  display: flex;
+  justify-content: center;
+}
+
+.date-streak-lc .problem-component-loading {
+  height: 10vh;
+  width: 40vw;
+  background: linear-gradient(90deg,
+      #0000 33%,
+      rgba(255, 255, 255, 0.8) 50%,
+      #0000 66%) #eaeaea;
+  background-size: 300% 100%;
+  animation: shine 2s infinite;
+  border-radius: 1rem;
+  margin-top: 2vh;
+  margin-right: 2vw;
 }
 
 .calendar-day {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem 0.5rem 0.4rem 0.5rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
   border-radius: 50%;
   width: 3.125rem;
   height: 3.125rem;
@@ -24,8 +47,8 @@
 }
 
 .day-name {
-  font-size: 0.75rem;
-  color: #737373;
+  font-size: 0.85rem;
+  color: #3f3d3d;
   margin-bottom: 0.3rem;
 }
 
@@ -37,7 +60,7 @@
 }
 
 .highlight {
-  background-color: #62d8af69; /* Highlight color similar to the image */
+  background-color: #62d8af69;
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
