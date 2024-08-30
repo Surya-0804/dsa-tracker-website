@@ -76,7 +76,9 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
 
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>{Array.from({ length: 8 }).map((_, index) => (
+      <LoadingComponent key={index} />
+    ))}</div>;
   }
 
   // Filter data based on selected topics and difficulties
@@ -234,6 +236,12 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
 
   return (
     <div>
+      {loading && <div>
+        {Array.from({ length: 8 }).map((_, index) => (
+          <LoadingComponent key={index} />
+        ))}
+      </div>}
+
       {currentProblems.map((problem, index) => (
         <ProblemComponent
           key={index}

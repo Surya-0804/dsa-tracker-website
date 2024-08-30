@@ -49,59 +49,55 @@ const Problems = () => {
     });
   };
 
-    const fetchStats = async () => {
-        // Check if the user is logged in
-        if (currentUser) {
-            try {
-                const user = JSON.parse(localStorage.getItem('user'));
-                const userId = user?._id; // Optional chaining to avoid errors
-                const token = localStorage.getItem('token');
-    
-                if (!userId || !token) {
-                    throw new Error('User ID or token is missing');
-                }
-    
-                // Always fetch fresh stats from the server
-                const response = await fetch(
-                    `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${token}`,
-                        },
-                        body: JSON.stringify({ userId }),
-                    }
-                );
-    
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch stats: ${response.status} ${response.statusText}`);
-                } else {
-                    const data = await response.json();
-                    
-                    if (data && data.stats) {
-                        // Store fresh stats in local storage
-                        // localStorage.setItem('stats', JSON.stringify(data.stats));
-                        // Update the state with the new stats
-                        setStats(data.stats);
-                    } else {
-                        throw new Error('Invalid data format received');
-                    }
-                }
-            } catch (err) {
-                console.error("Error fetching stats:", err);
-                // errorToast();
-            }
-        } else {
-            console.warn('No current user found, skipping stats fetch.');
-        }
-    };
-    
+  const fetchStats = async () => {
+    if (currentUser) {
+      try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userId = user?._id; // Optional chaining to avoid errors
+        const token = localStorage.getItem('token');
 
-    useEffect(() => {
-        fetchStats();
-    }, [currentUser, selectedStatus]);  // Ensure stats are fetched when selectedStatus changes
-    
+        if (!userId || !token) {
+          throw new Error('User ID or token is missing');
+        }
+
+        // Always fetch fresh stats from the server
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/stats/completeUserStats`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ userId }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch stats: ${response.status} ${response.statusText}`);
+        } else {
+          const data = await response.json();
+
+          if (data && data.stats) {
+            setStats(data.stats);
+          } else {
+            throw new Error('Invalid data format received');
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching stats:", err);
+        // errorToast();
+      }
+    } else {
+      console.warn('No current user found, skipping stats fetch.');
+    }
+  };
+
+
+  useEffect(() => {
+    fetchStats();
+  }, [currentUser, selectedStatus]);
+
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -117,23 +113,23 @@ const Problems = () => {
       <div className="problemsandStatus">
         <div className="progress-bar">
           <div className="pb">
-            <ProgressBar
+            {/* <ProgressBar
               completed={progressWidth.toFixed(2)}
               bgColor="#85d1b5"
               baseBgColor="#e2ada6"
               height="3vh"
               labelSize="0rem"
               labelAlignment="hidden"
-            />
+            /> */}
           </div>
-          <div className="container-showTag">
+          {/* <div className="container-showTag">
             <span>
               {" "}
               {!currentUser && "--"}{" "}
               {currentUser && totalProblemsSolved.toString()}{" "}
             </span>{" "}
             / {totalProblems}
-          </div>
+          </div> */}
           <Link to="/dsajourney">
             <img
               src={HistoryIcon}

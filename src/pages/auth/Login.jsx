@@ -31,6 +31,7 @@ const Login = ({ toggleLoginModal }) => {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       const token = localStorage.getItem('token');
+      console.log("Server URL:", process.env.REACT_APP_SERVER_URL);
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
         method: "POST",
         headers: {
@@ -172,7 +173,7 @@ const Login = ({ toggleLoginModal }) => {
               <i>n</i>
             </button>
           </div>
-          <div className="login-component-or-description"> OR </div>
+          {/* <div className="login-component-or-description"> OR </div>
           <div className="login-component-google-button-container">
             <button
               onClick={handleGoogleLogin}
@@ -203,7 +204,7 @@ const Login = ({ toggleLoginModal }) => {
               </svg>
               Continue with Google
             </button>
-          </div>
+          </div> */}
         </form>
         <div className="login-component-signup-redirect-description">
           Need an account?{" "}
