@@ -509,6 +509,7 @@ export default function ProblemComponent({
   <AddNotes
     existingNotes={notes}
     onClose={handleNotesClose}
+    className="add-notes-container"
   />
 )}
 
