@@ -12,3 +12,12 @@
   font-size: 5vh;
   margin-top: 15vh;
 }
+@media (max-width: 770px) {
+  .dsa-journey {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+  .dsa-journey-header {
+    margin-top: 0;
+  }
+}
