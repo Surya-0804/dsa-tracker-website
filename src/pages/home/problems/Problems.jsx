@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProblemsList from "../components/problems/ProblemList";
 import Topics from "../components/topics/Topics";
 import "./style.css";
@@ -13,8 +13,17 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useAuth } from "../../../AuthContext";
 import HistoryIcon from "./history.png";
 import { Link } from "react-router-dom";
+import mapboxgl from 'mapbox-gl';
 
+mapboxgl.accessToken = 'pk.eyJ1IjoidmVua2F0YWtvdXNpayIsImEiOiJjbTBlb2htMmwwb3BrMm1xdjQ5b2V3bzJ0In0.up-ugLkQA7esCzHOqLeg7A';
 const Problems = () => {
+
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(78.4772);
+  const [lat, setLat] = useState(17.4065);
+  const [zoom, setZoom] = useState(9);
+
   const [stats, setStats] = useState(() => {
     const storedStats = localStorage.getItem("stats");
     return storedStats ? JSON.parse(storedStats) : null;
@@ -24,6 +33,7 @@ const Problems = () => {
   const [selectedStatus, setSelectedStatus] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { currentUser } = useAuth();
+
 
   const successToast = () => {
     toast.success("Successful!", {
@@ -95,6 +105,19 @@ const Problems = () => {
 
 
   useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/venkatakousik/cm0fj4mqq000b01pb2rvzdzwg',
+      center: [lng, lat],
+      zoom: zoom
+    });
+
+    // Trigger resize event after a short delay to ensure proper sizing
+    setTimeout(() => {
+      map.current.resize();
+    }, 500);
+
     fetchStats();
   }, [currentUser, selectedStatus]);
 
@@ -161,6 +184,10 @@ const Problems = () => {
           <FaArrowLeft />
         </button>
         <div className="overtopics-container">
+          <div className="mapbox">
+            <p className="maxbox-registered">Registered Programmers</p>
+            <div ref={mapContainer} className="map-container" />
+          </div>
           <Topics setSelectedTopics={setSelectedTopics} />
           <Difficulty setSelectedDifficulties={setSelectedDifficulties} />
           <StatusProblem setSelectedStatus={setSelectedStatus} />

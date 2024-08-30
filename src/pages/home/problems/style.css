@@ -109,6 +109,7 @@
   width: 70%;
   color: #e2ada6;
 }
+
 .problem-progress-bar-history-icon {
   width: 2.3vw;
   height: auto;
@@ -116,4 +117,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mapbox {
+  margin-bottom: 2vh;
+}
+
+.map-container {
+  border-radius: 1.2rem;
+  width: 95%;
+  height: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 2px solid #ccc;
+}
+
+.maxbox-registered {
+  font-size: 1.2rem;
+  margin-bottom: 1vh;
+  color: #2a2b2c;
 }
