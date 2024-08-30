@@ -71,15 +71,16 @@ const ProblemsList = ({ selectedTopics, selectedDifficulties }) => {
   };
   useEffect(() => {
     fetchData();
+    if (error) {
+      return <div>{Array.from({ length: 8 }).map((_, index) => (
+        <LoadingComponent key={index} />
+      ))}</div>;
+    }
   }, []);
 
 
 
-  if (error) {
-    return <div>{Array.from({ length: 8 }).map((_, index) => (
-      <LoadingComponent key={index} />
-    ))}</div>;
-  }
+  
 
   // Filter data based on selected topics and difficulties
   const filteredData =
